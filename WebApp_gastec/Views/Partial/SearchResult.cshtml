@@ -1,0 +1,145 @@
+﻿@model SearchModel
+@using WebApp_gastec.Domain
+
+@{
+    ViewData["Title"] = "GASTEC";
+    Layout = "_Layout";
+}
+
+<!--Page Title-->
+<section class="page-title" style="background-image:url(../../wwwroot/public/assets/softextwo/images/background/4.jpg);">
+    <div class="auto-container">
+        <!--<h1>عن غازتك</h1>-->
+    </div>
+</section>
+<!--End Page Title-->
+<!--Page Info-->
+<div class="page-info">
+    <div class="auto-container">
+        <div class="inner-container clearfix">
+            <ul class="bread-crumb pull-right">
+                <li><a href="@Url.Action("Index", "Home")">الرئيسية</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--End Page Info-->
+<!--Sidebar Page Container-->
+<div class="sidebar-page-container">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <!--Sidebar Side-->
+            <!--Content Side-->
+            <div class="content-side col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="auto-container text-right">
+
+                    <h2>نتائج البحث</h2>
+                    <hr>
+                    <div id="searchblocks"></div>
+
+                    @if (Model.ListClassFicationTree != null)
+                    {
+                        <div class="row clearfix">
+                            <div class="page-info">
+                                <div class="auto-container">
+                                    <div class="inner-container clearfix text-right">
+                                        <h4>صفحات</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="team-column col-md-12 col-sm-12 col-xs-12" style="margin-top: 30px">
+                                <div class="inner-column">
+                                    <div class="row clearfix">
+                                        @foreach (var classification in Model.ListClassFicationTree)
+                                        {
+                                            @if (classification.ParentID == 56 || classification.ParentID == 57 || classification.ParentID == 58)
+                                            {
+                                                <div style="margin-bottom: 10px" class="text-right">
+                                                    <a href="@Url.Action(GetActionName.GetActionNameForSearch(@classification.ParentID.ToString()),GetControllerName.GetControllerNameByParentID(@classification.ParentID.ToString()) , new {ID_ = "48"})" target="_blank" data-caption="@classification.Name">
+                                                        @classification.Name
+                                                    </a>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div style="margin-bottom: 10px" class="text-right">
+                                                    <a href="@Url.Action(GetActionName.GetActionNameForSearch(@classification.ParentID.ToString()),GetControllerName.GetControllerNameByParentID(@classification.ParentID.ToString()) , new {ID_ = @classification.Serial.ToString()})" target="_blank" data-caption="@classification.Name">
+                                                        @classification.Name
+                                                    </a>
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if (Model.ListNews != null)
+                    {
+                        <div class="row clearfix">
+                            <div class="page-info">
+                                <div class="auto-container">
+                                    <div class="inner-container clearfix text-right">
+                                        <h4>أخبار</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="team-column col-md-12 col-sm-12 col-xs-12" style="margin-top: 30px">
+                                <div class="inner-column">
+                                    <div class="row clearfix">
+                                        @foreach (var classification in Model.ListNews)
+                                        {
+                                            <div style="margin-bottom: 10px" class="text-right">
+                                                <a href="@Url.Action("NewsDetails", "Home", new { serial_ = classification.Serial})" target="_blank" data-caption="@classification.Name">
+                                                    @classification.Name
+                                                </a>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if (Model.ListVideos != null)
+                    {
+                        <div class="row clearfix">
+                            <div class="page-info">
+                                <div class="auto-container">
+                                    <div class="inner-container clearfix text-right">
+                                        <h4>فيديوهات</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="team-column col-md-12 col-sm-12 col-xs-12" style="margin-top: 30px">
+                                <div class="inner-column">
+                                    <div class="row clearfix">
+                                        @foreach (var classification in Model.ListVideos)
+                                        {
+                                            <div style="margin-bottom: 10px" class="text-right">
+                                                <a href="@classification.URL" class="lightbox-image overlay-box" data-caption="@classification.Name">
+                                                    @classification.Name
+                                                </a>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    //LightBox / Fancybox
+    if ($('.lightbox-image').length) {
+        $('.lightbox-image').fancybox({
+            openEffect: 'fade',
+            closeEffect: 'fade',
+            helpers: {
+                media: {}
+            }
+        });
+    }
+</script>

@@ -1,0 +1,104 @@
+﻿@model HomePageViewModel
+@using WebApp_gastec.Domain
+
+@{
+    ViewData["Title"] = "GASTEC";
+    Layout = "_Layout";
+}
+
+<!-- Page Title-->
+<section class="page-title" style="background-image:url('../../wwwroot/public/assets/softextwo/images/background/Stat.jpg');">
+    <div class="auto-container">
+        @foreach (var entity in Model.Sub_Section)
+        {
+            <!-- <h1>@entity.ClassificationName  </h1>-->
+        }
+    </div>
+</section>
+<!-- End Page Title-->
+<!-- Page Info-->
+<div class="page-info">
+    <div class="auto-container">
+        <div class="inner-container clearfix">
+            <ul class="bread-crumb pull-right">
+                <li><a href="@Url.Action("Index","Home")">الرئيسية</a></li>
+                @foreach (var entity in Model.Sub_Section)
+                {
+                    <li>@entity.ClassificationName</li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Info-->
+<div class="sidebar-page-container">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <!--Sidebar Side-->
+            <div class="sidebar-side col-lg-3 col-md-4 col-sm-12 col-xs-12 pull-right">
+                <aside class="sidebar">
+                    <!--Blog Category Widget-->
+                    <div id="sidenavelist">
+                        <div class="sidebar-widget sidebar-blog-category">
+                            <ul class="blog-cat">
+                                @foreach (var mainSection in Model.Main_Section)
+                                {
+                                    @foreach (var entity in mainSection.LstChildClassification)
+                                    {
+                                        @if (entity.IsActive == true)
+                                        {
+                                            <li class="active">
+                                                <a href="@Url.Action("Index", "Statistics",new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                <a href="@Url.Action("Index", "Statistics",new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
+                                            </li>
+                                        }
+
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+            <!--Content Side-->
+            <div class="content-side pull-left col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                <div class="services-single" dir="rtl">
+                    <div class="inner-box">
+                        <div id="cmspage1">
+                            @foreach (var entity in Model.Sub_Section)
+                            {
+                                <h2>@entity.ClassificationName</h2>
+                                <div style="font-size:14px; position:relative">
+                                    @foreach (var webSection in entity.LstWebSections)
+                                    {
+                                        <h3 style="text-align: justify;">
+                                            <span style="color:#263a69;">
+                                                @Html.Raw(webSection.Body)
+                                            </span>
+                                        </h3>
+                                        @foreach (var image in webSection.LstImages)
+                                        {
+                                            <img src="~/Images/Statistics/@image.ImageGUID" style="width: max-content;" />
+                                        }
+                                        <hr />
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="team-column col-md-12 col-sm-12 col-xs-12" style="margin-top: 30px">
+                    <div class="inner-column">
+                        <div class="row clearfix">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

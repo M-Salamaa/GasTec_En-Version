@@ -1,0 +1,6 @@
+<br />
+<b>Warning</b>:  file_get_contents(https://softexexappsviewer.azurewebsites.net/api/Files/DownloadImages?EncryptedServerIP=KiYqJCgjLWo5MG1jMSgkMzQjNDUoKik%3D&amp;EncryptedDatabaseName=KiYqJCgjLWo5MEdhc3RlYy1FZ3lwdC1XZWJzaXRlKCQzNCM0NSgqKQ%3D%3D&amp;MediaMode=0&amp;EncryptedFileID=KiYqJCgjLWo5MDM0MCgkMzQjNDUoKik%3D): failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in <b>/var/www/html/projects/imageopt/index.php</b> on line <b>4</b><br />
+<br />
+<b>Warning</b>:  file_get_contents(https://softexexappsviewer.azurewebsites.net/api/Files/DownloadImages?EncryptedServerIP=KiYqJCgjLWo5MG1jMSgkMzQjNDUoKik%3D&amp;EncryptedDatabaseName=KiYqJCgjLWo5MEdhc3RlYy1FZ3lwdC1XZWJzaXRlKCQzNCM0NSgqKQ%3D%3D&amp;MediaMode=0&amp;EncryptedFileID=KiYqJCgjLWo5MDM0MCgkMzQjNDUoKik%3D): failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+ in <b>/var/www/html/projects/imageopt/index.php</b> on line <b>26</b><br />

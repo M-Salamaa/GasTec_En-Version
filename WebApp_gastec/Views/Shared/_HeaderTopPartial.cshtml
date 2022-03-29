@@ -1,0 +1,92 @@
+﻿@model MainMenuModel
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<div class="auto-container">
+    @if (Gastech_Vault.TranslationLanguageID == 0)
+    {
+        <div class="inner-container clearfix">
+            <!--Top left-->
+            <div class="top-left clearfix hidden-sm hidden-xs">
+                <!--social-icon-->
+                <div class="social-icon">
+                    <ul class="clearfix">
+                        <li>
+                            <a href="https://www.shakwa.eg/GCP/Default.aspx" target="_blank"><img src="~/public/assets/softextwo/images/16528.png" alt="" title=""></a>
+                        </li>
+                        <li><a href="https://www.facebook.com/gasteceg/" target="_blank"><span class="fa fa-facebook"></span></a></li>
+                        <li><a href="https://www.youtube.com/channel/UCTLayD5SdoD3WCPk7T3jgcQ" target="_blank"><span class="fa fa-youtube"></span></a></li>
+
+                    </ul>
+                </div>
+                <ul class="links clearfix">
+                    <li style="padding-top: 8px">|</li>
+                    <li><a href="mailto:gastec@gastec-egypt.com"><span class="icon flaticon-note-1"></span></a></li>
+                    <li><a href="@Url.Action("Translation","Home")"><strong>English</strong><span class="icon flaticon-chat"></span></a></li>
+                </ul>
+            </div>
+            <!--Top Right-->
+            <div class="top-right clearfix hidden-sm">
+                <!--social-icon-->
+                <div class="links clearfix">
+                    <ul class="clearfix">
+                        @foreach (var entity in Model.MainNavigationBar)
+                        {
+                            @if (entity.ClassificationID == 8)
+                            {
+                                <li><a href="@Url.Action("News", "MediaCenter")">@entity.ClassificationName</a></li>
+                            }
+                            else
+                                continue;
+                        }
+                        <li><a href="#">وظائف</a></li>
+                        <li><a href="@Url.Action("Contacts", "Home")">اتصل بنا</a></li>
+                        <li><a href="@Url.Action("Conversion_Form","Home")">طلب تحويل سيارة</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="inner-container clearfix">
+            <!--Top Right-->
+            <div class="top-right clearfix hidden-sm">
+                <!--social-icon-->
+                <div class="links clearfix">
+                    <ul class="clearfix">
+                        @foreach (var entity in Model.MainNavigationBar)
+                        {
+                            @if (entity.ClassificationID == 76)
+                            {
+                                <li><a href="@Url.Action("News", "MediaCenter")">@entity.ClassificationName</a></li>
+                            }
+                            else
+                                continue;
+                        }
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="@Url.Action("Contacts", "Home")">Contact Us</a></li>
+                        <li><a href="@Url.Action("Conversion_Form","Home")">Car Conversion Request</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--Top left-->
+            <div class="top-left clearfix hidden-sm hidden-xs">
+                <ul class="links clearfix">
+
+                    <li><a href="mailto:gastec@gastec-egypt.com"><span class="icon flaticon-note-1"></span></a></li>
+                    <li><a href="@Url.Action("Translation","Home")"><strong>عربى</strong><span class="icon flaticon-chat"></span></a></li>
+                    <li style="padding-top: 8px">|</li>
+                </ul>
+                <!--social-icon-->
+                <div class="social-icon">
+                    <ul class="clearfix">
+                        <li><a href="https://www.facebook.com/gasteceg/" target="_blank"><span class="fa fa-facebook"></span></a></li>
+                        <li><a href="https://www.youtube.com/channel/UCTLayD5SdoD3WCPk7T3jgcQ" target="_blank"><span class="fa fa-youtube"></span></a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+</div>

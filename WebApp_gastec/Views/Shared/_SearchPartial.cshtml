@@ -1,0 +1,19 @@
+﻿@model SearchModel
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<div class="dropdown">
+    <button class="search-box-btn dropdown-toggle" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-search"></span></button>
+    <ul class="dropdown-menu pull-right search-panel" aria-labelledby="dropdownMenu4">
+        <li class="panel-outer">
+            <div class="form-container">
+                <form method="get" asp-controller="Partial" asp-action="_SearchPartial">
+                    <div class="form-group">
+                        <input asp-for="@Model.keyWord_" value="" placeholder="Search Here" required="" />
+                        <button asp-controller="Partial" asp-action="SearchResult" type="submit" class="search-btn"><span class="fa fa-search"></span></button>
+                    </div>
+                </form>
+            </div>
+        </li>
+    </ul>
+</div>

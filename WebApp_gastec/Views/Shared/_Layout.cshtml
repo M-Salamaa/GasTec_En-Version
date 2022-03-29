@@ -1,0 +1,383 @@
+﻿
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>GASTEC</title>
+    <!-- Responsive -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <!--Check URL exist-->
+    <meta property="og:url" content=@Gastech_Vault.baseURL>
+    <!-- Create the meta link tag-->
+    <style>
+        svg {
+            position: absolute;
+            bottom: 0;
+            left: 0
+        }
+    </style>
+
+    <script src="~/public/assets/softextwo/js/jquery.js"></script>
+
+    <script type="text/javascript">
+
+        //remove any externals iframes
+        var topHref = '';
+        try {
+            topHref = top.location.href;
+        } catch (e) {
+            topHref = '';
+        }
+
+        //remove any externals iframes
+        if (top.location != location && (topHref == '' || topHref.indexOf('#') != -1)) {
+            top.location.href = document.location.href;
+        }
+    </script>
+    <script type="text/javascript">
+        //remove any externals iframes
+        var topHref = '';
+        try {
+            topHref = top.location.href;
+        } catch (e) {
+            topHref = '';
+        }
+        //remove any externals iframes
+        if (top.location != location && (topHref == '' || topHref.indexOf('#') != -1)) {
+            top.location.href = document.location.href;
+        }
+    </script>
+    @if (Gastech_Vault.TranslationLanguageID == 0)
+    {
+
+        <link href="~/public/assets/softextwo/css/bootstrap.css" rel="stylesheet">
+        <link href="~/public/assets/softextwo/plugins/revolution/css/settings.css" rel="stylesheet" type="text/css">
+        <!-- REVOLUTION SETTINGS STYLES -->
+        <link href="~/public/assets/softextwo/plugins/revolution/css/layers.css" rel="stylesheet" type="text/css">
+        <!-- REVOLUTION LAYERS STYLES -->
+        <link href="~/public/assets/softextwo/plugins/revolution/css/navigation.css" rel="stylesheet" type="text/css">
+        <!-- REVOLUTION NAVIGATION STYLES -->
+        <link href="~/public/assets/softextwo/css/style.css" rel="stylesheet">
+        <link href="~/public/assets/softextwo/css/responsive.css" rel="stylesheet">
+        <link id="theme-color-file" href="~/public/assets/softextwo/css/color-themes/red-theme.css" rel="stylesheet">
+        <!--Maps CSS-->
+        <link rel="stylesheet" type="text/css" href="~/public/src/style/css/pluginStyle.css">
+    }
+    else
+    {
+        <link href="~/public/assets/softextwo/css-en/bootstrap.css" rel="stylesheet">
+        <link href="~/public/assets/softextwo/plugins/revolution/css/settings.css" rel="stylesheet" type="text/css">
+        <!-- REVOLUTION SETTINGS STYLES -->
+        <link href="~/public/assets/softextwo/plugins/revolution/css/layers.css" rel="stylesheet" type="text/css">
+        <!-- REVOLUTION LAYERS STYLES -->
+        <link href="~/public/assets/softextwo/plugins/revolution/css/navigation.css" rel="stylesheet" type="text/css">
+        <!-- REVOLUTION NAVIGATION STYLES -->
+        <link href="~/public/assets/softextwo/css-en/style.css" rel="stylesheet">
+        <link href="~/public/assets/softextwo/css-en/responsive.css" rel="stylesheet">
+        <link id="theme-color-file" href="~/public/assets/softextwo/css-en/color-themes/red-theme.css" rel="stylesheet">
+        <!--Maps CSS-->
+        <link rel="stylesheet" type="text/css" href="~/public/src/style/css/pluginStyle-ar.css">
+    }
+    <link rel="shortcut icon" href="~/public/assets/softextwo/images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="~/public/assets/softextwo/images/favicon.png" type="image/x-icon">
+</head>
+<body>
+    @*Page Start*@
+    <div class="page-wrapper">
+        <!-- Preloader -->
+        <div class="preloader" style="display: none;"></div>
+        <!-- ==========================
+            HEADER - START
+        =========================== -->
+        <!-- Main Header-->
+        <header class="main-header header-style-four">
+            <!--Sticky Header-->
+            <div class="sticky-header">
+                <!-- Header Top -->
+                <div class="header-top" id="header-top">
+                    <!---------------------------------------------HEADER TOP SECTION--------------------------------------------------------->
+                </div>
+                <!-- Header Top End -->
+                <div class="auto-container">
+                    <div class="sticky-inner-container clearfix">
+                        <!--Logo-->
+                        <div class="logo pull-right">
+                            @if (Gastech_Vault.TranslationLanguageID == 0)
+                            {
+                                <a href="@Url.Action("Index","Home")" class="img-responsive"><img src="~/public/assets/softextwo/images/logo-ar.png" alt="" title="" /></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Index","Home")" class="img-responsive"><img src="~/public/assets/softextwo/images/logo.png" alt="" title="" /></a>
+                            }
+                        </div>
+                        <!--Right Col-->
+                        <div class="right-col pull-left">
+                            <!--Outer Box-->
+                            <div class="outer-box">
+                                <!--Search Box-->
+                                <div class="search-box-outer" id="search">
+                                    <!---------------------------------------------SEARCH SECTION--------------------------------------------------------->
+
+                                </div>
+                            </div>
+                            <!-- Main Menu -->
+                            <nav class="main-menu" id="main-menu">
+                                <!---------------------------------------------NAVIGATION BAR SECTION--------------------------------------------------------->
+
+                            </nav>
+                            <!-- Main Menu End-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Sticky Header-->
+        </header>
+
+        @RenderBody()
+
+        @*Page End*@
+
+        @*Footer Start*@
+
+        <!--Call Back Section-->
+        <section class="call-to-action"
+                 style="background-image:url(../../wwwroot/public/assets/softextwo/images/background/2.jpg); background-attachment: fixed">
+            <div class="auto-container clearfix">
+                @if (Gastech_Vault.TranslationLanguageID == 0)
+                {
+
+                    <div class="col-md-8 pull-right">
+                        <h2 style="color: #fff">للإستفسارات والشكاوى</h2>
+                        <h3 style="color: #fff">إتصل بنا او اترك رسالة وسيقوم أحد ممثلي خدمة العملاء بالرد عليك فى أقرب وقت.</h3>
+                    </div>
+                    <a style="margin-top: 20px" href="#" data-toggle="modal" data-target="#myModal3"
+                       class="theme-btn btn-style-one">إرسل طلبك</a>
+                    <a style="margin-top: 20px" href="tel:01000016955" class="theme-btn btn-style-one">إتصل بنا</a>
+                }
+                else
+                {
+                    <div class="col-md-8">
+                        <h2 style="color: #fff">For inquiries and complaints</h2>
+                        <h3 style="color: #fff">
+                            Call us or leave a message and our customer service representative will get back to
+                            you soon.
+                        </h3>
+                    </div>
+                    <a style="margin-top: 20px" href="#" data-toggle="modal" data-target="#myModal3"
+                       class="theme-btn btn-style-one">Send Request</a>
+                    <a style="margin-top: 20px" href="tel:01000016955" class="theme-btn btn-style-one">Contact Us</a>
+                }
+            </div>
+        </section>
+        <div class="modal fade" id="myModal3" tabindex="-1" role="dialog">
+            <!---------------------------------------------CALL BACK SECTION--------------------------------------------------------->
+        </div>
+        <!--End Call Back Section-->
+        <!--Main Footer-->
+        <footer class="main-footer">
+            <div class="container-fluid">
+                <!--Widgets Section-->
+                <div class="widgets-section">
+                    <div id="footer1">
+                        <!---------------------------------------------MAIN MENU FOOTER SECTION--------------------------------------------------------->
+
+                    </div>
+                </div>
+                <!--Footer Bottom-->
+                <div class="footer-bottom">
+                    <div class="clearfix">
+                        <div class="col-md-12 text-center">
+                            <ul class="social-icon-one">
+                                <li>
+                                    <a href="https://www.facebook.com/gasteceg/" target="_blank">
+                                        <span class="fa fa-facebook"
+                                              target="_blank"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.youtube.com/channel/UCTLayD5SdoD3WCPk7T3jgcQ" target="_blank">
+                                        <span class="fa fa-youtube"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="center">
+                                @if (Gastech_Vault.TranslationLanguageID == 0)
+                                {
+                                    <span style="font-size: 16px;font-weight: 600; color: #243a69;">
+                                        جميع الحقوق محفوظة للشركة
+                                        المصرية الدولية لتكنولوجيا الغاز - غازتك
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span style="font-size: 16px;font-weight: 600; color: #243a69;">
+                                        All rights reserved to the
+                                        Egyptian International Gas Technology - GASTEC
+                                    </span>
+                                }
+                                <div class="copyright">
+                                    Powered by <a href="http://softexsw.com" target="_blank">
+                                        Softex Software
+                                        House
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        @*Footer End*@
+        <script>
+            //Update Header Style and Scroll to Top
+            function headerStyle() {
+                if ($('.main-header').length) {
+                    var windowpos = $(window).scrollTop();
+                    var siteHeader = $('.main-header');
+
+                    var scrollLink = $('.scroll-to-top');
+                    if (windowpos >= 1) {
+                        siteHeader.addClass('fixed-header');
+                        scrollLink.fadeIn(0);
+                    } else {
+                        siteHeader.removeClass('fixed-header');
+                        scrollLink.fadeOut(0);
+                    }
+                }
+            }
+
+            headerStyle();
+            //Submenu Dropdown Toggle
+            if ($('.main-header li.dropdown ul').length) {
+                $('.main-header li.dropdown').append('<div class="dropdown-btn"><span class="fa fa-angle-down"></span></div>');
+
+                //Dropdown Button
+                $('.main-header li.dropdown .dropdown-btn').on('click', function () {
+                    $(this).prev('ul').slideToggle(500);
+                });
+
+                //Disable dropdown parent link
+                $('.main-header .navigation li.dropdown > a,.hidden-bar .side-menu li.dropdown > a').on('click', function (e) {
+                    e.preventDefault();
+                });
+            }
+        </script>
+        <!--Script to get Sticky Header Section-->
+        <script>
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("_HeaderTopPartial", "Partial")",
+            success: function (data) {
+                $("#header-top").html(data);
+            },
+            error: function (msg) {}
+        });
+    });
+        </script>
+        <!--Script to get Main menu Header Section-->
+
+        <script>
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("_HeaderMainMenuPartial", "Partial")",
+            success: function (data) {
+                $("#main-menu").html(data);
+            },
+            error: function (msg) {}
+        });
+    });
+        </script>
+        <!--Script to get Search Section-->
+
+        <script>
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("_SearchPartial", "Partial")",
+            success: function (data) {
+                $("#search").html(data);
+            },
+            error: function (msg) {}
+        });
+    });
+        </script>
+        <!--Script to get Contact US Popup-->
+
+        <script>
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("_ContactUsPartial", "Partial")",
+            success: function (data) {
+                $("#myModal3").html(data);
+            },
+            error: function (msg) {}
+        });
+    });
+        </script>
+        <!--Script to get Footer Section-->
+
+        <script>
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("_FooterMainMenuPartial", "Partial")",
+            success: function (data) {
+                $("#footer1").html(data);
+            },
+            error: function (msg) {}
+        });
+    });
+        </script>
+
+        <script src="~/public/assets/softextwo/js/bootstrap.min.js"></script>
+
+        <script src="~/public/assets/softextwo/js/jquery.fancybox.js"></script>
+
+        <script src="~/public/assets/softextwo/js/isotope.js"></script>
+
+        <script src="~/public/assets/softextwo/js/owl.js"></script>
+
+        <script src="~/public/assets/softextwo/js/wow.js"></script>
+
+        <script src="~/public/assets/softextwo/js/jquery-ui.js"></script>
+
+        <script src="~/public/assets/softextwo/js/appear.js"></script>
+
+        <script src="~/public/assets/softextwo/js/script.js"></script>
+
+        <script type="text/javascript"
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxFPv8F8EXVy6pkK4YWtY8Ef8PqjM7xlA&libraries=places,geometry">
+        </script>
+
+        @*<script type="text/javascript"
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqVSNGgLqPe8vvHDWiHXwWJX0s4iuF2fs&libraries=places,geometry">
+            </script>*@
+
+
+        <!-- Try Google reCAPTCHA-->
+        <script type="text/javascript"
+                src="https://www.google.com/recaptcha/api.js?render=6LfCsvYeAAAAADTu6HLYC_IvH__akj8McpQKt2fy"></script>
+
+        <!--Revolution Slider-->
+        <script src="~/public/assets/softextwo/plugins/revolution/js/jquery.themepunch.revolution.min.js"></script>
+        <script src="~/public/assets/softextwo/plugins/revolution/js/jquery.themepunch.tools.min.js"></script>
+        <script src="~/public/assets/softextwo/plugins/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+        <script src="~/public/assets/softextwo/plugins/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+        <script src="~/public/assets/softextwo/plugins/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+        <script src="~/public/assets/softextwo/plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+        <script src="~/public/assets/softextwo/plugins/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+        <script src="~/public/assets/softextwo/plugins/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+        <script src="~/public/assets/softextwo/plugins/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+        <script src="~/public/assets/softextwo/plugins/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+        <script src="~/public/assets/softextwo/plugins/revolution/js/extensions/revolution.extension.video.min.js"></script>
+    </div>
+</body>
+</html>
+

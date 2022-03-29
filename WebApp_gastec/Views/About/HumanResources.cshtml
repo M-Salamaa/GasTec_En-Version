@@ -1,0 +1,211 @@
+﻿@model HomePageViewModel
+@{
+    ViewData["Title"] = "GASTEC";
+    Layout = "_Layout";
+}
+
+
+<!--Page Title-->
+<section class="page-title" style="background-image:url('../../wwwroot/public/assets/softextwo/images/background/hr.jpg');">
+    <div class="auto-container">
+        @foreach (var section in Model.AboutUs_MainSection)
+        {
+            @foreach (var entity in section.LstChildClassification)
+            {
+                <!--<h1> @entity.ClassificationName</h1>-->
+            }
+        }
+    </div>
+
+</section>
+<!--End Page Title-->
+<!--Page Info-->
+<div class="page-info">
+    <div class="auto-container">
+        <div class="inner-container clearfix">
+            <ul class="bread-crumb pull-right">
+                <li>
+                    <a href="@Url.Action("Index","Home")">
+                        الرئيسية
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index","About", new { ID_ = "9"})">
+                        عن غازتك
+                    </a>
+                </li>
+                @foreach (var entity in Model.AboutUs_MainSection)
+                {
+                    <li>@entity.ClassificationName</li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+<!--End Page Info-->
+<!--Sidebar Page Container-->
+<div class="sidebar-page-container">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <!--Sidebar Side-->
+            <div class="sidebar-side col-lg-3 col-md-4 col-sm-12 col-xs-12 pull-right">
+                <aside class="sidebar">
+                    <div id="sidenavelist"></div>
+                    <div class="sidebar-widget sidebar-blog-category">
+                        <ul class="blog-cat">
+                            @foreach (var entity in Model.HR)
+                            {
+                                @foreach (var child in entity.LstChildClassification)
+                                {
+                                    @if (child.IsActive == true)
+                                    {
+                                        <li class="active"><a href="@Url.Action("HumanResources","About", new { ID_ = child.ClassificationID})">@child.ClassificationName</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="@Url.Action("HumanResources","About", new { ID_ = child.ClassificationID})">@child.ClassificationName</a></li>
+                                    }
+                                }
+                            }
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+            @foreach (var entity in Model.AboutUs_MainSection)
+            {
+                <!--Content Side-->
+                // check if ID = 15 for Management Section
+                @if (entity.ClassificationID == 15)
+                {
+                    <div class="content-side pull-left col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                        <div class="services-single" dir="rtl">
+                            <div class="inner-box">
+                                <div id="cmspage1">
+                                    <h2>@entity.ClassificationName</h2>
+                                    <div style="font-size:14px; position:relative">
+                                        <table border="1" cellpadding="1" cellspacing="1" style="width:900px;">
+                                            <tbody>
+                                                @foreach (var image in entity.LstImages)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            <h3>
+                                                                <span style="font-size:18px;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
+                                                            </h3>
+                                                        </td>
+                                                        <td>
+                                                            <p>
+                                                                <span style="font-size:18px;"> @image.ImageName</span>
+                                                            </p>
+                                                            <p>
+                                                                <span style="font-size:18px;">  @image.Image_AltText</span>
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <h3>
+                                                                <span style="font-size:18px;">
+                                                                    <img src="~/Images/HumanResources/@image.ImageGUID" style="height: 234px; width: 200px; float: left;">
+                                                                </span>
+                                                            </h3>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                //Check if ID = 17 for Training Section
+                else if (entity.ClassificationID == 17)
+                {
+                    <div class="content-side pull-left col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                        <div class="services-single" dir="rtl">
+                            <div class="inner-box">
+                                <div id="cmspage1">
+                                    @foreach (var webSection in entity.LstWebSections)
+                                    {
+                                        @foreach (var image in webSection.LstImages)
+                                        {
+                                            <h2>@entity.ClassificationName</h2>
+                                            <div style="font-size:14px; position:relative">
+                                                <p dir="RTL" style="text-align:right; margin:0in 0in 0.0001pt">
+                                                    <strong>
+                                                        <span style="font-family:Arial,Helvetica,sans-serif;">
+                                                            <span style="font-size:11pt">
+                                                                <span style="direction:rtl">
+                                                                    <span style="unicode-bidi:embed">
+                                                                        <span lang="AR-SA" style="font-size:12.0pt">
+                                                                            @webSection.WebSection_PlainText
+                                                                        </span>
+                                                                    </span>
+                                                                </span>
+                                                            </span>
+                                                        </span>
+                                                    </strong>
+                                                </p>
+                                                <p dir="RTL" style="margin:0in 0in 0.0001pt; text-align:right">
+                                                    <img src="~/Images/HumanResources/@image.ImageGUID" style="height: 600px; width: 900px;">
+                                                </p>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                //Check if ID = 18 for Organiztional Section
+                else if (entity.ClassificationID == 18)
+                {
+                    continue;
+                }
+                //Check if ID = 78 for Relations Section
+                else if (entity.ClassificationID == 78)
+                {
+                    <div class="content-side pull-left col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                        <div class="services-single" dir="rtl">
+                            <div class="inner-box">
+                                <div id="cmspage1">
+                                    <!--//end backend to retrieve variables  -->
+                                    <!--//Start backend to retrieve variables  -->
+                                    <h2>@entity.ClassificationName</h2>
+                                    @foreach (var webSection in entity.LstWebSections)
+                                    {
+                                        <div style="font-size:14px; position:relative">
+                                            <p style="text-align: justify;">
+                                                <span style="color:#263a69;">
+                                                    <span style="font-size:18px;">
+                                                        @Html.Raw(webSection.Body)
+                                                    </span>
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <h3 dir="rtl" style="text-align: justify;">
+                                            @foreach (var image in webSection.LstImages)
+                                            {
+                                                <img src="~/Images/HumanResources/@image.ImageGUID" style="width: 295px; height:195px">
+                                            }
+                                            &nbsp;
+                                        </h3>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <!--End Content Side-->
+            }
+
+        </div>
+    </div>
+</div>
+
+

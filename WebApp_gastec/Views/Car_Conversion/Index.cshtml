@@ -1,0 +1,319 @@
+﻿@model HomePageViewModel
+@using WebApp_gastec.Domain
+
+@{
+    ViewData["Title"] = "GASTEC";
+    Layout = "_Layout";
+}
+
+<!-- Page Title-->
+<section class="page-title" style="background-image:url('../../wwwroot/public/assets/softextwo/images/background/car_conv.jpg');">
+    <div class="auto-container">
+        @foreach (var entity in Model.Sub_Section)
+        {
+            <!-- <h1>@entity.ClassificationName  </h1>-->
+        }
+    </div>
+</section>
+<!-- End Page Title-->
+<!-- Page Info-->
+<div class="page-info">
+    <div class="auto-container">
+        <div class="inner-container clearfix">
+            <ul class="bread-crumb pull-right">
+                <li><a href="@Url.Action("Index","Home")">الرئيسية</a></li>
+                @foreach (var entity in Model.Sub_Section)
+                {
+                    <li>@entity.ClassificationName</li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Info-->
+<div class="sidebar-page-container">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <!--Sidebar Side-->
+            <div class="sidebar-side col-lg-3 col-md-4 col-sm-12 col-xs-12 pull-right">
+                <aside class="sidebar">
+                    <!--Blog Category Widget-->
+                    <div id="sidenavelist">
+                        <div class="sidebar-widget sidebar-blog-category">
+                            <ul class="blog-cat">
+                                @foreach (var mainSection in Model.Main_Section)
+                                {
+                                    @foreach (var entity in mainSection.LstChildClassification)
+                                    {
+                                        @if (entity.IsActive == true)
+                                        {
+
+                                            <li class="active">
+                                                <a href="@Url.Action("Index", "Car_Conversion", new { ID_ = entity.ClassificationID})">@entity.ClassificationName</a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                <a href="@Url.Action("Index", "Car_Conversion", new { ID_ = entity.ClassificationID})">@entity.ClassificationName</a>
+                                            </li>
+                                        }
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+            <!--Content Side-->
+            <div class="content-side pull-left col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                @foreach (var entity in Model.Sub_Section)
+                {
+                    // Check ID = 19 Advantages Section
+                    @if (entity.ClassificationID == 19)
+                    {
+                        <div class="services-single" dir="rtl">
+                            <div class="inner-box">
+                                <div id="cmspage1">
+                                    <h2>@entity.ClassificationName</h2>
+                                    <div>
+                                        @foreach (var webSection in entity.LstWebSections)
+                                        {
+                                            <!-- Rendreing Body with HTML Link-->
+                                            @Html.Raw(webSection.Body)
+                                            <br />
+                                            @foreach (var image in webSection.LstImages)
+                                            {
+                                                <!--//end backend to retrieve variables  -->
+                                                <!--//Start backend to retrieve variables  -->
+                                                <p>
+                                                    <img src="~/Images/Car_Conversion/@image.ImageGUID" style="height: 346px; width: 900px;">
+                                                </p>
+                                                <hr />
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    // Check ID = 20 for Conversion Proccess Section
+                    else if (entity.ClassificationID == 20)
+                    {
+                        <div class="services-single" dir="rtl">
+                            <div class="inner-box">
+                                <div id="cmspage1">
+                                    <h2>@entity.ClassificationName</h2>
+                                    <div>
+                                        @foreach (var webSection in entity.LstWebSections)
+                                        {
+                                            <!-- Rendreing Body with HTML Link-->
+                                            @Html.Raw(webSection.Body)
+
+                                            <p style="text-align: justify;">
+                                                @foreach (var image in webSection.LstImages)
+                                                {
+                                                    <!--//end backend to retrieve variables  -->
+                                                    <!--//Start backend to retrieve variables  -->
+                                                    @if (webSection.WebSectionID == 43)
+                                                    {
+                                                        <img src="~/Images/Car_Conversion/@image.ImageGUID" style="height: 200px; width: 300px;">
+                                                    }
+                                                    else if (webSection.WebSectionID == 53)
+                                                    {
+                                                        <img src="~/Images/Car_Conversion/@image.ImageGUID" style="height: 451px; width: 400px;">
+                                                    }
+                                                    else if (webSection.WebSectionID == 54)
+                                                    {
+                                                        <img src="~/Images/Car_Conversion/@image.ImageGUID" style="width: 400px; height: 276px;">
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="~/Images/Car_Conversion/@image.ImageGUID" style="height: 645px; width: 900px;">
+                                                    }
+                                                }
+                                            </p>
+                                            <hr />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    // Check ID = 21 for Conversion Cost Section
+                    else if (entity.ClassificationID == 21)
+                    {
+                        <div class="services-single" dir="rtl">
+                            <div class="inner-box">
+                                <div id="cmspage1">
+                                    <h2>@entity.ClassificationName</h2>
+                                    <div>
+                                        @foreach (var webSection in entity.LstWebSections)
+                                        {
+                                            <!-- Rendreing Body with HTML Link-->
+                                            @Html.Raw(webSection.Body)
+
+                                            @if (webSection.WebSectionID == 57)
+                                            {
+                                                <p style="text-align: justify;">
+                                                    <table border="1" cellpadding="1" cellspacing="1" dir="rtl" style="width: 800px;">
+                                                        <tbody>
+                                                            <tr>
+                                                                @foreach (var img in webSection.LstImages)
+                                                                {
+
+                                                                    <td style="text-align: justify;">
+                                                                        <img src="~/Images/Car_Conversion/@img.ImageGUID" style="height: 250px; width: 400px; padding:5px">
+                                                                    </td>
+
+                                                                }
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </p>
+                                            }
+                                            else
+                                            {
+                                                <p style="text-align: justify;">
+                                                    @foreach (var image in webSection.LstImages)
+                                                    {
+                                                        <!--//end backend to retrieve variables  -->
+                                                        <!--//Start backend to retrieve variables  -->
+                                                        <img src="~/Images/Car_Conversion/@image.ImageGUID" style="width:100%">
+
+                                                    }
+                                                </p>
+                                            }
+                                            <hr />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    // Check ID = 22 for Saftey Factors Section
+                    else if (entity.ClassificationID == 22)
+                    {
+                        <div class="services-single" dir="rtl">
+                            <div class="inner-box">
+                                <div id="cmspage1">
+                                    <h2>@entity.ClassificationName</h2>
+                                    <div>
+                                        @foreach (var webSection in entity.LstWebSections)
+                                        {
+                                            <!-- Rendreing Body with HTML Link-->
+
+                                            @Html.Raw(webSection.Body)
+
+                                            @foreach (var image in webSection.LstImages)
+                                            {
+                                                <!--//end backend to retrieve variables  -->
+                                                <!--//Start backend to retrieve variables  -->
+                                                @if (webSection.WebSectionID == 63)
+                                                {
+                                                    <p style="text-align: justify;">
+                                                        <img src="~/Images/Car_Conversion/@image.ImageGUID" style="height: 418px; width: 900px;">
+                                                    </p>
+                                                }
+                                                else
+                                                {
+                                                    <p style="text-align: justify;">
+                                                        <img src="~/Images/Car_Conversion/@image.ImageGUID" style="height: 418px; width: 900px;">
+                                                    </p>
+                                                }
+
+                                            }
+
+                                            <hr />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    // Check ID = 23 for Common Questions Section
+                    else if (entity.ClassificationID == 23)
+                    {
+                        <div class="services-single" dir="rtl">
+                            <div class="inner-box">
+                                <div id="cmspage1">
+                                    <h2>@entity.ClassificationName</h2>
+                                    <div style="font-size:14px; position:relative">
+
+                                        @foreach (var image in entity.LstImages)
+                                        {
+                                            <p style="text-align: justify;">
+                                                <img src="~/Images/Car_Conversion/@image.ImageGUID" style="width: 900px;">
+                                            </p>
+                                            @Html.Raw(entity.Body)
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    // Check ID = 24 for Conversion Centers Section
+                    else if (entity.ClassificationID == 24)
+                    {
+                        <div class="services-single" dir="rtl">
+                            <div class="inner-box">
+                                <div id="cmspage1">
+                                    <h2>@entity.ClassificationName</h2>
+                                    <div style="font-size:14px; position:relative">
+                                        @Html.Raw(entity.Body)
+                                        &nbsp; &nbsp;
+                                        <p>
+                                            @foreach (var image in entity.LstImages)
+                                            {
+                                                <a href="@image.ImageLink" target="_blank">
+                                                    <img src="~/Images/Car_Conversion/@image.ImageGUID" style="height: 566px; width: 400px; padding:5px">&nbsp;
+                                                </a>
+                                            }
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    // Check ID = 25 for Local manufacturing Section
+                    else if (entity.ClassificationID == 25)
+                    {
+                        <div class="services-single" dir="rtl">
+                            <div class="inner-box">
+                                <div id="cmspage1">
+                                    <h2>@entity.ClassificationName</h2>
+                                    <div style="font-size:14px; position:relative">
+                                        <p>
+                                            @foreach (var webSection in entity.LstWebSections)
+                                            {
+                                                @Html.Raw(webSection.Body)
+
+                                                @foreach (var image in webSection.LstImages)
+                                                {
+                                                    @if (webSection.WebSectionID == 65)
+                                                    {
+                                                        <img src="~/Images/Car_Conversion/@image.ImageGUID">
+                                                    }
+                                                    else if (webSection.WebSectionID == 66)
+                                                    {
+                                                        <img src="~/Images/Car_Conversion/@image.ImageGUID" style="height: 496px; width: 900px;">
+                                                    }
+                                                    else if (webSection.WebSectionID == 67)
+                                                    {
+                                                        <img src="~/Images/Car_Conversion/@image.ImageGUID" style="height: 180px; width: 270px; margin: 5px;">
+                                                    }
+        
+                                            }
+                                            }
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                }
+            </div>
+        </div>
+    </div>
+</div>

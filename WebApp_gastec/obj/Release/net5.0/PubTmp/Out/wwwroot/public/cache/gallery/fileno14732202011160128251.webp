@@ -1,0 +1,2 @@
+<br />
+<b>Warning</b>:  file_get_contents(uploads/2020-11-1615:28:40.webp): failed to open stream: No such file or directory in <b>/var/www/html/projects/imageopt/index.php</b> on line <b>11</b><br />

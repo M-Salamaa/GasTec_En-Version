@@ -1,0 +1,174 @@
+﻿
+@model HomePageViewModel
+
+@{
+    ViewData["Title"] = "GASTEC";
+    Layout = "_Layout";
+}
+
+
+<!-- Page Title-->
+<section class="page-title" style="background-image:url('../../wwwroot/public/assets/softextwo/images/background/cyl_test.jpg');">
+    <div class="auto-container">
+        @foreach (var entity in Model.Sub_Section)
+        {
+            <!-- <h1>@entity.ClassificationName  </h1>-->
+        }
+    </div>
+</section>
+<!-- End Page Title-->
+<!-- Page Info-->
+<div class="page-info">
+    <div class="auto-container">
+        <div class="inner-container clearfix">
+            <ul class="bread-crumb pull-right">
+                <li><a href="@Url.Action("Index","Home")">الرئيسية</a></li>
+                @foreach (var entity in Model.Sub_Section)
+                {
+                    <li>@entity.ClassificationName</li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Info-->
+<div class="sidebar-page-container">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <!--Sidebar Side-->
+            <div class="sidebar-side col-lg-3 col-md-4 col-sm-12 col-xs-12 pull-right">
+                <aside class="sidebar">
+                    <!--Blog Category Widget-->
+                    <div id="sidenavelist">
+                        <div class="sidebar-widget sidebar-blog-category">
+                            <ul class="blog-cat">
+                                @foreach (var mainSection in Model.Main_Section)
+                                {
+                                    @foreach (var entity in mainSection.LstChildClassification)
+                                    {
+                                        @if (entity.IsActive == true)
+                                        {
+                                            <li class="active">
+                                                <a href="@Url.Action("Index", "Cylindar_Test",new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+
+                                            <li>
+                                                <a href="@Url.Action("Index", "Cylindar_Test",new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
+                                            </li>
+                                        }
+
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+            <!--Content Side-->
+            <div class="content-side pull-left col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                <div class="services-single" dir="rtl">
+                    <div class="inner-box">
+                        <div id="cmspage1">
+                            @foreach (var entity in Model.Sub_Section)
+                            {
+                                @if (entity.ClassificationID == 37)
+                                {
+                                    <h2>@entity.ClassificationName</h2>
+                                    <div style="font-size:14px; position:relative">
+                                        @foreach (var webSection in entity.LstWebSections)
+                                        {
+                                            @Html.Raw(webSection.Body)
+                                            <p>&nbsp;</p>
+                                            @foreach (var image in webSection.LstImages)
+                                            {
+                                                @if (webSection.WebSectionID == 154)
+                                                {
+                                                    <img src="~/Images/Cylinder_Testing/@image.ImageGUID" style="height: 331px; width: 200px; margin: 10px; float: left;">
+                                                }
+                                                else if (webSection.WebSectionID == 155)
+                                                {
+                                                    <img src="~/Images/Cylinder_Testing/@image.ImageGUID" style="float: left; height: 311px; width: 200px; margin: 10px;">
+                                                }
+                                                <p>&nbsp;</p>
+                                            }
+                                        }
+                                    </div>
+                                }
+                                else if (entity.ClassificationID == 38)
+                                {
+                                    <h2>@entity.ClassificationName</h2>
+                                    <div style="font-size:14px; position:relative">
+                                        @foreach (var webSection in entity.LstWebSections)
+                                        {
+                                            @Html.Raw(webSection.Body)
+                                            <p>&nbsp;</p>
+                                            @if (webSection.WebSectionID == 160)
+                                            {
+                                                <table align="center" border="1" cellpadding="1" cellspacing="1" dir="rtl" style="width: 900px;">
+                                                    <tbody>
+                                                        <tr>
+                                                            @foreach (var img in webSection.LstImages)
+                                                            {
+
+                                                                <td style="text-align: justify;">
+                                                                    <span style="color:#263a69;">
+                                                                        <img alt="" src="~/Images/Cylinder_Testing/@img.ImageGUID" style="margin-left: 25px; margin-right: 25px; width: 400px; height: 267px;">
+                                                                    </span>
+                                                                </td>
+                                                            }
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            }
+                                            else
+                                            {
+                                                @foreach (var image in webSection.LstImages)
+                                                {
+                                                    @if (webSection.WebSectionID == 158)
+                                                    {
+                                                        <img src="~/Images/Cylinder_Testing/@image.ImageGUID">
+                                                    }
+                                                    else if (webSection.WebSectionID == 159)
+                                                    {
+                                                        <img src="~/Images/Cylinder_Testing/@image.ImageGUID" style="width: 500px; height: 262px;">
+                                                    }
+                                                    <p>&nbsp;</p>
+                                                }
+
+                                            }
+                                        }
+                                        }
+                                    </div>
+                                }
+                                else if (entity.ClassificationID == 39)
+                                {
+                                    <h2>@entity.ClassificationName</h2>
+                                    <div style="font-size:14px; position:relative">
+                                        @foreach (var webSection in entity.LstWebSections)
+                                        {
+                                            @Html.Raw(webSection.Body)
+                                            <a href="@webSection.ActionURL">@webSection.ActionURL</a>
+                                            <hr />
+                                        }
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="team-column col-md-12 col-sm-12 col-xs-12" style="margin-top: 30px">
+                    <div class="inner-column">
+                        <div class="row clearfix">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,126 @@
+﻿@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+@model HomePageViewModel
+@using WebApp_gastec.Domain
+@{
+    ViewData["Title"] = "GASTEC";
+    Layout = "_Layout";
+}
+
+
+
+<!--Page Title-->
+<section class="page-title" style="background-image:url(../../wwwroot/public/assets/softextwo/images/background/4.jpg);">
+    <div class="auto-container">
+        <!--<h1>إتصل بنا</h1>-->
+    </div>
+</section>
+<!--End Page Title-->
+<!--Page Info-->
+<div class="page-info">
+    <div class="auto-container">
+        <div class="inner-container clearfix">
+            <ul class="bread-crumb pull-right">
+                <li><a href="@Url.Action("Index","Home")">الرئيسية</a></li>
+                <li>طلب تحويل سيارة</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--End Page Info-->
+<!--Contact Section-->
+
+<section class="contact-section">
+    <div class="auto-container">
+
+        <div class="row clearfix">
+            <!--Info Column-->
+            <div class="info-column col-md-5 col-sm-12 col-xs-12">
+                <div class="inner-column">
+                    <div id="cmspage1" style="text-align: right">
+                        <!--//end backend to retrieve variables  -->
+                        <!--//Start backend to retrieve variables  -->
+                        <link href="" rel="stylesheet" type="text/css"><div style="font-size:14px; position:relative">
+                            <p>
+                                <img src="~/public/assets/softextwo/images/resource/Car_ConversionForm.jpg">
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--Form Column-->
+            <div class="form-column col-md-7 col-sm-12 col-xs-12">
+                <div id="success" class="alert alert-success alert-dismissible floating" role="alert" style="display:none">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button><strong>تم تقديم طلبك بنجاح</strong>
+                </div>
+                <div class="inner-column">
+                    <div class="contact-title text-right">
+                        <h2> إرسل لنا طلب تحويل سيارة </h2>
+                        <div class="text"> لتحويل سيارتك للعمل بالغاز الطبيعي، يرجى استيفاء البيانات التالية وسيقوم احد ممثلي خدمة العملاء بالتواصل معكم</div>
+                    </div>
+
+                    <!--Contact Form-->
+                    @*@Html.ValidationSummary()*@
+                    <div class="contact-form">
+                        <form method="post" asp-controller="Home" asp-action="Conversion_Form" id="contact-form" dir="rtl">
+                            <div class="row clearfix">
+                                @*<input type="hidden" name="captcha" id="captchaInput">*@
+                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                    <input asp-for="@Model.Car_Conversion.Name" value="" placeholder="الإسم بالكامل*" required="">
+                                </div>
+
+                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                    <input asp-for="@Model.Car_Conversion.PhoneNumber" value="" placeholder="رقم الموبايل*" required="">
+                                </div>
+
+                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                    <input asp-for="@Model.Car_Conversion.Car_Type" value="" placeholder="نوع السيارة*" required="">
+                                </div>
+                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                    <input asp-for="@Model.Car_Conversion.Car_Model" value="" placeholder="موديل السيارة*" required="">
+                                </div>
+
+                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                    <select asp-for="@Model.Car_Conversion.Country" id="getcountry" required="">
+                                        <option>المحافظة المتواجد بها*</option>
+                                        @foreach (var city in Model.Cities)
+                                        {
+                                            <option value="@city.Name">@city.Name</option>
+                                        }
+                                    </select>
+                                    <input type="hidden" id="countryname" asp-for="@Model.Car_Conversion.Country">
+                                </div>
+                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                    <div id="getformarea"></div>
+                                </div>
+                                <div id="getstations"></div>
+                                <script src='https://www.google.com/recaptcha/api.js'></script>
+
+
+
+                                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                    <div class="g-recaptcha" data-sitekey="@SiteSettings.GoogleRecaptchaSiteKey"></div>
+                                </div>
+                                <button asp-controller="Home" asp-action="Conversion_Form" type="submit" class="theme-btn btn-style-one pull-right">  إرسال طلبك</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!--End Contact Form-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End Contact Section-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#contact-form").submit(function () {
+            $("#success").show();
+        });
+    });
+</script>
+
+
+

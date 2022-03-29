@@ -1,0 +1,263 @@
+﻿@model HomePageViewModel
+@using WebApp_gastec.Domain
+
+@{
+    ViewData["Title"] = "GASTEC";
+    Layout = "_Layout";
+}
+
+
+<!-- Page Title-->
+<section class="page-title" style="background-image:url('../../wwwroot/public/assets/softextwo/images/background/4.jpg');">
+    <div class="auto-container">
+        @foreach (var entity in Model.Sub_Section)
+        {
+            <!-- <h1>@entity.ClassificationName  </h1>-->
+        }
+    </div>
+</section>
+<!-- End Page Title-->
+<!-- Page Info-->
+<div class="page-info">
+    <div class="auto-container">
+        <div class="inner-container clearfix">
+            <ul class="bread-crumb pull-right">
+                <li><a href="@Url.Action("Index","Home")">الرئيسية</a></li>
+                @foreach (var entity in Model.Sub_Section)
+                {
+                    <li>@entity.ClassificationName</li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Info-->
+<div class="sidebar-page-container">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <!--Sidebar Side-->
+            <div class="sidebar-side col-lg-3 col-md-4 col-sm-12 col-xs-12 pull-right">
+                <aside class="sidebar">
+                    <!--Blog Category Widget-->
+                    <div id="sidenavelist">
+                        <div class="sidebar-widget sidebar-blog-category">
+                            <ul class="blog-cat">
+                                @foreach (var mainSection in Model.Main_Section)
+                                {
+                                    @if (Model.IsActive == true)
+                                    {
+                                        <li class="active">
+                                            <a href="@Url.Action("News", "MediaCenter")">أحدث الأخبار</a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("News", "MediaCenter")">أحدث الأخبار</a>
+                                        </li>
+                                    }
+                                    @foreach (var entity in mainSection.LstChildClassification)
+                                    {
+                                        @if (entity.IsActive == true)
+                                        {
+                                            <li class="active">
+                                                <a href="@Url.Action("Index", "MediaCenter", new { ID_ = entity.ClassificationID})">@entity.ClassificationName</a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                <a href="@Url.Action("Index", "MediaCenter", new { ID_= entity.ClassificationID})">@entity.ClassificationName</a>
+                                            </li>
+                                        }
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+            <!--Content Side-->
+            @foreach (var entity in Model.Sub_Section)
+            {
+                // ID = 48 is for Media Center Photos
+                @if (entity.ClassificationID == 48)
+                {
+                    <div class="content-side pull-left col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                        <div class="auto-container">
+                            <div id="galrow">
+                                <!--Tabs Side-->
+                                <div>
+                                    <ul class="nav nav-tabs" dir="rtl">
+                                        @foreach (var child in entity.LstChildClassification)
+                                        {
+                                            <li id="active-tab">
+                                                <a data-toggle="tab" href="#@child.ClassificationID" aria-expanded="true">
+                                                    @child.ClassificationName
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                    <div class="tab-content text-right" style="padding-top: 20px">
+                                        @foreach (var child in entity.LstChildClassification)
+                                        {
+                                            <div id="@child.ClassificationID" class="tab-pane fade in active ">
+                                                @foreach (var subChild in child.LstChildClassification)
+                                                {
+                                                    <div class="clearfix">
+                                                        <div class="page-info">
+                                                            <div class="auto-container">
+                                                                <div class="inner-container clearfix text-right">
+                                                                    <h4>
+                                                                        @subChild.ClassificationName
+                                                                    </h4>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="team-column col-md-12 col-sm-12 col-xs-12" style="margin-top: 30px">
+                                                            <div class="inner-column">
+                                                                <div class="row clearfix">
+                                                                    @foreach (var image in subChild.LstImages)
+                                                                    {
+                                                                        <!--//Start backend to retrieve variables  -->
+                                                                        <!--//end backend to retrieve variables  -->
+                                                                        <!--Team Block-->
+                                                                        <div class="shop-item col-md-3 col-sm-6 col-xs-12 pull-right">
+                                                                            <div class="inner-box" style="max-height:120px ;overflow:hidden">
+                                                                                <div class="image" style="">
+                                                                                    <a href="@image.ImageLink" data-fancybox="images" data-caption="This image has a caption">
+                                                                                        <img src="~/Images/PhotoCenter_MediaCenter/@image.ImageGUID" alt="" style="min-height:120px">
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                                <!--End Tabs Side-->
+                            </div>
+                        </div>
+                        <!--End About Section-->
+                    </div>
+                }
+                // ID = 49 is for Media Center Videos
+                else if (entity.ClassificationID == 49)
+                {
+                    <div class="content-side pull-left col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                        <div class="auto-container">
+                            <div id="galrow">
+                                <!-- Tabs Side-->
+                                <div class="content-side pull-left col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                                    <div class="services-single" dir="rtl">
+                                        <div class="inner-box">
+                                            <div id="videoholder">
+                                                <div class="large-image-posts">
+                                                    <!--News Block Three-->
+                                                    @foreach (var webSection in entity.LstWebSections)
+                                                    {
+                                                        @foreach (var image in webSection.LstImages)
+                                                        {
+                                                            <div class="news-block-three col-md-6 col-sm-12 col-xs-12 pull-right">
+                                                                <div class="inner-box">
+                                                                    <div class="video-box">
+                                                                        <div class="image">
+                                                                            <img src="~/Images/MediaCenter/@image.ImageGUID" alt="">
+                                                                            <a href="@webSection.ActionURL" class="lightbox-image overlay-box">
+                                                                                <span class="flaticon-play-button-2"></span>
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="lower-content">
+                                                                        <div class="lower-box" style="height: 40px;">
+                                                                            <h3>@webSection.ToolTip</h3>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                // ID = 51 is for Media Center Reports
+                else if (entity.ClassificationID == 51)
+                {
+                    <div class="content-side pull-left col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                        <div class="services-single" dir="rtl">
+                            <div class="inner-box">
+                                <div id="filesholder">
+                                    <ul class="nav nav-tabs" dir="rtl">
+                                        @foreach (var child in entity.LstChildClassification)
+                                        {
+                                            <li id="active-tab">
+                                                <a data-toggle="tab" href="#@child.ClassificationID" aria-expanded="true">
+                                                    @child.ClassificationName
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                    <div class="tab-content text-right" style="padding-top: 20px">
+                                        @foreach (var child in entity.LstChildClassification)
+                                        {
+                                            <div id="@child.ClassificationID" class="tab-pane fade in">
+                                                <div class="clearfix"></div>
+                                                <div>
+                                                    @foreach (var file in child.LstFiles.Where(x => x.FileLinkedID == child.ClassificationID).ToList())
+                                                    {
+                                                        <!--//Start backend to retrieve variables  -->
+                                                        <!--//End backend to retrieve variables  -->
+                                                        <!--News Block-->
+                                                        <div>
+                                                            <a href="@file.FileLink" style="font-size: 14px;" target="_blank">
+                                                                <i class="fa fa-download" style="margin-left: 10px;"></i>
+                                                                @file.FileName
+                                                            </a>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#active-tab").addClass("active");
+         $("#360").addClass("active");
+
+    });
+</script>
+
+@foreach (var entity in Model.Sub_Section)
+{
+    @foreach (var child in entity.LstChildClassification)
+    {
+        <script>
+            $("#active-tab").click(function () {
+                $("#@child.ClassificationID").addClass("active");
+            });
+        </script>
+
+    }
+}

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\Softex\Publish\Gas_Tech_Publish</_PublishTargetUrl>
+    <History>True|2022-03-19T15:46:04.5678242Z;True|2022-03-19T16:17:17.7906528+02:00;True|2022-03-19T16:10:42.9811433+02:00;True|2022-03-19T15:24:47.0818624+02:00;True|2022-03-17T12:23:39.7602379+02:00;True|2022-03-15T14:23:18.4299652+02:00;True|2022-03-14T15:16:30.6218186+02:00;True|2022-03-13T14:43:27.8430193+02:00;False|2022-03-13T14:42:25.8115679+02:00;True|2022-03-13T11:42:26.7871037+02:00;True|2022-03-13T11:17:13.4072569+02:00;True|2022-03-13T11:10:18.2811481+02:00;False|2022-03-13T11:08:24.6150290+02:00;False|2022-03-13T11:07:13.9143235+02:00;False|2022-03-13T11:06:51.7852870+02:00;True|2022-03-12T18:05:37.2358218+02:00;True|2022-03-12T17:01:38.1010990+02:00;</History>
+  </PropertyGroup>
+</Project>

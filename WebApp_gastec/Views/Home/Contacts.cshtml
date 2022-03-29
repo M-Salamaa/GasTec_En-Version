@@ -1,0 +1,125 @@
+﻿@model HomePageViewModel
+@using WebApp_gastec.Domain
+
+@{
+    ViewData["Title"] = "GASTEC";
+    Layout = "_Layout";
+}
+
+<!--Page Title-->
+<section class="page-title" style="background-image:url(../../wwwroot/public/assets/softextwo/images/background/4.jpg);">
+    <div class="auto-container">
+        <!--<h1>إتصل بنا</h1>-->
+    </div>
+</section>
+<!--End Page Title-->
+<!--Page Info-->
+<div class="page-info">
+    <div class="auto-container">
+        <div class="inner-container clearfix">
+            <ul class="bread-crumb pull-right">
+                <li><a href="@Url.Action("Index","Home")">الرئيسية</a></li>
+                <li>إتصل بنا</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--End Page Info-->
+<!--Contact Section-->
+<section class="contact-section">
+    <div class="auto-container">
+
+        <div class="row clearfix">
+            <!--Info Column-->
+            <div class="info-column col-md-5 col-sm-12 col-xs-12">
+                <div class="inner-column">
+                    <div id="cmspage1" style="text-align: right">
+                        <!--//end backend to retrieve variables  -->
+                        <!--//Start backend to retrieve variables  -->
+                        <h2>إتصل بنا</h2>
+
+                        <link href="" rel="stylesheet" type="text/css"><div style="font-size:14px; position:relative">
+                            <p>&nbsp;</p>  <ul>
+                                <li>
+                                    <span>الخط الساخن</span> 01000016955
+                                </li>
+                                <li>
+                                    <span>عنوان الشركة</span>
+                                    القطاع الأول من أول ش التسعين بجانب مول مركز المدينة التجارى التجمع الخامس – القاهرة الجديدة
+                                </li>
+                                <li>
+                                    <span>تليفون</span> 25034100 – 25034200 – 25034297
+                                </li>
+                                <li>
+                                    <span>فاكس</span> 25034277 – 25034278
+                                </li>
+                                <li>
+                                    <span>البريد الإلكتروني</span> <a href="mailto:gastec@gastec-egypt.com">gastec@gastec-egypt.com</a>
+                                </li>
+                                <li>
+                                    <span>صفحة الفيس بوك</span> <a href="https://www.facebook.com/gasteceg/">
+                                        الصفحة الرسمية
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Form Column-->
+
+            <div class="form-column col-md-7 col-sm-12 col-xs-12">
+                <div id="success" class="alert alert-success alert-dismissible floating" role="alert" style="display:none">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>تم تقديم طلبك بنجاح</strong>
+                </div>
+                <div class="inner-column">
+                    <div class="contact-title text-right">
+                        <h2>إرسل لنا </h2>
+                        <div class="text"> لأن اهتماماتك أولويتنا يرجى التكرم بملء النموذج أدناه سواءً كان ذلك استفساراً أو سؤالاً يتعلق بمنتجاتنا أو خدمتنا</div>
+                    </div>
+                    <!--Contact Form-->
+                    <div class="contact-form">
+                        <form method="post" asp-controller="Home" asp-action="Contacts" id="contact-form" dir="rtl">
+                            <div class="row clearfix">
+
+                                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                    <input asp-for="@Model.ContactUs.Name" placeholder="الإسم" required="">
+                                </div>
+                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                    <input asp-for="@Model.ContactUs.Email" placeholder="البريد الالكترونى" required="">
+                                </div>
+
+                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                    <input asp-for="@Model.ContactUs.PhoneNumber" placeholder="رقم الهاتف" required="">
+                                </div>
+
+                                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                    <textarea asp-for="@Model.ContactUs.Message" placeholder="رسالتك"></textarea>
+                                </div>
+
+                                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                    <script src='https://www.google.com/recaptcha/api.js'></script>
+                                    <div class="g-recaptcha" data-sitekey="@SiteSettings.GoogleRecaptchaSiteKey"></div>
+                                </div>
+
+                                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                    <button id="send" asp-controller="Home" asp-action="Contacts" type="submit" class="theme-btn btn-style-one pull-right">إرسال</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!--End Contact Form-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End Contact Section-->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#contact-form").submit(function () {
+            $("#success").show();
+        });
+    });
+</script>

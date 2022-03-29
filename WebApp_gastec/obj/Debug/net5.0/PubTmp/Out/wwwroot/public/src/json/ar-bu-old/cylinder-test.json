@@ -1,0 +1,8 @@
+[
+    { "lat": 30.175222, "lng": 31.426760, "title": "محطة السلام", "street": "مدينة السلام– طريق مصر/ بلبيس الصحراوى قبل محطة تحصيل الرسوم بـ 3كم", "city": "", "zip": "01066677200", "proimage": "src/style/metro/images/photos/Filter.jpg", "markericon": "src/style/metro/images/marker.png" },
+    { "lat": 30.105234, "lng": 31.276125, "title": "محطة المستعمرة", "street": "شارع المستعمرة متفرع من شارع بورسعيد جراج هيئة النقل العام", "city": "", "zip": "01066677200", "proimage": "src/style/metro/images/photos/IMG_1233.jpg", "markericon": "src/style/metro/images/marker.png" },
+    { "lat": 31.176245, "lng": 29.877649, "title": "محطة المنصورة", "street": "أسفل كوبرى عبد السلام عارف - بين محطتى موبيل وإسو", "city": "", "zip": "01066677200", "proimage": "src/style/metro/images/photos/IMG_1235.jpg", "markericon": "src/style/metro/images/marker.png" },
+    { "lat": 30.604502, "lng": 32.279705, "title": "محطة القبارى", "street": "محطة مصر للبترول - 86 شارع المكس ( الطراهونى ) القبارى", "city": "", "zip": "01066677200", "proimage": "src/style/metro/images/photos/IMG_1236.jpg", "markericon": "src/style/metro/images/marker.png" },
+    { "lat": 31.256628, "lng": 32.276066, "title": "محطة الاسماعيلية", "street": "منطقة جاردن سيتى - قطعة رقم (4) - بجوار مقر المحافظة الجديدة", "city": "", "zip": "01066677200", "proimage": "src/style/metro/images/photos/IMG_1240.jpg", "markericon": "src/style/metro/images/marker.png" },
+    { "lat": 31.237478, "lng": 32.290550, "title": "محطة التعمير", "street": "محطة غازتك ــ شارع التعمير ـ أمام الصاله المغطاه", "city": "", "zip": "01066677200", "proimage": "tsrc/style/metro/images/photos/IMG_1256.jpg", "markericon": "src/style/metro/images/marker.png" }
+]
