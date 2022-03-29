@@ -735,6 +735,7 @@ D:\GitHub\GasTec_En-Version\WebApp_gastec\bin\Debug\net5.0\WebApp_gastec.dll
 D:\GitHub\GasTec_En-Version\WebApp_gastec\bin\Debug\net5.0\ref\WebApp_gastec.dll
 D:\GitHub\GasTec_En-Version\WebApp_gastec\bin\Debug\net5.0\WebApp_gastec.pdb
 D:\GitHub\GasTec_En-Version\WebApp_gastec\bin\Debug\net5.0\WebApp_gastec.Views.dll
+D:\GitHub\GasTec_En-Version\WebApp_gastec\bin\Debug\net5.0\WebApp_gastec.Views.pdb
 D:\GitHub\GasTec_En-Version\WebApp_gastec\bin\Debug\net5.0\GoogleReCaptcha.V3.dll
 D:\GitHub\GasTec_En-Version\WebApp_gastec\bin\Debug\net5.0\Humanizer.dll
 D:\GitHub\GasTec_En-Version\WebApp_gastec\bin\Debug\net5.0\Microsoft.AspNetCore.Razor.Language.dll

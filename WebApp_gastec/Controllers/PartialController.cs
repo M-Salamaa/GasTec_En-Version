@@ -22,6 +22,7 @@ namespace WebApp_gastec.Controllers
         [HttpGet]
         public IActionResult _ContactUsPartial()
         {
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "Localization", Gastech_Vault.TranslationLanguageID);
             ContactUsViewModel contactModel_ = new ContactUsViewModel();
             return PartialView(contactModel_);
         }

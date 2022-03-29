@@ -192,19 +192,11 @@ namespace WebApp_gastec.Controllers
         //Action to get All News
         public async Task<IActionResult> AllNewsAsync()
         {
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "Localization", Gastech_Vault.TranslationLanguageID);
             var model = await this.GetNewsModel(int.Parse(HttpContext.Session.GetString("Localization")));
             await CacheAllNewsImages(model, "MediaCenter_NewsSection");
             model.IsActive = true;
             return View(model);
-        }
-        //Action to get News Details
-        public async Task<IActionResult> NewsDetailsAsync(int serial_)
-        {
-            var model = await this.GetNewsDetailsModel(serial_, int.Parse(HttpContext.Session.GetString("Localization")));
-            await CacheAllNewsImages(model, "News");
-            CacheAllHtmlforNewsDetails(model.News_Details, "News");
-            return View(model);
-
         }
         //Change WebSite Language
         public IActionResult Translation()
@@ -215,6 +207,16 @@ namespace WebApp_gastec.Controllers
                 Gastech_Vault.TranslationLanguageID = 0;
             SessionHelper.SetObjectAsJson(HttpContext.Session, "Localization", Gastech_Vault.TranslationLanguageID);
             return RedirectToAction("Index");
+        }
+        //Action to get News Details
+        public async Task<IActionResult> NewsDetailsAsync(int serial_)
+        {
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "Localization", Gastech_Vault.TranslationLanguageID);
+            var model = await this.GetNewsDetailsModel(serial_, int.Parse(HttpContext.Session.GetString("Localization")));
+            await CacheAllNewsImages(model, "News");
+            CacheAllHtmlforNewsDetails(model.News_Details, "News");
+            return View(model);
+
         }
         // Action for Index View (Home PAge)
         public async Task<IActionResult> IndexAsync()
@@ -269,6 +271,7 @@ namespace WebApp_gastec.Controllers
         [HttpGet]
         public IActionResult Contacts()
         {
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "Localization", Gastech_Vault.TranslationLanguageID);
             HomePageViewModel model_ = new HomePageViewModel();
             return View(model_);
         }
@@ -321,7 +324,21 @@ namespace WebApp_gastec.Controllers
             }
             return View(homePageViewModel);
         }
-        // Action For Conversion Form View
+        // Car Conversion GET Action
+        [HttpGet]
+        public async Task<IActionResult> Conversion_FormAsync()
+        {
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "Localization", Gastech_Vault.TranslationLanguageID);
+            HomePageViewModel contactModel_ = new HomePageViewModel()
+            {
+                MainNavigationBar = API_GetClassificationTree.GetClassificationTree(Domain.Service.Encrypt("0"), Domain.Service.Encrypt("0"), int.Parse(HttpContext.Session.GetString("Localization"))),
+                Cities = await API_GetCities.GetAllCitiesAsync(int.Parse(HttpContext.Session.GetString("Localization"))),
+                Car_Conversion = new ConversionFormModel(),
+            };
+            return View(contactModel_);
+        }
+        // Car Conversion POST Action
+        [HttpPost]
         public async Task<IActionResult> Conversion_FormAsync(HomePageViewModel contactModel_)
         {
             SessionHelper.SetObjectAsJson(HttpContext.Session, "Localization", Gastech_Vault.TranslationLanguageID);

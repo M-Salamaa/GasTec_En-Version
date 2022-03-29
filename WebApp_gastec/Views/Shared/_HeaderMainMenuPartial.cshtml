@@ -14,130 +14,264 @@
 </div>
 <div class="navbar-collapse collapse clearfix">
     <ul class="navigation clearfix">
-        @foreach (var classification in Model.MainNavigationBar)
+        @if (Gastech_Vault.TranslationLanguageID == 0)
         {
-            @if (classification.ClassificationID == 1)
+            @foreach (var classification in Model.MainNavigationBar)
             {
-                <li>
-                    <a href="@Url.Action("Index","Home")">@classification.ClassificationName</a>
-                </li>
-            }
-            else if (classification.ClassificationID == 8 || classification.ClassificationID == 20 || classification.ClassificationID == 121)
-            {
-                continue;
-            }
-            else
-            {
-                @if (classification.LstChildClassification.Count > 0)
+                @if (classification.ClassificationID == 1)
                 {
-                    // check if Id = 125 for About us
-                    @if (classification.ClassificationID == 125)
+                    <li>
+                        <a href="@Url.Action("Index","Home")">@classification.ClassificationName</a>
+                    </li>
+                }
+                else if (classification.ClassificationID == 8 || classification.ClassificationID == 20 || classification.ClassificationID == 121)
+                {
+                    continue;
+                }
+                else
+                {
+                    @if (classification.LstChildClassification.Count > 0)
                     {
-                        <li class="dropdown">
-                            <a href="#">@classification.ClassificationName</a>
-                            <ul>
-                                @foreach (var entity in classification.LstChildClassification)
-                                {
-                                    @if (entity.ClassificationID == 123)
+                        // check if Id = 125 for About us
+                        @if (classification.ClassificationID == 125)
+                        {
+                            <li class="dropdown">
+                                <a href="#">@classification.ClassificationName</a>
+                                <ul>
+                                    @foreach (var entity in classification.LstChildClassification)
                                     {
-                                        // HR
-                                        <li class="dropdown">
-                                            <a href="#">@entity.ClassificationName</a>
-                                            <div class="dropdown-btn"><span class="fa fa-angle-down"></span></div>
-                                            <ul>
-                                                @foreach (var child in entity.LstChildClassification)
-                                                {
-                                                    <li>
-                                                        <a href="@Url.Action("HumanResources","About", new { ID_ = child.ClassificationID})">@child.ClassificationName</a>
-                                                    </li>
-                                                }
-                                            </ul>
-                                        </li>
+                                        @if (entity.ClassificationID == 123)
+                                        {
+                                            // HR
+                                            <li class="dropdown">
+                                                <a href="#">@entity.ClassificationName</a>
+                                                <div class="dropdown-btn"><span class="fa fa-angle-down"></span></div>
+                                                <ul>
+                                                    @foreach (var child in entity.LstChildClassification)
+                                                    {
+                                                        <li>
+                                                            <a href="@Url.Action("HumanResources","About", new { ID_ = child.ClassificationID})">@child.ClassificationName</a>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                <a href="@Url.Action("Index","About", new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
+                                            </li>
+                                        }
                                     }
-                                    else
+                                </ul>
+                            </li>
+                        }
+                        // check if Id = 3 for Car Conversion
+                        else if (classification.ClassificationID == 3)
+                        {
+                            <li class="dropdown">
+                                <a href="#">@classification.ClassificationName</a>
+                                <ul>
+                                    @foreach (var entity in classification.LstChildClassification)
                                     {
                                         <li>
-                                            <a href="@Url.Action("Index","About", new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
+                                            <a href="@Url.Action("Index","Car_Conversion", new { ID_ = entity.ClassificationID})">@entity.ClassificationName</a>
                                         </li>
                                     }
-                                }
-                            </ul>
-                        </li>
+                                </ul>
+                            </li>
+                        }
+                        //Check if ID = 5 for Cylindar Test
+                        else if (classification.ClassificationID == 5)
+                        {
+                            <li class="dropdown">
+                                <a href="#">@classification.ClassificationName</a>
+                                <ul>
+                                    @foreach (var entity in classification.LstChildClassification)
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("Index", "Cylindar_Test",new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        // Check if ID = 4 for Catering Stations
+                        else if (classification.ClassificationID == 4)
+                        {
+                            <li class="dropdown">
+                                <a href="#">@classification.ClassificationName</a>
+                                <ul>
+                                    @foreach (var entity in classification.LstChildClassification)
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("Index", "Catering_Stations",new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        // Check iff ID = 7 for Statistics Section
+                        else if (classification.ClassificationID == 7)
+                        {
+                            <li class="dropdown">
+                                <a href="#">@classification.ClassificationName</a>
+                                <ul>
+                                    @foreach (var entity in classification.LstChildClassification)
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("Index", "Statistics",new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        // Check iff ID = 6 for Oils Section
+                        else if (classification.ClassificationID == 6)
+                        {
+                            <li class="dropdown">
+                                <a href="#">@classification.ClassificationName</a>
+                                <ul>
+                                    @foreach (var entity in classification.LstChildClassification)
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("Index", "Oil", new { ID_ = entity.ClassificationID})">@entity.ClassificationName</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                        }
                     }
-                    // check if Id = 3 for Car Conversion
-                    else if (classification.ClassificationID == 3)
+                }
+            }
+        }
+        else
+        {
+            @foreach (var classification in Model.MainNavigationBar)
+            {
+                @if (classification.ClassificationID == 59)
+                {
+                    <li>
+                        <a href="@Url.Action("Index","Home")">@classification.ClassificationName</a>
+                    </li>
+                }
+                else if (classification.ClassificationID == 76 || classification.ClassificationID == 63 || classification.ClassificationID == 79)
+                {
+                    continue;
+                }
+                else
+                {
+                    @if (classification.LstChildClassification.Count > 0)
                     {
-                        <li class="dropdown">
-                            <a href="#">@classification.ClassificationName</a>
-                            <ul>
-                                @foreach (var entity in classification.LstChildClassification)
-                                {
-                                    <li>
-                                        <a href="@Url.Action("Index","Car_Conversion", new { ID_ = entity.ClassificationID})">@entity.ClassificationName</a>
-                                    </li>
-                                }
-                            </ul>
-                        </li>
-                    }
-                    //Check if ID = 5 for Cylindar Test
-                    else if (classification.ClassificationID == 5)
-                    {
-                        <li class="dropdown">
-                            <a href="#">@classification.ClassificationName</a>
-                            <ul>
-                                @foreach (var entity in classification.LstChildClassification)
-                                {
-                                    <li>
-                                        <a href="@Url.Action("Index", "Cylindar_Test",new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
-                                    </li>
-                                }
-                            </ul>
-                        </li>
-                    }
-                    // Check if ID = 4 for Catering Stations
-                    else if (classification.ClassificationID == 4)
-                    {
-                        <li class="dropdown">
-                            <a href="#">@classification.ClassificationName</a>
-                            <ul>
-                                @foreach (var entity in classification.LstChildClassification)
-                                {
-                                    <li>
-                                        <a href="@Url.Action("Index", "Catering_Stations",new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
-                                    </li>
-                                }
-                            </ul>
-                        </li>
-                    }
-                    // Check iff ID = 7 for Statistics Section
-                    else if (classification.ClassificationID == 7)
-                    {
-                        <li class="dropdown">
-                            <a href="#">@classification.ClassificationName</a>
-                            <ul>
-                                @foreach (var entity in classification.LstChildClassification)
-                                {
-                                    <li>
-                                        <a href="@Url.Action("Index", "Statistics",new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
-                                    </li>
-                                }
-                            </ul>
-                        </li>
-                    }
-                    // Check iff ID = 6 for Oils Section
-                    else if (classification.ClassificationID == 6)
-                    {
-                        <li class="dropdown">
-                            <a href="#">@classification.ClassificationName</a>
-                            <ul>
-                                @foreach (var entity in classification.LstChildClassification)
-                                {
-                                    <li>
-                                        <a href="@Url.Action("Index", "Oil", new { ID_ = entity.ClassificationID})">@entity.ClassificationName</a>
-                                    </li>
-                                }
-                            </ul>
-                        </li>
+                        // check if Id = 60 for About us
+                        @if (classification.ClassificationID == 60)
+                        {
+                            <li class="dropdown">
+                                <a href="#">@classification.ClassificationName</a>
+                                <ul>
+                                    @foreach (var entity in classification.LstChildClassification)
+                                    {
+                                        @if (entity.ClassificationID == 66)
+                                        {
+                                            // HR
+                                            <li class="dropdown">
+                                                <a href="#">@entity.ClassificationName</a>
+                                                <div class="dropdown-btn"><span class="fa fa-angle-down"></span></div>
+                                                <ul>
+                                                    @foreach (var child in entity.LstChildClassification)
+                                                    {
+                                                        <li>
+                                                            <a href="@Url.Action("HumanResources","About", new { ID_ = child.ClassificationID})">@child.ClassificationName</a>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                <a href="@Url.Action("Index","About", new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
+                                            </li>
+                                        }
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        // check if Id = 71 for Car Conversion
+                        else if (classification.ClassificationID == 71)
+                        {
+                            <li class="dropdown">
+                                <a href="#">@classification.ClassificationName</a>
+                                <ul>
+                                    @foreach (var entity in classification.LstChildClassification)
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("Index","Car_Conversion", new { ID_ = entity.ClassificationID})">@entity.ClassificationName</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        //Check if ID = 73 for Cylindar Test
+                        else if (classification.ClassificationID == 73)
+                        {
+                            <li class="dropdown">
+                                <a href="#">@classification.ClassificationName</a>
+                                <ul>
+                                    @foreach (var entity in classification.LstChildClassification)
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("Index", "Cylindar_Test",new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        // Check if ID = 72 for Catering Stations
+                        else if (classification.ClassificationID == 72)
+                        {
+                            <li class="dropdown">
+                                <a href="#">@classification.ClassificationName</a>
+                                <ul>
+                                    @foreach (var entity in classification.LstChildClassification)
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("Index", "Catering_Stations",new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        // Check iff ID = 75 for Statistics Section
+                        else if (classification.ClassificationID == 75)
+                        {
+                            <li class="dropdown">
+                                <a href="#">@classification.ClassificationName</a>
+                                <ul>
+                                    @foreach (var entity in classification.LstChildClassification)
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("Index", "Statistics",new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        // Check iff ID = 74 for Oils Section
+                        else if (classification.ClassificationID == 74)
+                        {
+                            <li class="dropdown">
+                                <a href="#">@classification.ClassificationName</a>
+                                <ul>
+                                    @foreach (var entity in classification.LstChildClassification)
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("Index", "Oil", new { ID_ = entity.ClassificationID})">@entity.ClassificationName</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                        }
                     }
                 }
             }

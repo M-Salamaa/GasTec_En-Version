@@ -12,10 +12,14 @@ namespace WebApp_gastec.Domain
     {
         //if property want to show set by one 
         private static readonly int showProperty = 1;
-        private static readonly string encryptedMajorTreeNodeID = Service.Encrypt("1");
+        private static string encryptedMajorTreeNodeID = "";
 
         public static async Task<List<OutputGetClassificationTreeModel>> GetMapFilesAsync(string encryptedTreeClassificationID_, int translationID_)
         {
+            if (translationID_ == 0)
+                encryptedMajorTreeNodeID = Service.Encrypt("1");
+            else
+                encryptedMajorTreeNodeID = Service.Encrypt("2");
             List<OutputGetClassificationTreeModel> descrptionText = new();
             //create Client to consume the API
             using (var client = new HttpClient())
