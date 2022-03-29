@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = WebApp_gastec
-build_property.ProjectDir = D:\GitHub\GasTec\WebApp_gastec\WebApp_gastec\
+build_property.ProjectDir = D:\GitHub\GasTec_En-Version\WebApp_gastec\

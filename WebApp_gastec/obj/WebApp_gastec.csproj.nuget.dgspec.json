@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Softex\\Desktop\\WebApp_gastec\\WebApp_gastec\\WebApp_gastec.csproj": {}
+    "D:\\GitHub\\GasTec_En-Version\\WebApp_gastec\\WebApp_gastec.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Softex\\Desktop\\WebApp_gastec\\WebApp_gastec\\WebApp_gastec.csproj": {
+    "D:\\GitHub\\GasTec_En-Version\\WebApp_gastec\\WebApp_gastec.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Softex\\Desktop\\WebApp_gastec\\WebApp_gastec\\WebApp_gastec.csproj",
+        "projectUniqueName": "D:\\GitHub\\GasTec_En-Version\\WebApp_gastec\\WebApp_gastec.csproj",
         "projectName": "WebApp_gastec",
-        "projectPath": "C:\\Users\\Softex\\Desktop\\WebApp_gastec\\WebApp_gastec\\WebApp_gastec.csproj",
+        "projectPath": "D:\\GitHub\\GasTec_En-Version\\WebApp_gastec\\WebApp_gastec.csproj",
         "packagesPath": "C:\\Users\\Softex\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Softex\\Desktop\\WebApp_gastec\\WebApp_gastec\\obj\\",
+        "outputPath": "D:\\GitHub\\GasTec_En-Version\\WebApp_gastec\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Softex\\AppData\\Roaming\\NuGet\\NuGet.Config",
