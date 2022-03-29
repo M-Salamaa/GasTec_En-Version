@@ -12,36 +12,56 @@
         @foreach (var entity in Model.AboutUs_MainSection)
         {
             <!--<h1>@entity.ClassificationName</h1>-->
-            }
-        </div>
-    </section>
-    <!--End Page Title-->
-    <!--Page Info-->
-    <div class="page-info">
-        <div class="auto-container">
-            <div class="inner-container clearfix">
+        }
+    </div>
+</section>
+<!--End Page Title-->
+<!--Page Info-->
+<div class="page-info">
+    <div class="auto-container">
+        <div class="inner-container clearfix">
+            @if (Gastech_Vault.TranslationLanguageID == 0)
+            {
                 <ul class="bread-crumb pull-right">
-                    <li><a href="@Url.Action("Index", "Home")"></a></li>
+                    <li><a href="@Url.Action("Index", "Home")">الرئيسيه</a></li>
                     @foreach (var entity in Model.AboutUs_MainSection)
                     {
                         <li>@entity.ClassificationName</li>
                     }
                 </ul>
-            </div>
+            }
+            else
+            {
+                <ul class="bread-crumb pull-left">
+                    <li>
+                        <a href="@Url.Action("Index", "Home")">
+                            Home
+                        </a>
+                    </li>
+                    @foreach (var entity in Model.AboutUs_MainSection)
+                    {
+                        <li>@entity.ClassificationName</li>
+                    }
+                </ul>
+            }
         </div>
     </div>
-    <!--End Page Info-->
-    <!--Sidebar Page Container-->
-    <div class="sidebar-page-container">
-        <div class="auto-container">
-            <div class="row clearfix">
-                <!--Sidebar Side-->
+</div>
+<!--End Page Info-->
+<!--Sidebar Page Container-->
+<div class="sidebar-page-container">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <!--Sidebar Side-->
+            @if (Gastech_Vault.TranslationLanguageID == 0)
+            {
+
                 <div class="sidebar-side col-lg-3 col-md-4 col-sm-12 col-xs-12 pull-right">
                     <aside class="sidebar">
                         <div id="sidenavelist"></div>
                         <div class="sidebar-widget sidebar-blog-category">
                             <ul class="blog-cat">
-                                @foreach (var mainSection in Model.AboutUs_MainSection)
+                                @foreach (var mainSection in Model.AboutUs_SubSection)
                                 {
                                     @foreach (var entity in mainSection.LstChildClassification)
                                     {
@@ -66,7 +86,8 @@
                                             {
                                                 <li><a href="@Url.Action("Index","About", new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a></li>
                                             }
-                                        }}
+                                        }
+                                    }
                                 }
                             </ul>
                         </div>
@@ -252,6 +273,226 @@
                     }
 
                 }
-            </div>
+            }
+            else
+            {
+                <div class="sidebar-side col-lg-3 col-md-4 col-sm-12 col-xs-12 pull-left">
+                    <aside class="sidebar">
+                        <div id="sidenavelist"></div>
+                        <div class="sidebar-widget sidebar-blog-category">
+                            <ul class="blog-cat">
+                                @foreach (var mainSection in Model.AboutUs_SubSection)
+                                {
+                                    @foreach (var entity in mainSection.LstChildClassification)
+                                    {
+                                        @if (entity.IsActive == true)
+                                        {
+                                            @if (entity.ClassificationID == 66)
+                                            {
+                                                <li class="active"><a href="@Url.Action("HumanResources","About", new { ID_ = "67"})">@entity.ClassificationName</a></li>
+                                            }
+                                            else
+                                            {
+                                                <li class="active"><a href="@Url.Action("Index","About", new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a></li>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            @if (entity.ClassificationID == 66)
+                                            {
+                                                <li><a href="@Url.Action("HumanResources","About", new { ID_ = "67"})">@entity.ClassificationName</a></li>
+                                            }
+                                            else
+                                            {
+                                                <li><a href="@Url.Action("Index","About", new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a></li>
+                                            }
+                                        }}
+                                }
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+                @foreach (var entity in Model.AboutUs_MainSection)
+                {
+                    <!--Content Side-->
+                    @if (entity.ClassificationID == 61)
+                    {
+                        <div class="content-side pull-left col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                            <div class="services-single" dir="ltr">
+                                <div class="inner-box">
+                                    <div id="cmspage1"></div>
+                                    <!--//end backend to retrieve variables  -->
+                                    <!--//Start backend to retrieve variables  -->
+                                    <h2>@entity.ClassificationName</h2>
+
+                                    <div class="team-column col-md-12 col-sm-12 col-xs-12" style="margin-top: 30px">
+                                        <div class="inner-column">
+                                            <div class="row clearfix">
+                                                @if (entity.LstImages.Count > 0)
+                                                {
+                                                    <div id="teambox"></div>
+                                                    @foreach (var image in entity.LstImages)
+                                                    {
+                                                        <!--//end backend to retrieve variables  -->
+                                                        <div style="font-size:14px; position:relative">
+                                                            <p dir="ltr">
+                                                                <img src="~/Images/AboutUs/@image.ImageGUID" style="height: 676px; width: 1200px;">
+                                                            </p>
+                                                        </div>
+                                                        <p dir="ltr" style="text-align: justify;">
+                                                            @Html.Raw(entity.Body)
+                                                        </p>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else if (entity.ClassificationID == 65)
+                    {
+                        <div class="content-side pull-left col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                            <div class="services-single" dir="ltr">
+
+                                <div class="inner-box">
+
+                                    <div id="cmspage1">
+                                        <!--//end backend to retrieve variables  -->
+                                        <!--//Start backend to retrieve variables  -->
+                                        <h2>@entity.ClassificationName</h2>
+                                        <link href="" rel="stylesheet" type="text/css">
+                                        <div style="font-size:14px; position:relative">
+                                            <p style="text-align: justify;">&nbsp;</p>
+                                            <table align="center" border="1" cellpadding="1" cellspacing="1" style="width:800px;">
+                                                <tbody>
+                                                    @foreach (var image in entity.LstImages)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                <p style="text-align: center;">
+                                                                    <span style="color:#273461;">
+                                                                        <span style="font-size:18px;">
+                                                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @image.ImageName
+                                                                        </span>
+                                                                    </span>
+                                                                </p>
+                                                                <p style="text-align: center;">
+                                                                    <span style="font-size:18px;">
+                                                                        <span style="color:#263a69;">
+                                                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @image.Image_AltText
+                                                                        </span>
+                                                                    </span>
+                                                                </p>
+                                                                <p style="text-align: center;">&nbsp;</p>
+                                                            </td>
+                                                            <td>
+                                                                <img src="~/Images/AboutUS/@image.ImageGUID" style="height: 240px; width: 200px; float: left;">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="team-column col-md-12 col-sm-12 col-xs-12" style="margin-top: 30px">
+                                <div class="inner-column">
+                                    <div class="row clearfix">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else if (entity.ClassificationID == 62)
+                    {
+                        <div class="content-side pull-left col-lg-9 col-md-8 col-sm-12 col-xs-12">
+
+                            <div class="services-single" dir="ltr">
+                                <div class="inner-box">
+                                    <div id="cmspage1"></div>
+                                    <!--//end backend to retrieve variables  -->
+                                    <!--//Start backend to retrieve variables  -->
+                                    <h2>@entity.ClassificationName</h2>
+
+                                    <div class="team-column col-md-12 col-sm-12 col-xs-12" style="margin-top: 30px">
+                                        <div class="inner-column">
+                                            <div class="row clearfix">
+                                                @if (entity.LstImages.Count > 0)
+                                                {
+                                                    <div id="teambox"></div>
+                                                    @foreach (var image in entity.LstImages)
+                                                    {
+                                                        <!--//end backend to retrieve variables  -->
+                                                        <div style="font-size:14px; position:relative">
+                                                            <h3 style="text-align: justify;">
+                                                                <img src="~/Images/AboutUs/@image.ImageGUID" style="height: 136px; width: 900px;">
+                                                            </h3>
+                                                            <h3 style="text-align: justify;">&nbsp;</h3>
+                                                        </div>
+                                                        <p dir="ltr" style="text-align: justify;">
+                                                            @Html.Raw(entity.Body)
+                                                        </p>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else if (entity.ClassificationID == 64)
+                    {
+                        <div class="content-side pull-left col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                            <div class="services-single" dir="ltr">
+                                <div class="inner-box">
+                                    <div id="cmspage1">
+                                        <!--//end backend to retrieve variables  -->
+                                        <!--//Start backend to retrieve variables  -->
+                                        <h2>@entity.ClassificationName</h2>
+                                        <link href="" rel="stylesheet" type="text/css">
+                                        <div style="font-size:14px; position:relative">
+                                            @foreach (var image in entity.LstImages)
+                                            {
+                                                <p>
+                                                    <img src="~/Images/AboutUS/@image.ImageGUID" style="height: 832px; width: 900px;">
+                                                </p>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else if (entity.ClassificationID == 63)
+                    {
+                        <div class="content-side pull-left col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                            <div class="services-single" dir="ltr">
+                                <div class="inner-box">
+                                    <div id="cmspage1"></div>
+                                    <!--//end backend to retrieve variables  -->
+                                    <!--//Start backend to retrieve variables  -->
+                                    <h2>@entity.ClassificationName</h2>
+                                    @foreach (var image in entity.LstImages)
+                                    {
+                                        <div style="font-size:14px; position:relative">
+                                            @Html.Raw(entity.Body)
+                                            <img src="~/Images/AboutUS/@image.ImageGUID" style="height: 315px; width: 900px;">
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                }
+            }
         </div>
     </div>
+</div>

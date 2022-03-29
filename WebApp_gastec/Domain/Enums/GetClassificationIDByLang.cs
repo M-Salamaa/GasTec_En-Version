@@ -44,6 +44,15 @@ namespace WebApp_gastec.Domain
                     EncryptedTreeClassificationID = Service.Encrypt("8"),
                     EncryptedSpecificTreeClassificationID = Service.Encrypt("0"),
                 };
+                inputHomePageViewModel.Input_AboutUs_MainSection = new()
+                {
+                    EncryptedTreeClassificationID = Service.Encrypt("125"),
+                };
+                inputHomePageViewModel.Input_HR = new()
+                {
+                    EncryptedTreeClassificationID = Service.Encrypt("123"),
+                };
+
             }
             else
             {
@@ -77,6 +86,14 @@ namespace WebApp_gastec.Domain
                 {
                     EncryptedTreeClassificationID = Service.Encrypt("76"),
                     EncryptedSpecificTreeClassificationID = Service.Encrypt("0"),
+                };
+                inputHomePageViewModel.Input_AboutUs_MainSection = new()
+                {
+                    EncryptedTreeClassificationID = Service.Encrypt("60"),
+                };
+                inputHomePageViewModel.Input_HR = new()
+                {
+                    EncryptedTreeClassificationID = Service.Encrypt("66"),
                 };
 
             }
