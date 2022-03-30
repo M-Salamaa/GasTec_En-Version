@@ -42,7 +42,7 @@ namespace WebApp_gastec.Domain
                     DatabaseName = Gastech_Vault.DatabaseName,
                     // Get Encrypted EXApp ID
                     EncryptedEXAppID = Gastech_Vault.EncryptedEXAppID,
-                    // Get Encrypted Major Tree Node ID
+                    // Get Encrypted Major Tree Node ID 
                     EncryptedMajorTreeNodeID = encryptedMajorTreeNodeID,
                     // Get Encrypted Tree Classification ID
                     EncryptedTreeClassificationID = encryptedTreeClassificationID_,
@@ -51,7 +51,7 @@ namespace WebApp_gastec.Domain
                     // Get Max Tree Level
                     MaxTreeLevel = 3,
                     // Get Translation Language ID
-                    TranslationLanguageID = translationID_,
+                    TranslationLanguageID = 0,
                     // Get Classification Settings
                     ClassificationSettings = new ClassificationSettings()
                     {

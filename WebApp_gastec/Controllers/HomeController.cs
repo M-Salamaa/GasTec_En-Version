@@ -151,7 +151,7 @@ namespace WebApp_gastec.Controllers
                 //Consuming Cities from GetCities API 
                 Cities = await API_GetCities.GetAllCitiesAsync(translationID_),
                 //Consuming Map Files from Classification Tree API
-                MapFiles = await API_GetMapFiles.GetMapFilesAsync(inputModel.encryptedMajorTreeID, translationID_),
+                MapFiles = await API_GetMapFiles.GetMapFilesAsync(inputModel.Input_MapFiles.EncryptedTreeClassificationID, translationID_),
 
             };
             return homePageViewModel;
@@ -232,10 +232,10 @@ namespace WebApp_gastec.Controllers
         [HttpPost]
         public async Task<IActionResult> _ShowMapPartialAsync(double longtitude, double latitude)
         {
+            var inputModel = GetClassificationIDByLang.GetClassificationIdByLanguageID();
             SessionHelper.SetObjectAsJson(HttpContext.Session, "Localization", Gastech_Vault.TranslationLanguageID);
-
             // Get All Json Files For Map To Cache it
-            var model_ = await API_GetMapFiles.GetMapFilesAsync(Domain.Service.Encrypt("1"), int.Parse(HttpContext.Session.GetString("Localization")));
+            var model_ = await API_GetMapFiles.GetMapFilesAsync(inputModel.Input_MapFiles.EncryptedTreeClassificationID, int.Parse(HttpContext.Session.GetString("Localization")));
             CacheAllFiles(model_);
             MapLocationModel model = new MapLocationModel();
             model.longtitude = longtitude;
@@ -245,9 +245,13 @@ namespace WebApp_gastec.Controllers
         // Action to return Json Files For Map From Specified Location with Specific Government ID
         public IActionResult ReturnJsonFile(string filepath, int government_)
         {
+            string finalPath = "";
             SessionHelper.SetObjectAsJson(HttpContext.Session, "Localization", Gastech_Vault.TranslationLanguageID);
+            if (Gastech_Vault.TranslationLanguageID == 0)
+                finalPath = "wwwroot/public/src/json/ar/" + filepath + ".json";
+            else
+                finalPath = "wwwroot/public/src/json/en/" + filepath + ".json";
 
-            string finalPath = "wwwroot/public/src/json/ar/" + filepath + ".json";
             StreamReader reader = new StreamReader(finalPath);
             if (government_ == 0)
             {

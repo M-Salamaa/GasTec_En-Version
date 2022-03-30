@@ -42,8 +42,16 @@ namespace WebApp_gastec.Domain
         // Function to Get Empty File Full Path
         public string GetCacheFullPathforEmptyFiles(string fileGuid_)
         {
+            string localPath = "";
             // Set Local Path in Local Machine
-            string localPath = $"public/src/json/ar/";
+            if (Gastech_Vault.TranslationLanguageID == 0)
+            {
+                localPath = $"public/src/json/ar/";
+            }
+            else
+            {
+                localPath = $"public/src/json/en/";
+            }
             // combine Root_Folder with Local_Path To get the Path for Caching
             string contentRootPath = Path.Combine(_hostingEnvironment.WebRootPath, localPath);
             // Create Directory for Cahcing images with our combined Path
@@ -54,8 +62,16 @@ namespace WebApp_gastec.Domain
         // Function to Sace Json File if not exist
         public void GetCacheFullPathforJsonFile(string fileName_, string fileLink_)
         {
+            string localPath = "";
             // Set Local Path in Local Machine
-            string localPath = $"public/src/json/ar/{fileName_}";
+            if (Gastech_Vault.TranslationLanguageID == 0)
+            {
+                localPath = $"public/src/json/ar/{fileName_}";
+            }
+            else
+            {
+                localPath = $"public/src/json/en/{fileName_}";
+            }
             // combine Root_Folder with Local_Path To get the Path for Caching
             string contentRootPath = Path.Combine(_hostingEnvironment.WebRootPath, localPath);
             // Create Directory for Cahcing images with our combined Path

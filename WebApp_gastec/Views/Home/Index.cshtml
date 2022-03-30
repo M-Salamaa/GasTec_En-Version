@@ -70,14 +70,30 @@
     <section class="aproach-section bg-wave">
         <div class="auto-container">
             <div class="sec-title">
-                <h2>
-                    أحدث الأخبار
-                    <a href="@Url.Action("AllNews","Home")" class="theme-btn read-more"
-                       style="float: left;direction: rtl;font-size: 18px;">
-                        عرض جميع الأخبار<span class="icon flaticon-left-arrow"
-                                              style="margin-right: 10px;font-size: 20px;vertical-align: sub;"></span>
-                    </a>
-                </h2>
+                @if (Gastech_Vault.TranslationLanguageID == 0)
+                {
+                    <h2>
+                        أحدث الأخبار
+                        <a href="@Url.Action("AllNews","Home")" class="theme-btn read-more"
+                           style="float: left;direction: rtl;font-size: 18px;">
+                            عرض جميع الأخبار
+                            <span class="icon flaticon-left-arrow"
+                                  style="margin-right: 10px;font-size: 20px;vertical-align: sub;"></span>
+                        </a>
+                    </h2>
+                }
+                else
+                {
+                    <h2>
+                        Latest News
+                        <a href="@Url.Action("AllNews","Home")" class="theme-btn read-more"
+                           style="float: right;direction: ltr;font-size: 18px;">
+                            View all news
+                            <span class="icon flaticon-right-arrow-1"
+                                  style="margin-right: 10px;font-size: 20px;vertical-align: sub;"></span>
+                        </a>
+                    </h2>
+                }
             </div>
             <div id="events1" class="row clearfix">
                 <div class="three-item-carousel owl-carousel owl-theme">
@@ -93,17 +109,26 @@
                                             <div class="overlay-inner">
                                                 <div class="content-box">
                                                     <div class="blockdate">
-                                                        @topic.TopicDate &nbsp;<span class="icon flaticon-calendar"></span>
+                                                        @topic.TopicDate.ToShortDateString() &nbsp;<span class="icon flaticon-calendar"></span>
                                                     </div>
 
                                                     <h4>
                                                         <a href="@Url.Action("NewsDetails", "Home", new { serial_ = topic.Serial})">@topic.NewsTitle</a>
                                                     </h4>
+                                                    @if (Gastech_Vault.TranslationLanguageID == 0)
+                                                    {
 
-                                                    <a href="@Url.Action("NewsDetails", "Home", new { serial_ = topic.Serial})" class="detail">
-                                                        اقرأ
-                                                        المزيد
-                                                    </a>
+                                                        <a href="@Url.Action("NewsDetails", "Home", new { serial_ = topic.Serial})" class="detail">
+                                                            اقرأ
+                                                            المزيد
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="@Url.Action("NewsDetails", "Home", new { serial_ = topic.Serial})" class="detail">
+                                                            Read more
+                                                        </a>
+                                                    }
                                                 </div>
                                             </div>
                                         </div>
@@ -121,13 +146,30 @@
     <section class="counter-section" style="background-image:url(../../wwwroot/public/assets/softextwo/images/background/action1.jpg);background-size: cover;">
         <div class="auto-container">
             <div class="row clearfix">
-                <!--Image Column-->
-                <div class="image-column col-lg-2 col-md-12 col-sm-12 pull-right wow slideInUp">
-                    <div class="image">
-                        <h1>أرقام غازتك</h1>
+                @if (Gastech_Vault.TranslationLanguageID == 0)
+                {
+
+                    <!--Image Column-->
+                    <div class="image-column col-lg-2 col-md-12 col-sm-12 pull-right wow slideInUp">
+                        <div class="image">
+                            <h1>أرقام غازتك</h1>
+                        </div>
+                        <h1 class="cng">CNG for Mobility</h1>
                     </div>
-                    <h1 class="cng">CNG for Mobility</h1>
-                </div>
+                }
+                else
+                {
+                    <!--Image Column-->
+                    <div class="image-column col-lg-2 col-md-12 col-sm-12 pull-left wow slideInUp">
+                        <div class="image">
+                            <h1>
+                                GASTEC Numbers
+                            </h1>
+                        </div>
+                        <h1 class="cng">CNG for Mobility</h1>
+                    </div>
+
+                }
                 <!--Counter Column-->
                 <div class="counter-main-column col-lg-10 col-md-12 col-sm-12">
                     <div class="inner-column">
@@ -164,49 +206,110 @@
     <!--Service Section-->
     <section class="services-section" style="background:#ffd41f">
         <div class="auto-container">
-            <div class="col-md-3 col-sm-12 col-xs-12 news-block pull-left text-left wow slideInLeft" style="padding-top:50px; padding-bottom: 30px; direction: rtl;">
-                <img src="~/public/assets/softextwo/images/eni-logo.png" alt="" />
-            </div>
-            <div class="col-md-9 col-sm-12 col-xs-12 pull-right">
-                <div dir="rtl">
-                    <h1 style="padding-bottom: 10px"> إينى – غازتك </h1>
-                    <h2 style="padding-bottom: 30px"> شراكة استراتيجية لتطوير خدمات التموين وتوزيع الزيوت</h2>
+            @if (Gastech_Vault.TranslationLanguageID == 0)
+            {
+
+                <div class="col-md-3 col-sm-12 col-xs-12 news-block pull-left text-left wow slideInLeft" style="padding-top:50px; padding-bottom: 30px; direction: rtl;">
+                    <img src="~/public/assets/softextwo/images/eni-logo.png" alt="" />
                 </div>
-                <div class="row clearfix">
-                    <!--Column-->
-                    <div class="column col-md-12 col-sm-12">
-                        <div class="row clearfix">
-                            <!--News Block-->
-                            <div id="events2"></div>
-                            <div class="single-item-carousel owl-carousel owl-theme">
-                                <!-- Retrive Data while Consuming -->
-                                <!--//End backend to retrieve variables  -->
-                                @foreach (var img in Model.EniGastech.LstNews)
-                                {
-                                    <div class="testimonial-block">
-                                        <div class="inner-box">
-                                            <div class="upper-box">
-                                                <div class="image">
-                                                    <img src="~/Images/EniGastec/@img.ImageGUID" alt="" />
+            }
+            else
+            {
+                <div class="col-md-3 col-sm-12 col-xs-12 news-block pull-right text-right wow slideInLeft" style="padding-top:50px; padding-bottom: 30px; direction: ltr;">
+                    <img src="~/public/assets/softextwo/images/eni-logo.png" alt="" />
+                </div>
+            }
+            @if (Gastech_Vault.TranslationLanguageID == 0)
+            {
+
+                <div class="col-md-9 col-sm-12 col-xs-12 pull-right">
+                    <div dir="rtl">
+                        <h1 style="padding-bottom: 10px"> إينى – غازتك </h1>
+                        <h2 style="padding-bottom: 30px"> شراكة استراتيجية لتطوير خدمات التموين وتوزيع الزيوت</h2>
+                    </div>
+                    <div class="row clearfix">
+                        <!--Column-->
+                        <div class="column col-md-12 col-sm-12">
+                            <div class="row clearfix">
+                                <!--News Block-->
+                                <div id="events2"></div>
+                                <div class="single-item-carousel owl-carousel owl-theme">
+                                    <!-- Retrive Data while Consuming -->
+                                    <!--//End backend to retrieve variables  -->
+                                    @foreach (var img in Model.EniGastech.LstNews)
+                                    {
+                                        <div class="testimonial-block">
+                                            <div class="inner-box">
+                                                <div class="upper-box">
+                                                    <div class="image">
+                                                        <img src="~/Images/EniGastec/@img.ImageGUID" alt="" />
+                                                    </div>
+                                                </div>
+                                                <div class="text">
+                                                    <a href="@Url.Action("NewsDetails", "Home", new { serial_ = img.Serial})">@img.NewsTitle</a>
                                                 </div>
                                             </div>
-                                            <div class="text">
-                                                <a href="@Url.Action("NewsDetails", "Home", new { serial_ = img.Serial})">@img.NewsTitle</a>
-                                            </div>
                                         </div>
-                                    </div>
-                                }
-                            </div>
-                            <div dir="rtl">
-                                <a href="@Url.Action("AllNews","Home")" class="theme-btn read-more">
-                                    المزيد من الأخبار<span class="icon flaticon-left-arrow" style="margin-right: 10px;font-size: 20px;vertical-align: sub;"></span>
-                                </a>
+                                    }
+                                </div>
+                                <div dir="rtl">
+                                    <a href="@Url.Action("AllNews","Home")" class="theme-btn read-more">
+                                        المزيد من الأخبار<span class="icon flaticon-left-arrow" style="margin-right: 10px;font-size: 20px;vertical-align: sub;"></span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
-            </div>
+            }
+            else
+            {
+                <div class="col-md-9 col-sm-12 col-xs-12 pull-left">
+                    <div dir="ltr">
+                        <h1 style="padding-bottom: 10px">
+                            Eni-GASTEC
+                        </h1>
+                        <h2 style="padding-bottom: 30px">
+                            A strategic partnership to develop catering services and Lubricants
+                        </h2>
+                    </div>
+                    <div class="row clearfix">
+                        <!--Column-->
+                        <div class="column col-md-12 col-sm-12">
+                            <div class="row clearfix">
+                                <!--News Block-->
+                                <div id="events2"></div>
+                                <div class="single-item-carousel owl-carousel owl-theme">
+                                    <!-- Retrive Data while Consuming -->
+                                    <!--//End backend to retrieve variables  -->
+                                    @foreach (var img in Model.EniGastech.LstNews)
+                                    {
+                                        <div class="testimonial-block">
+                                            <div class="inner-box">
+                                                <div class="upper-box">
+                                                    <div class="image">
+                                                        <img src="~/Images/EniGastec/@img.ImageGUID" alt="" />
+                                                    </div>
+                                                </div>
+                                                <div class="text">
+                                                    <a href="@Url.Action("NewsDetails", "Home", new { serial_ = img.Serial})">@img.NewsTitle</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                <div dir="ltr">
+                                    <a href="@Url.Action("AllNews","Home")" class="theme-btn read-more">
+                                        View More<span class="icon flaticon-right-arrow-1" style="margin-right: 10px;font-size: 20px;vertical-align: sub;"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            }
             <div class="clearfix"></div>
         </div>
         <div class="container-fluid">
@@ -242,22 +345,46 @@
                                     <h3>
                                         <a href="@Url.Action("Index" , "Oil" , new { ID_ = GetActionName.GetActionNameforEniImagesByID(image.ImageID) })">@image.ImageName</a>
                                     </h3>
-                                    <div class="text">
-                                        <a href="@Url.Action("Index" , "Oil" , new { ID_ = GetActionName.GetActionNameforEniImagesByID(image.ImageID) })" class="theme-btn read-more" dir="rtl">
-                                            إقرأ المزيد<span class="icon flaticon-left-arrow" style="margin-right: 10px;font-size: 20px;vertical-align: sub;"></span>
-                                        </a>
-                                    </div>
+                                    @if (Gastech_Vault.TranslationLanguageID == 0)
+                                    {
+
+                                        <div class="text">
+                                            <a href="@Url.Action("Index" , "Oil" , new { ID_ = GetActionName.GetActionNameforEniImagesByID(image.ImageID) })" class="theme-btn read-more" dir="rtl">
+                                                إقرأ المزيد<span class="icon flaticon-left-arrow" style="margin-right: 10px;font-size: 20px;vertical-align: sub;"></span>
+                                            </a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="text">
+                                            <a href="@Url.Action("Index" , "Oil" , new { ID_ = GetActionName.GetActionNameforEniImagesByID(image.ImageID) })" class="theme-btn read-more" dir="ltr">
+                                                Read More <span class="icon flaticon-right-arrow-1" style="margin-right: 10px;font-size: 20px;vertical-align: sub;"></span>
+                                            </a>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </div>
                     }
                 }
             </div>
-            <div class="text-left" style="margin-top: 30px" dir="rtl">
-                <a href="https://oilproducts.eni.com/en_GB/products" target="_blank" class="theme-btn read-more" style="font-size: 18px;">
-                    موقع إيني العالمية<span class="icon flaticon-left-arrow" style="margin-right: 10px;font-size: 20px;vertical-align: sub;"></span>
-                </a>
-            </div>
+            @if (Gastech_Vault.TranslationLanguageID == 0)
+            {
+
+                <div class="text-left" style="margin-top: 30px" dir="rtl">
+                    <a href="https://oilproducts.eni.com/en_GB/products" target="_blank" class="theme-btn read-more" style="font-size: 18px;">
+                        موقع إيني العالمية<span class="icon flaticon-left-arrow" style="margin-right: 10px;font-size: 20px;vertical-align: sub;"></span>
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div class="text-right" style="margin-top: 30px" dir="ltr">
+                    <a href="https://oilproducts.eni.com/en_GB/products" target="_blank" class="theme-btn read-more" style="font-size: 18px;">
+                        Eni Global Website<span class="icon flaticon-right-arrow-1" style="margin-right: 10px;font-size: 20px;vertical-align: sub;"></span>
+                    </a>
+                </div>
+            }
         </div>
     </section>
     <!--End Service Section-->
@@ -265,39 +392,80 @@
     <section class="project-section">
         <div class="auto-container">
             <div class="sec-title">
-                <h2>
-                    فعاليات غازتك
-                    <a href="@Url.Action("AllNews","Home")" class="theme-btn read-more" style="float: left;direction: rtl;font-size: 18px;color: #fff;">
-                        عرض جميع الفعاليات<span class="icon flaticon-left-arrow" style="margin-right: 10px;font-size: 20px;vertical-align: sub;"></span>
-                    </a>
-                </h2>
+                @if (Gastech_Vault.TranslationLanguageID == 0)
+                {
+
+                    <h2>
+                        فعاليات غازتك
+                        <a href="@Url.Action("AllNews","Home")" class="theme-btn read-more" style="float: left;direction: rtl;font-size: 18px;color: #fff;">
+                            عرض جميع الفعاليات<span class="icon flaticon-left-arrow" style="margin-right: 10px;font-size: 20px;vertical-align: sub;"></span>
+                        </a>
+                    </h2>
+                }
+                else
+                {
+                    <h2>
+                        GASTEC Events
+                        <a href="@Url.Action("AllNews","Home")" class="theme-btn read-more" style="float: right;direction: ltr;font-size: 18px;color: #fff;">
+                            View All Events<span class="icon flaticon-right-arrow-1" style="margin-right: 10px;font-size: 20px;vertical-align: sub;"></span>
+                        </a>
+                    </h2>
+                }
             </div>
             <div class="row clearfix">
                 <!--Column-->
                 <div class="column col-md-12 col-sm-12 col-xs-12">
                     <div class="row clearfix">
                         <div id="events3">
-                            @foreach (var image in Model.NewsSection.LstNews.Take(3))
+                            @if (Gastech_Vault.TranslationLanguageID == 0)
                             {
-                                <!--News Block-->
-                                <div class="news-block col-md-4 col-sm-6 col-xs-12 wow fadeIn pull-right" style="visibility: visible; animation-name: fadeIn;">
-                                    <div class="inner-box">
-                                        <div class="image">
-                                            <a href="@Url.Action("NewsDetails", "Home", new { serial_ = image.Serial})"><img src="~/Images/NewsSection/@image.ImageGUID" alt="" /></a>
-                                        </div>
-                                        @* Adding News Date *@
-                                        <div class="lower-box">
-                                            <div class="post-info">@image.TopicDate.ToShortDateString()</div>
-                                            <h3>
-                                                <a href="@Url.Action("NewsDetails", "Home", new { serial_ = image.Serial})">@image.NewsTitle</a>
-                                            </h3>
-                                            <a href="@Url.Action("NewsDetails", "Home", new { serial_ = image.Serial})" class="theme-btn read-more">
-                                                إقرأ المزيد
-                                                <span class="icon flaticon-left-arrow" style="margin-right: 10px;font-size: 20px;vertical-align: sub;"></span>
-                                            </a>
+
+                                @foreach (var image in Model.NewsSection.LstNews.Take(3))
+                                {
+                                    <!--News Block-->
+                                    <div class="news-block col-md-4 col-sm-6 col-xs-12 wow fadeIn pull-right" style="visibility: visible; animation-name: fadeIn;">
+                                        <div class="inner-box">
+                                            <div class="image">
+                                                <a href="@Url.Action("NewsDetails", "Home", new { serial_ = image.Serial})"><img src="~/Images/NewsSection/@image.ImageGUID" alt="" /></a>
+                                            </div>
+                                            @* Adding News Date *@
+                                            <div class="lower-box">
+                                                <div class="post-info">@image.TopicDate.ToShortDateString()</div>
+                                                <h3>
+                                                    <a href="@Url.Action("NewsDetails", "Home", new { serial_ = image.Serial})">@image.NewsTitle</a>
+                                                </h3>
+                                                <a href="@Url.Action("NewsDetails", "Home", new { serial_ = image.Serial})" class="theme-btn read-more">
+                                                    إقرأ المزيد
+                                                    <span class="icon flaticon-left-arrow" style="margin-right: 10px;font-size: 20px;vertical-align: sub;"></span>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                }
+                            }
+                            else
+                            {
+                                @foreach (var image in Model.NewsSection.LstNews.Take(3))
+                                {
+                                    <!--News Block-->
+                                    <div class="news-block col-md-4 col-sm-6 col-xs-12 wow fadeIn pull-left" style="visibility: visible; animation-name: fadeIn;">
+                                        <div class="inner-box">
+                                            <div class="image">
+                                                <a href="@Url.Action("NewsDetails", "Home", new { serial_ = image.Serial})"><img src="~/Images/NewsSection/@image.ImageGUID" alt="" /></a>
+                                            </div>
+                                            @* Adding News Date *@
+                                            <div class="lower-box">
+                                                <div class="post-info">@image.TopicDate.ToShortDateString()</div>
+                                                <h3>
+                                                    <a href="@Url.Action("NewsDetails", "Home", new { serial_ = image.Serial})">@image.NewsTitle</a>
+                                                </h3>
+                                                <a href="@Url.Action("NewsDetails", "Home", new { serial_ = image.Serial})" class="theme-btn read-more">
+                                                    Read More <span class="icon flaticon-right-arrow-1" style="margin-right: 10px;font-size: 20px;vertical-align: sub;"></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
                             }
                         </div>
                         <!--//End backend to retrieve variables  -->
@@ -309,21 +477,43 @@
     <!--End News Section-->
     <!--================Map Area =================-->
     @*check the Map Section in Source code*@
+    @if (Gastech_Vault.TranslationLanguageID == 0)
+    {
 
-    <div class="row" style="background-color: #bdd2e2; margin: 0;">
-        <div class="col-md-3 col-xs-12 pull-right text-right">
-            <h1>خدمات غازتك</h1>
-            <select id="getGovernorat" style="width: 100%; padding:10px;direction:rtl">
-                <option value="0">كل المحافظات</option>
-                @foreach (var city in Model.Cities)
-                {
-                    <option value="@city.ID">
-                        @city.Name
-                    </option>
-                }
-            </select>
+        <div class="row" style="background-color: #bdd2e2; margin: 0;">
+            <div class="col-md-3 col-xs-12 pull-right text-right">
+                <h1>خدمات غازتك</h1>
+                <select id="getGovernorat" style="width: 100%; padding:10px;direction:rtl">
+                    <option value="0">كل المحافظات</option>
+                    @foreach (var city in Model.Cities)
+                    {
+                        <option value="@city.ID">
+                            @city.Name
+                        </option>
+                    }
+                </select>
+            </div>
         </div>
-    </div>
+    }
+    else
+    {
+        <div class="row" style="background-color: #bdd2e2; margin: 0;">
+            <div class="col-md-3 col-xs-12 pull-left text-left">
+                <h1>
+                    GASTEC Services
+                </h1>
+                <select id="getGovernorat" style="width: 100%; padding:10px;direction:ltr">
+                    <option value="0">All Governorates</option>
+                    @foreach (var city in Model.Cities)
+                    {
+                        <option value="@city.ID">
+                            @city.Name
+                        </option>
+                    }
+                </select>
+            </div>
+        </div>
+    }
     <div id="locationmap">
     </div>
     <script>
