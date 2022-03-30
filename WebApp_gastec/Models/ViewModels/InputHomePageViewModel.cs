@@ -37,6 +37,10 @@ namespace WebApp_gastec.Models
         #region Media Center Input Models
         public InputGetClassificationTreeModel Input_MediaCenter { get; set; }
         #endregion
+        #region Fueling Stations Models
+        public InputGetClassificationTreeModel Input_FuelingStations_MainSection { get; set; }
+        public InputGetClassificationTreeModel Input_FuelingStations_SubSection { get; set; }
+        #endregion
         public OutputGetNewsTopicsModel EniGastech { get; set; }
         public OutputGetNewsTopicsModel NewsSection { get; set; }
         public OutputGetNewsTopicsModel NewsTopics { get; set; }

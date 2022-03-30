@@ -82,13 +82,14 @@ namespace WebApp_gastec.Controllers
         // Return Data Model after Consuming API
         private HomePageViewModel GetHomeViewModel(string encryptedClassificationId_, string encryptedTreeClassificationId_, int translationID_)
         {
+            InputHomePageViewModel inputModel = GetClassificationIDByLang.GetClassificationIdByLanguageID();
             // Create Instance for home page view model to return Main Home Page View
             HomePageViewModel homePageViewModel = new()
             {
                 // Consuming Main Menu from Classification Tree API 
-                MainNavigationBar = API_GetClassificationTree.GetClassificationTree(Domain.Service.Encrypt("0"), Domain.Service.Encrypt("0"), translationID_),
+                //MainNavigationBar = API_GetClassificationTree.GetClassificationTree(Domain.Service.Encrypt("c0"), Domain.Service.Encrypt("0"), translationID_),
                 // Consuming Main Cylindar Test Menu from Classification Tree API 
-                Main_Section = API_GetClassificationTree.GetClassificationTree(Domain.Service.Encrypt("4"), Domain.Service.Encrypt("0"), translationID_),
+                Main_Section = API_GetClassificationTree.GetClassificationTree(inputModel.Input_FuelingStations_MainSection.EncryptedTreeClassificationID, inputModel.Input_FuelingStations_MainSection.EncryptedSpecificTreeClassificationID, translationID_),
                 // Consuming Cylindar Category from Classification Tree API 
                 Sub_Section = API_GetClassificationTree.GetClassificationTree(encryptedClassificationId_, encryptedTreeClassificationId_, translationID_),
 
@@ -99,8 +100,8 @@ namespace WebApp_gastec.Controllers
         public async Task<IActionResult> Stations(string ID_)
         {
             SessionHelper.SetObjectAsJson(HttpContext.Session, "Localization", Gastech_Vault.TranslationLanguageID);
-
-            var model = this.GetHomeViewModel(Domain.Service.Encrypt("4"), Domain.Service.Encrypt(ID_), int.Parse(HttpContext.Session.GetString("Localization")));
+            InputHomePageViewModel inputModel = GetClassificationIDByLang.GetClassificationIdByLanguageID();
+            var model = this.GetHomeViewModel(inputModel.Input_FuelingStations_MainSection.EncryptedTreeClassificationID, Domain.Service.Encrypt(ID_), int.Parse(HttpContext.Session.GetString("Localization")));
             await CachedAllImagesAsync(model, "Integrated_Stations");
             CachedAllHtmlLinks(model, "Integrated_Stations");
             return View(model);
@@ -109,10 +110,10 @@ namespace WebApp_gastec.Controllers
         public async Task<IActionResult> Index(string ID_)
         {
             SessionHelper.SetObjectAsJson(HttpContext.Session, "Localization", Gastech_Vault.TranslationLanguageID);
-
+            InputHomePageViewModel inputModel = GetClassificationIDByLang.GetClassificationIdByLanguageID();
             Cache cachedHtml = new Cache(_hostingEnvironment);
             var model = new HomePageViewModel();
-            if (ID_ == "28")
+            if (ID_ == "28" || ID_=="87")
             {
                 model = this.GetHomeViewModel(Domain.Service.Encrypt(ID_), Domain.Service.Encrypt("0"), int.Parse(HttpContext.Session.GetString("Localization")));
                 await CachedAllImagesAsync(model, "Stations");
@@ -129,7 +130,7 @@ namespace WebApp_gastec.Controllers
             }
             else
             {
-                model = this.GetHomeViewModel(Domain.Service.Encrypt("4"), Domain.Service.Encrypt(ID_), int.Parse(HttpContext.Session.GetString("Localization")));
+                model = this.GetHomeViewModel(inputModel.Input_FuelingStations_MainSection.EncryptedTreeClassificationID, Domain.Service.Encrypt(ID_), int.Parse(HttpContext.Session.GetString("Localization")));
                 await CachedAllImagesAsync(model, "Stations");
                 CachedAllHtmlLinks(model, "Stations");
             }

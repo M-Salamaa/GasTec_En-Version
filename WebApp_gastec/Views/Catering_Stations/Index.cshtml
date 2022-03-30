@@ -21,13 +21,27 @@
 <div class="page-info">
     <div class="auto-container">
         <div class="inner-container clearfix">
-            <ul class="bread-crumb pull-right">
-                <li><a href="@Url.Action("Index","Home")">الرئيسية</a></li>
-                @foreach (var entity in Model.Sub_Section)
-                {
-                    <li>@entity.ClassificationName</li>
-                }
-            </ul>
+            @if (Gastech_Vault.TranslationLanguageID == 0)
+            {
+                <ul class="bread-crumb pull-right">
+
+                    <li><a href="@Url.Action("Index","Home")">الرئيسية</a></li>
+                    @foreach (var entity in Model.Sub_Section)
+                    {
+                        <li>@entity.ClassificationName</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <ul class="bread-crumb pull-left">
+                    <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                    @foreach (var entity in Model.Sub_Section)
+                    {
+                        <li>@entity.ClassificationName</li>
+                    }
+                </ul>
+            }
         </div>
     </div>
 </div>
@@ -35,318 +49,640 @@
 <div class="sidebar-page-container">
     <div class="auto-container">
         <div class="row clearfix">
-            <!--Sidebar Side-->
-            <div class="sidebar-side col-lg-3 col-md-4 col-sm-12 col-xs-12 pull-right">
-                <aside class="sidebar">
-                    <!--Blog Category Widget-->
+            @if (Gastech_Vault.TranslationLanguageID == 0)
+            {
+                <!--Sidebar Side-->
+                <div class="sidebar-side col-lg-3 col-md-4 col-sm-12 col-xs-12 pull-right">
+                    <aside class="sidebar">
+                        <!--Blog Category Widget-->
                     <div id="sidenavelist">
-                        <div class="sidebar-widget sidebar-blog-category">
-                            <ul class="blog-cat">
-                                @foreach (var mainSection in Model.Main_Section)
-                                {
-                                    @foreach (var entity in mainSection.LstChildClassification)
+                            <div class="sidebar-widget sidebar-blog-category">
+                                <ul class="blog-cat">
+                                    @foreach (var mainSection in Model.Main_Section)
                                     {
-                                        @if (entity.IsActive == true)
+                                        @foreach (var entity in mainSection.LstChildClassification)
                                         {
-                                            <li class="active">
-                                                <a href="@Url.Action("Index", "Catering_Stations",new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
-                                            </li>
-                                        }
-                                        else
-                                        {
+                                            @if (entity.IsActive == true)
+                                            {
+                                                <li class="active">
+                                                    <a href="@Url.Action("Index", "Catering_Stations",new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
+                                                </li>
+                                            }
+                                            else
+                                            {
 
-                                            <li>
-                                                <a href="@Url.Action("Index", "Catering_Stations",new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
-                                            </li>
+                                                <li>
+                                                    <a href="@Url.Action("Index", "Catering_Stations",new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
+                                                </li>
+                                            }
                                         }
                                     }
-                                }
-                            </ul>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </aside>
-            </div>
-            <!--Content Side-->
-            <div class="content-side pull-left col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                @foreach (var entity in Model.Sub_Section)
-                {
-                    // Check if ID = 26 for Natural Gas Stations
-                    @if (entity.ClassificationID == 26)
+                    </aside>
+                </div>
+                <!--Content Side-->
+                <div class="content-side pull-left col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                    @foreach (var entity in Model.Sub_Section)
                     {
-                        <div class="services-single" dir="rtl">
-                            <div class="inner-box">
-                                <div id="cmspage1">
-                                    <h2>@entity.ClassificationName</h2>
-                                    <div style="font-size:14px; position:relative">
-                                        <p style="text-align: justify;">
+                        // Check if ID = 26 for Natural Gas Stations
+                        @if (entity.ClassificationID == 26)
+                        {
+                            <div class="services-single" dir="rtl">
+                                <div class="inner-box">
+                                    <div id="cmspage1">
+                                        <h2>@entity.ClassificationName</h2>
+                                        <div style="font-size:14px; position:relative">
+                                            <p style="text-align: justify;">
+                                                @foreach (var webSection in entity.LstWebSections)
+                                                {
+                                                    <span style="color:#263a69;">
+                                                        <span style="font-size:18px;">
+                                                            @Html.Raw(webSection.Body)
+                                                        </span>
+                                                    </span>
+
+                                                    @if (webSection.WebSectionID == 79)
+                                                    {
+                                                        @foreach (var image in webSection.LstImages)
+                                                        {
+                                                            <img src="~/Images/Stations/@image.ImageGUID" style="height: 179px; width: 268px; margin: 0px 25px; float: left;">
+                                                        }
+                                                    }
+                                                    else if (webSection.WebSectionID == 80)
+                                                    {
+                                                        @foreach (var image in webSection.LstImages)
+                                                        {
+                                                            <img src="~/Images/Stations/@image.ImageGUID" style="width: 110px; height: 201px; margin-left: 25px; margin-right: 25px; float: left;">
+                                                        }
+                                                    }
+                                                    else if (webSection.WebSectionID == 81)
+                                                    {
+                                                        <table align="center" border="1" cellpadding="1" cellspacing="1">
+                                                            <tbody>
+                                                                <tr>
+                                                                    @foreach (var image in webSection.LstImages)
+                                                                    {
+                                                                        <td style="text-align: justify;">
+                                                                            <span style="color:#263a69;">
+                                                                                <img alt="" src="~/Images/Stations/@image.ImageGUID" style="margin-left: 25px; margin-right: 25px; width: 400px; height: 234px;">
+                                                                            </span>
+                                                                        </td>
+                                                                    }
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    }
+                                                    else if (webSection.WebSectionID == 92)
+                                                    {
+                                                        @foreach (var image in webSection.LstImages)
+                                                        {
+                                                            <a href="@image.ImageLink" target="_blank">
+                                                                <img src="~/Images/Stations/@image.ImageGUID" style="height: 566px; width: 400px; padding:5px">
+                                                                &nbsp;
+                                                            </a>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        @foreach (var image in webSection.LstImages)
+                                                        {
+                                                            <img src="~/Images/Stations/@image.ImageGUID" style="width:915px" />
+                                                        }
+                                                    }
+
+                                                    <hr />
+                                                }
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        //Check if ID = 27 for Liquid Gas Stations
+                        else if (entity.ClassificationID == 27)
+                        {
+                            <div class="services-single" dir="rtl">
+                                <div class="inner-box">
+                                    <div id="cmspage1">
+                                        <h2>@entity.ClassificationName</h2>
+                                        <div style="font-size:14px; position:relative">
                                             @foreach (var webSection in entity.LstWebSections)
                                             {
+                                                @Html.Raw(webSection.Body)
+                                                <p style="text-align: justify;">
+                                                    @foreach (var image in webSection.LstImages)
+                                                    {
+                                                        @if (webSection.WebSectionID == 95)
+                                                        {
+                                                            <a href="@image.ImageLink" target="_blank">
+                                                                <img src="~/Images/Stations/@image.ImageGUID" />
+                                                            </a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span style="color:#ffffff;">
+                                                                <img src="~/Images/Stations/@image.ImageGUID" style="height: 204px; width: 330px; margin: 10px;" />
+                                                            </span>
+                                                        }
+                                                    }
+                                                </p>
+                                                <hr />
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        //Check if ID = 28 for Integrated Stations
+                        else if (entity.ClassificationID == 28)
+                        {
+                            <div class="services-single" dir="rtl">
+                                <div class="inner-box">
+                                    <div id="cmspage1">
+                                        <div style="font-size:14px; position:relative">
+                                            <h3 dir="rtl" style="text-align: justify;">
+                                                <span style="color:#263a69;">
+                                                    <span style="font-size:18px;">- محطات تموين نموذجية متكاملة الخدمات بالوقود السائل والغاز الطبيعي والشحن الكهربائي</span>
+                                                </span>
+                                            </h3>
+
+                                            <table border="1" cellpadding="1" cellspacing="1" dir="rtl" style="width:100%;">
+                                                <tbody>
+                                                    <tr>
+                                                        @foreach (var child in entity.LstChildClassification)
+                                                        {
+                                                            <td>
+                                                                <a href="@Url.Action("Stations","Catering_Stations",new { Id_ = child.ClassificationID.ToString()})">
+                                                                    @child.ClassificationName
+                                                                </a>
+                                                            </td>
+                                                        }
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <p dir="rtl" style="text-align: justify;">&nbsp;</p>
+                                            <p dir="rtl" style="text-align: justify;">
                                                 <span style="color:#263a69;">
                                                     <span style="font-size:18px;">
-                                                        @Html.Raw(webSection.Body)
+                                                        @Html.Raw(entity.Body)
                                                     </span>
                                                 </span>
+                                            </p>
+                                            <p dir="rtl" style="text-align: justify;">&nbsp;</p>
+                                            <h3 dir="rtl" style="text-align: justify;">
+                                                <span style="color:#263a69;">
+                                                    @foreach (var image in entity.LstImages)
+                                                    {
+                                                        <img src="~/Images/Stations/@image.ImageGUID" style="height: 315px; width: 900px;">
+                                                    }
+                                                </span>
+                                            </h3>
 
-                                                @if (webSection.WebSectionID == 79)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        //Check if ID = 29 for Transportation Proccess
+                        else if (entity.ClassificationID == 29)
+                        {
+                            <div class="services-single" dir="rtl">
+                                <div class="inner-box">
+                                    <div id="cmspage1">
+                                        <h2>@entity.ClassificationName</h2>
+                                        <div style="font-size:14px; position:relative">
+                                            @foreach (var webSection in entity.LstWebSections)
+                                            {
+
+                                                @Html.Raw(webSection.Body)
+                                                @foreach (var image in webSection.LstImages)
                                                 {
+                                                    @if (webSection.WebSectionID == 104)
+                                                    {
+                                                        <img src="~/Images/Stations/@image.ImageGUID" style="height: 230px; width: 400px; margin: 10px;">
+                                                    }
+                                                    else if (webSection.WebSectionID == 107)
+                                                    {
+                                                        <img src="~/Images/Stations/@image.ImageGUID" style="height: 117px; width: 250px; float: left;">
+                                                    }
+                                                    else if (webSection.WebSectionID == 109)
+                                                    {
+                                                        <img src="~/Images/Stations/@image.ImageGUID" style="float: left; height: 149px; width: 150px; margin: 5px;">
+                                                    }
+                                                    else if (webSection.WebSectionID == 111)
+                                                    {
+                                                        <img src="~/Images/Stations/@image.ImageGUID" style="height: 232px; width: 900px;">
+                                                    }
+                                                    else if (webSection.WebSectionID == 112)
+                                                    {
+                                                        <img src="~/Images/Stations/@image.ImageGUID" style="height: 243px; width: 900px; ">
+                                                    }
+                                                    else if (webSection.WebSectionID == 114)
+                                                    {
+                                                        <img src="~/Images/Stations/@image.ImageGUID" style="height: 292px; width: 500px; margin:10px">
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="~/Images/Stations/@image.ImageGUID">
+                                                    }
+                                                    <p>&nbsp;</p>
+                                                }
+                                                <hr />
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        //Check if ID = 30 for Occupational Safety
+                        else if (entity.ClassificationID == 30)
+                        {
+                            <div class="services-single" dir="rtl">
+                                <div class="inner-box">
+                                    <div id="cmspage1">
+                                        <h2>@entity.ClassificationName</h2>
+                                        <div style="font-size:14px; position:relative">
+                                            @foreach (var webSection in entity.LstWebSections)
+                                            {
+                                                <p>&nbsp;</p>
+                                                <p>
+                                                    @Html.Raw(webSection.Body)
                                                     @foreach (var image in webSection.LstImages)
                                                     {
-                                                        <img src="~/Images/Stations/@image.ImageGUID" style="height: 179px; width: 268px; margin: 0px 25px; float: left;">
+                                                        @if (webSection.WebSectionID == 100)
+                                                        {
+                                                            <img src="~/Images/Stations/@image.ImageGUID" style="height: 309px; width: 400px; padding:5px">
+                                                        }
+                                                        else if (webSection.WebSectionID == 101)
+                                                        {
+                                                            <img src="~/Images/Stations/@image.ImageGUID" style="max-width:100% ; height:auto">
+
+                                                        }
+                                                        else
+                                                        {
+                                                            <img src="~/Images/Stations/@image.ImageGUID" style="height: 541px; width: 700px;">
+                                                        }
                                                     }
-                                                }
-                                                else if (webSection.WebSectionID == 80)
+                                                </p>
+                                                <p>&nbsp;</p>
+                                                <hr />
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        //Check if ID = 31 for Mobile Stations
+                        else if (entity.ClassificationID == 31)
+                        {
+                            <div class="services-single" dir="rtl">
+                                <div class="inner-box">
+                                    <div id="cmspage1">
+                                        <h2>@entity.ClassificationName</h2>
+                                        <div style="font-size:14px; position:relative">
+                                            <p dir="rtl" style="text-align: justify;">
+                                                <strong>
+                                                    <span style="font-family:Arial,Helvetica,sans-serif;">
+                                                        @Html.Raw(entity.Body)
+                                                    </span>
+                                                </strong>
+                                            <p>&nbsp;</p>
+                                                @foreach (var image in entity.LstImages)
                                                 {
+                                                <span style="font-family:Arial,Helvetica,sans-serif;">
+                                                    <img src="~/Images/Stations/@image.ImageGUID" style="height: 267px; width: 400px;">
+                                                </span>
+                                                }
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        }
+                    }
+                </div>
+            }
+            else
+            {
+                <!--Sidebar Side-->
+                <div class="sidebar-side col-lg-3 col-md-4 col-sm-12 col-xs-12 pull-left">
+                    <aside class="sidebar">
+                        <!--Blog Category Widget-->
+                    <div id="sidenavelist">
+                            <div class="sidebar-widget sidebar-blog-category">
+                                <ul class="blog-cat">
+                                    @foreach (var mainSection in Model.Main_Section)
+                                    {
+                                        @foreach (var entity in mainSection.LstChildClassification)
+                                        {
+                                            @if (entity.IsActive == true)
+                                            {
+                                                <li class="active">
+                                                    <a href="@Url.Action("Index", "Catering_Stations",new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
+                                                </li>
+                                            }
+                                            else
+                                            {
+
+                                                <li>
+                                                    <a href="@Url.Action("Index", "Catering_Stations",new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
+                                                </li>
+                                            }
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+                <!--Content Side-->
+                <div class="content-side pull-right col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                    @foreach (var entity in Model.Sub_Section)
+                    {
+                        // Check if ID = 85 for Natural Gas Stations
+                        @if (entity.ClassificationID == 85)
+                        {
+                            <div class="services-single" dir="ltr">
+                                <div class="inner-box">
+                                    <div id="cmspage1">
+                                        <h2>@entity.ClassificationName</h2>
+                                        <div style="font-size:14px; position:relative">
+                                            <p style="text-align: justify;">
+                                                @foreach (var webSection in entity.LstWebSections)
+                                                {
+                                                    @Html.Raw(webSection.Body)
+                                                    @if (webSection.WebSectionID == 75)
+                                                    {
+                                                        @foreach (var image in webSection.LstImages)
+                                                        {
+                                                            <img src="~/Images/Stations/@image.ImageGUID" style="height: 179px; width: 268px; margin: 0px 25px; float: right;">
+                                                        }
+                                                    }
+                                                    else if (webSection.WebSectionID == 82)
+                                                    {
+                                                        <table align="center" border="1" cellpadding="1" cellspacing="1">
+                                                            <tbody>
+                                                                <tr>
+                                                                    @foreach (var image in webSection.LstImages)
+                                                                    {
+                                                                        <td style="text-align: justify;">
+                                                                            <span style="color:#263a69;">
+                                                                                <img alt="" src="~/Images/Stations/@image.ImageGUID" style="margin-left: 25px; margin-right: 25px; width: 400px; height: 234px;">
+                                                                            </span>
+                                                                        </td>
+                                                                    }
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    }
+                                                    else if (webSection.WebSectionID == 91)
+                                                    {
+                                                        @foreach (var image in webSection.LstImages)
+                                                        {
+                                                            <a href="@image.ImageLink" target="_blank">
+                                                                <img src="~/Images/Stations/@image.ImageGUID" style="height: 566px; width: 400px; padding:5px">
+                                                                &nbsp;
+                                                            </a>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        @foreach (var image in webSection.LstImages)
+                                                        {
+                                                            <img src="~/Images/Stations/@image.ImageGUID" style="width:915px" />
+                                                        }
+                                                    }
+
+                                                    <hr />
+                                                }
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        //Check if ID = 86 for Liquid Gas Stations
+                        else if (entity.ClassificationID == 86)
+                        {
+                            <div class="services-single" dir="ltr">
+                                <div class="inner-box">
+                                    <div id="cmspage1">
+                                        <h2>@entity.ClassificationName</h2>
+                                        <div style="font-size:14px; position:relative">
+                                            @foreach (var webSection in entity.LstWebSections)
+                                            {
+                                                @Html.Raw(webSection.Body)
+                                                <p style="text-align: justify;">
                                                     @foreach (var image in webSection.LstImages)
                                                     {
-                                                        <img src="~/Images/Stations/@image.ImageGUID" style="width: 110px; height: 201px; margin-left: 25px; margin-right: 25px; float: left;">
+                                                        @if (webSection.WebSectionID == 98)
+                                                        {
+                                                            <a href="@image.ImageLink" target="_blank">
+                                                                <img src="~/Images/Stations/@image.ImageGUID" />
+                                                            </a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span style="color:#ffffff;">
+                                                                <img src="~/Images/Stations/@image.ImageGUID" style="height: 204px; width: 330px; margin: 10px;" />
+                                                            </span>
+                                                        }
                                                     }
-                                                }
-                                                else if (webSection.WebSectionID == 81)
+                                                </p>
+                                                <hr />
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        //Check if ID = 87 for Integrated Stations
+                        else if (entity.ClassificationID == 87)
+                        {
+                            <div class="services-single" dir="ltr">
+                                <div class="inner-box">
+                                    <div id="cmspage1">
+                                        <div style="font-size:14px; position:relative">
+                                            <h3 dir="rtl" style="text-align: justify;">
+                                                <span style="color:#263a69;">
+                                                    <span style="font-size:18px;">- محطات تموين نموذجية متكاملة الخدمات بالوقود السائل والغاز الطبيعي والشحن الكهربائي</span>
+                                                </span>
+                                            </h3>
+
+                                            <table border="1" cellpadding="1" cellspacing="1" dir="rtl" style="width:100%;">
+                                                <tbody>
+                                                    <tr>
+                                                        @foreach (var child in entity.LstChildClassification)
+                                                        {
+                                                            <td>
+                                                                <a href="@Url.Action("Stations","Catering_Stations",new { Id_ = child.ClassificationID.ToString()})">
+                                                                    @child.ClassificationName
+                                                                </a>
+                                                            </td>
+                                                        }
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <p dir="rtl" style="text-align: justify;">&nbsp;</p>
+                                            <p dir="rtl" style="text-align: justify;">
+                                                <span style="color:#263a69;">
+                                                    <span style="font-size:18px;">
+                                                        @Html.Raw(entity.Body)
+                                                    </span>
+                                                </span>
+                                            </p>
+                                            <p dir="rtl" style="text-align: justify;">&nbsp;</p>
+                                            <h3 dir="rtl" style="text-align: justify;">
+                                                <span style="color:#263a69;">
+                                                    @foreach (var image in entity.LstImages)
+                                                    {
+                                                        <img src="~/Images/Stations/@image.ImageGUID" style="height: 315px; width: 900px;">
+                                                    }
+                                                </span>
+                                            </h3>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        //Check if ID = 88 for Transportation Proccess
+                        else if (entity.ClassificationID == 88)
+                        {
+                            <div class="services-single" dir="ltr">
+                                <div class="inner-box">
+                                    <div id="cmspage1">
+                                        <h2>@entity.ClassificationName</h2>
+                                        <div style="font-size:14px; position:relative">
+                                            @foreach (var webSection in entity.LstWebSections)
+                                            {
+
+                                                @Html.Raw(webSection.Body)
+                                                @if (webSection.WebSectionID == 119)
                                                 {
                                                     <table align="center" border="1" cellpadding="1" cellspacing="1">
                                                         <tbody>
                                                             <tr>
                                                                 @foreach (var image in webSection.LstImages)
                                                                 {
-                                                                    <td style="text-align: justify;">
-                                                                        <span style="color:#263a69;">
-                                                                            <img alt="" src="~/Images/Stations/@image.ImageGUID" style="margin-left: 25px; margin-right: 25px; width: 400px; height: 234px;">
-                                                                        </span>
+                                                                    <td>
+                                                                        <img src="~/Images/Stations/@image.ImageGUID" style="height: 292px; width: 500px; padding:5px">
+                                                                    </td>
+                                                                }
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                }
+                                                else if (webSection.WebSectionID == 105)
+                                                {
+                                                    <table align="center" border="1" cellpadding="1" cellspacing="1">
+                                                        <tbody>
+                                                            <tr>
+                                                                @foreach (var image in webSection.LstImages)
+                                                                {
+                                                                    <td>
+                                                                        <img src="~/Images/Stations/@image.ImageGUID" style="height: 230px; width: 400px; margin: 10px; padding:5px">
                                                                     </td>
                                                                 }
                                                             </tr>
                                                         </tbody>
                                                     </table>
                                                 }
-                                                else if (webSection.WebSectionID == 92)
-                                                {
-                                                    @foreach (var image in webSection.LstImages)
-                                                    {
-                                                        <a href="@image.ImageLink" target="_blank">
-                                                            <img src="~/Images/Stations/@image.ImageGUID" style="height: 566px; width: 400px; padding:5px">
-                                                            &nbsp;
-                                                        </a>
-                                                    }
-                                                }
                                                 else
                                                 {
+
                                                     @foreach (var image in webSection.LstImages)
                                                     {
-                                                        <img src="~/Images/Stations/@image.ImageGUID" style="width:915px" />
+
+                                                        @if (webSection.WebSectionID == 116)
+                                                        {
+                                                            <img src="~/Images/Stations/@image.ImageGUID" style="height: 232px; width: 900px;">
+                                                        }
+                                                        else if (webSection.WebSectionID == 117)
+                                                        {
+                                                            <img src="~/Images/Stations/@image.ImageGUID" style="height: 243px; width: 900px; ">
+                                                        }
+                                                        else
+                                                        {
+                                                            <img src="~/Images/Stations/@image.ImageGUID">
+                                                        }
+                                                        <p>&nbsp;</p>
                                                     }
                                                 }
-
                                                 <hr />
                                             }
-                                        </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    }
-                    //Check if ID = 27 for Liquid Gas Stations
-                    else if (entity.ClassificationID == 27)
-                    {
-                        <div class="services-single" dir="rtl">
-                            <div class="inner-box">
-                                <div id="cmspage1">
-                                    <h2>@entity.ClassificationName</h2>
-                                    <div style="font-size:14px; position:relative">
-                                        @foreach (var webSection in entity.LstWebSections)
-                                        {
-                                            @Html.Raw(webSection.Body)
-                                            <p style="text-align: justify;">
-                                                @foreach (var image in webSection.LstImages)
-                                                {
-                                                    @if (webSection.WebSectionID == 95)
-                                                    {
-                                                        <a href="@image.ImageLink" target="_blank">
-                                                            <img src="~/Images/Stations/@image.ImageGUID" />
-                                                        </a>
-                                                    }
-                                                    else
-                                                    {
-                                                        <span style="color:#ffffff;">
-                                                            <img src="~/Images/Stations/@image.ImageGUID" style="height: 204px; width: 330px; margin: 10px;" />
-                                                        </span>
-                                                    }
-                                                }
-                                            </p>
-                                            <hr />
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    //Check if ID = 28 for Integrated Stations
-                    else if (entity.ClassificationID == 28)
-                    {
-                        <div class="services-single" dir="rtl">
-                            <div class="inner-box">
-                                <div id="cmspage1">
-                                    <div style="font-size:14px; position:relative">
-                                        <h3 dir="rtl" style="text-align: justify;">
-                                            <span style="color:#263a69;">
-                                                <span style="font-size:18px;">- محطات تموين نموذجية متكاملة الخدمات بالوقود السائل والغاز الطبيعي والشحن الكهربائي</span>
-                                            </span>
-                                        </h3>
-
-                                        <table border="1" cellpadding="1" cellspacing="1" dir="rtl" style="width:100%;">
-                                            <tbody>
-                                                <tr>
-                                                    @foreach (var child in entity.LstChildClassification)
-                                                    {
-                                                        <td>
-                                                            <a href="@Url.Action("Stations","Catering_Stations",new { Id_ = child.ClassificationID.ToString()})">
-                                                                @child.ClassificationName
-                                                            </a>
-                                                        </td>
-                                                    }
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <p dir="rtl" style="text-align: justify;">&nbsp;</p>
-                                        <p dir="rtl" style="text-align: justify;">
-                                            <span style="color:#263a69;">
-                                                <span style="font-size:18px;">
-                                                    @Html.Raw(entity.Body)
-                                                </span>
-                                            </span>
-                                        </p>
-                                        <p dir="rtl" style="text-align: justify;">&nbsp;</p>
-                                        <h3 dir="rtl" style="text-align: justify;">
-                                            <span style="color:#263a69;">
-                                                @foreach (var image in entity.LstImages)
-                                                {
-                                                    <img src="~/Images/Stations/@image.ImageGUID" style="height: 315px; width: 900px;">
-                                                }
-                                            </span>
-                                        </h3>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    //Check if ID = 29 for Transportation Proccess
-                    else if (entity.ClassificationID == 29)
-                    {
-                        <div class="services-single" dir="rtl">
-                            <div class="inner-box">
-                                <div id="cmspage1">
-                                    <h2>@entity.ClassificationName</h2>
-                                    <div style="font-size:14px; position:relative">
-                                        @foreach (var webSection in entity.LstWebSections)
-                                        {
-
-                                            @Html.Raw(webSection.Body)
-                                            @foreach (var image in webSection.LstImages)
+                        }
+                        //Check if ID = 89 for Occupational Safety
+                        else if (entity.ClassificationID == 89)
+                        {
+                            <div class="services-single" dir="ltr">
+                                <div class="inner-box">
+                                    <div id="cmspage1">
+                                        <h2>@entity.ClassificationName</h2>
+                                        <div style="font-size:14px; position:relative">
+                                            @foreach (var webSection in entity.LstWebSections)
                                             {
-                                                @if (webSection.WebSectionID == 104)
-                                                {
-                                                    <img src="~/Images/Stations/@image.ImageGUID" style="height: 230px; width: 400px; margin: 10px;">
-                                                }
-                                                else if (webSection.WebSectionID == 107)
-                                                {
-                                                    <img src="~/Images/Stations/@image.ImageGUID" style="height: 117px; width: 250px; float: left;">
-                                                }
-                                                else if (webSection.WebSectionID == 109)
-                                                {
-                                                    <img src="~/Images/Stations/@image.ImageGUID" style="float: left; height: 149px; width: 150px; margin: 5px;">
-                                                }
-                                                else if (webSection.WebSectionID == 111)
-                                                {
-                                                    <img src="~/Images/Stations/@image.ImageGUID" style="height: 232px; width: 900px;">
-                                                }
-                                                else if (webSection.WebSectionID == 112)
-                                                {
-                                                    <img src="~/Images/Stations/@image.ImageGUID" style="height: 243px; width: 900px; ">
-                                                }
-                                                else if (webSection.WebSectionID == 114)
-                                                {
-                                                    <img src="~/Images/Stations/@image.ImageGUID" style="height: 292px; width: 500px; margin:10px">
-                                                }
-                                                else
-                                                {
-                                                    <img src="~/Images/Stations/@image.ImageGUID">
-                                                }
                                                 <p>&nbsp;</p>
-                                            }
-                                            <hr />
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    //Check if ID = 30 for Occupational Safety
-                    else if (entity.ClassificationID == 30)
-                    {
-                        <div class="services-single" dir="rtl">
-                            <div class="inner-box">
-                                <div id="cmspage1">
-                                    <h2>@entity.ClassificationName</h2>
-                                    <div style="font-size:14px; position:relative">
-                                        @foreach (var webSection in entity.LstWebSections)
-                                        {
-                                            <p>&nbsp;</p>
-                                            <p>
-                                                @Html.Raw(webSection.Body)
-                                                @foreach (var image in webSection.LstImages)
-                                                {
-                                                    @if (webSection.WebSectionID == 100)
+                                                <p>
+                                                    @Html.Raw(webSection.Body)
+                                                    @foreach (var image in webSection.LstImages)
                                                     {
                                                         <img src="~/Images/Stations/@image.ImageGUID" style="height: 309px; width: 400px; padding:5px">
                                                     }
-                                                    else if (webSection.WebSectionID == 101)
-                                                    {
-                                                        <img src="~/Images/Stations/@image.ImageGUID" style="max-width:100% ; height:auto">
-
-                                                    }
-                                                    else
-                                                    {
-                                                        <img src="~/Images/Stations/@image.ImageGUID" style="height: 541px; width: 700px;">
-                                                    }
-                                                }
-                                            </p>
+                                                </p>
+                                                <p>&nbsp;</p>
+                                                <hr />
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        //Check if ID = 90 for Mobile Stations
+                        else if (entity.ClassificationID == 90)
+                        {
+                            <div class="services-single" dir="ltr">
+                                <div class="inner-box">
+                                    <div id="cmspage1">
+                                        <h2>@entity.ClassificationName</h2>
+                                        <div style="font-size:14px; position:relative">
+                                            <p dir="rtl" style="text-align: justify;">
+                                                <strong>
+                                                    <span style="font-family:Arial,Helvetica,sans-serif;">
+                                                        @Html.Raw(entity.Body)
+                                                    </span>
+                                                </strong>
                                             <p>&nbsp;</p>
-                                            <hr />
-                                        }
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                            @foreach (var image in entity.LstImages)
+                                                            {
+                                                                <td>
+                                                            <img src="~/Images/Stations/@image.ImageGUID" style="height: 267px; width: 400px; padding:5px">
+                                                                </td>
+
+                                                            }
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        }
                     }
-                    //Check if ID = 31 for Mobile Stations
-                    else if (entity.ClassificationID == 31)
-                    {
-                        <div class="services-single" dir="rtl">
-                            <div class="inner-box">
-                                <div id="cmspage1">
-                                    <h2>@entity.ClassificationName</h2>
-                                    <div style="font-size:14px; position:relative">
-                                        <p dir="rtl" style="text-align: justify;">
-                                            <strong>
-                                                <span style="font-family:Arial,Helvetica,sans-serif;">
-                                                    @Html.Raw(entity.Body)
-                                                </span>
-                                            </strong>
-                                        <p>&nbsp;</p>
-                                        @foreach (var image in entity.LstImages)
-                                        {
-                                            <span style="font-family:Arial,Helvetica,sans-serif;">
-                                                <img src="~/Images/Stations/@image.ImageGUID" style="height: 267px; width: 400px;">
-                                            </span>
-                                        }
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                }
-            </div>
+                </div>
+            }
         </div>
     </div>
 </div>
