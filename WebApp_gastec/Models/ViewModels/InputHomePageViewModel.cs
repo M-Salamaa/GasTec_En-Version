@@ -26,9 +26,11 @@ namespace WebApp_gastec.Models
         #region Cylindar Test Input Models
         public InputGetClassificationTreeModel Input_CylindarTest_MainSection { get; set; }
         #endregion
+        #region Statistics Input Models
+        public InputGetClassificationTreeModel Input_Stat_MainSection { get; set; }
+        #endregion
         #region Media Center Input Models
         public InputGetClassificationTreeModel Input_MediaCenter { get; set; }
-
         #endregion
         public OutputGetNewsTopicsModel EniGastech { get; set; }
         public OutputGetNewsTopicsModel NewsSection { get; set; }

@@ -69,17 +69,16 @@ namespace WebApp_gastec.Controllers
             #endregion Caching images returned from API
         }
         // Return Data Model after Consuming API
-        private HomePageViewModel GetHomeViewModel(string encryptedClassificationId_, string encryptedTreeClassificationId_, int translationID_)
+        private HomePageViewModel GetHomeViewModel( string encryptedTreeClassificationId_, int translationID_)
         {
+            var inputModel = GetClassificationIDByLang.GetClassificationIdByLanguageID();
             // Create Instance for home page view model to return Main Home Page View
             HomePageViewModel homePageViewModel = new()
             {
-                // Consuming Main Menu from Classification Tree API 
-                MainNavigationBar = API_GetClassificationTree.GetClassificationTree(Domain.Service.Encrypt("0"), Domain.Service.Encrypt("0"), translationID_),
                 // Consuming Main Cylindar Test Menu from Classification Tree API 
-                Main_Section = API_GetClassificationTree.GetClassificationTree(Domain.Service.Encrypt("7"), Domain.Service.Encrypt("0"), translationID_),
+                Main_Section = API_GetClassificationTree.GetClassificationTree(inputModel.Input_Stat_MainSection.EncryptedTreeClassificationID,inputModel.Input_Stat_MainSection.EncryptedSpecificTreeClassificationID, translationID_),
                 // Consuming Cylindar Category from Classification Tree API 
-                Sub_Section = API_GetClassificationTree.GetClassificationTree(encryptedClassificationId_, encryptedTreeClassificationId_, translationID_),
+                Sub_Section = API_GetClassificationTree.GetClassificationTree(inputModel.Input_Stat_MainSection.EncryptedTreeClassificationID, encryptedTreeClassificationId_, translationID_),
 
             };
             return homePageViewModel;
@@ -89,7 +88,7 @@ namespace WebApp_gastec.Controllers
         {
             SessionHelper.SetObjectAsJson(HttpContext.Session, "Localization", Gastech_Vault.TranslationLanguageID);
 
-            var model = this.GetHomeViewModel(Domain.Service.Encrypt("7"), Domain.Service.Encrypt(ID_), int.Parse(HttpContext.Session.GetString("Localization")));
+            var model = this.GetHomeViewModel( Domain.Service.Encrypt(ID_), int.Parse(HttpContext.Session.GetString("Localization")));
             foreach (var child in model.Main_Section)
             {
                 foreach (var classification in child.LstChildClassification)

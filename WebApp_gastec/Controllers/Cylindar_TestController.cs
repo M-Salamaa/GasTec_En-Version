@@ -82,6 +82,7 @@ namespace WebApp_gastec.Controllers
             return homePageViewModel;
         }
         //Routing for Cylindar Testing Pages using Classification ID
+        [Route("Cylinder")]
         public async Task<IActionResult> IndexAsync(string ID_)
         {
             SessionHelper.SetObjectAsJson(HttpContext.Session, "Localization", Gastech_Vault.TranslationLanguageID);
