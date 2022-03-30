@@ -84,7 +84,7 @@ namespace WebApp_gastec.Controllers
             HomePageViewModel homePageViewModel = new()
             {
                 // Consuming Main Menu from Classification Tree API 
-                MainNavigationBar = API_GetClassificationTree.GetClassificationTree(Domain.Service.Encrypt("0"), Domain.Service.Encrypt("0"), translationID_),
+                //MainNavigationBar = API_GetClassificationTree.GetClassificationTree(inputModel.Input_MainNavigationBar.EncryptedTreeClassificationID,inputModel.Input_MainNavigationBar.EncryptedSpecificTreeClassificationID, translationID_),
                 AboutUs_MainSection = API_GetClassificationTree.GetClassificationTree(encryptedClassificationId_, encryptedTreeClassificationId_, translationID_),
                 AboutUs_SubSection = API_GetClassificationTree.GetClassificationTree(inputModel.Input_AboutUs_MainSection.EncryptedTreeClassificationID, Domain.Service.Encrypt("0"), translationID_),
                 HR = API_GetClassificationTree.GetClassificationTree(inputModel.Input_HR.EncryptedTreeClassificationID, Domain.Service.Encrypt("0"), translationID_),

@@ -56,6 +56,12 @@ namespace WebApp_gastec.Domain
                 {
                     EncryptedTreeClassificationID = Service.Encrypt("1"),
                 };
+                inputHomePageViewModel.Input_CarConversion_MainSection= new()
+                {
+                    EncryptedTreeClassificationID = Service.Encrypt("3"),
+                    EncryptedSpecificTreeClassificationID = Service.Encrypt("0"),
+                };
+
 
             }
             else
@@ -102,6 +108,11 @@ namespace WebApp_gastec.Domain
                 inputHomePageViewModel.Input_MapFiles = new()
                 {
                     EncryptedTreeClassificationID = Service.Encrypt("59"),
+                };
+                inputHomePageViewModel.Input_CarConversion_MainSection = new()
+                {
+                    EncryptedTreeClassificationID = Service.Encrypt("71"),
+                    EncryptedSpecificTreeClassificationID = Service.Encrypt("0"),
                 };
 
             }

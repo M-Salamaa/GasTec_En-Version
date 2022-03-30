@@ -21,6 +21,10 @@ namespace WebApp_gastec.Models
         public InputGetClassificationTreeModel Input_AboutUs_SubSection { get; set; }
         public InputGetClassificationTreeModel Input_AboutUs_MainSection { get; set; }
         #endregion
+        #region Car Conversion Input Models
+        public InputGetClassificationTreeModel Input_CarConversion_SubSection { get; set; }
+        public InputGetClassificationTreeModel Input_CarConversion_MainSection { get; set; }
+        #endregion
         #region Media Center Input Models
         public InputGetClassificationTreeModel Input_MediaCenter { get; set; }
 
