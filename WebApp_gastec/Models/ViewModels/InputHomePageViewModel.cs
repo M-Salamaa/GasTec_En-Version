@@ -29,6 +29,11 @@ namespace WebApp_gastec.Models
         #region Statistics Input Models
         public InputGetClassificationTreeModel Input_Stat_MainSection { get; set; }
         #endregion
+        #region Lubricants Input Models
+        public InputGetClassificationTreeModel Input_Lubricants_MainSection { get; set; }
+        public InputGetClassificationTreeModel Input_Industrial_Lub_MainSection { get; set; }
+        public InputGetClassificationTreeModel Input_Commerical_Lub_MainSection { get; set; }
+        #endregion
         #region Media Center Input Models
         public InputGetClassificationTreeModel Input_MediaCenter { get; set; }
         #endregion

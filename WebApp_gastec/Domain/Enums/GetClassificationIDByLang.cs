@@ -71,6 +71,21 @@ namespace WebApp_gastec.Domain
                     EncryptedTreeClassificationID = Service.Encrypt("7"),
                     EncryptedSpecificTreeClassificationID = Service.Encrypt("0"),
                 };
+                inputHomePageViewModel.Input_Lubricants_MainSection = new()
+                {
+                    EncryptedTreeClassificationID = Service.Encrypt("6"),
+                    EncryptedSpecificTreeClassificationID = Service.Encrypt("0"),
+                };
+                inputHomePageViewModel.Input_Industrial_Lub_MainSection = new()
+                {
+                    EncryptedTreeClassificationID = Service.Encrypt("41"),
+                    EncryptedSpecificTreeClassificationID = Service.Encrypt("0"),
+                };
+                inputHomePageViewModel.Input_Commerical_Lub_MainSection = new()
+                {
+                    EncryptedTreeClassificationID = Service.Encrypt("42"),
+                    EncryptedSpecificTreeClassificationID = Service.Encrypt("0"),
+                };
 
             }
             else
@@ -131,6 +146,21 @@ namespace WebApp_gastec.Domain
                 inputHomePageViewModel.Input_Stat_MainSection = new()
                 {
                     EncryptedTreeClassificationID = Service.Encrypt("75"),
+                    EncryptedSpecificTreeClassificationID = Service.Encrypt("0"),
+                };
+                inputHomePageViewModel.Input_Lubricants_MainSection = new()
+                {
+                    EncryptedTreeClassificationID = Service.Encrypt("74"),
+                    EncryptedSpecificTreeClassificationID = Service.Encrypt("0"),
+                };
+                inputHomePageViewModel.Input_Industrial_Lub_MainSection = new()
+                {
+                    EncryptedTreeClassificationID = Service.Encrypt("95"),
+                    EncryptedSpecificTreeClassificationID = Service.Encrypt("0"),
+                };
+                inputHomePageViewModel.Input_Commerical_Lub_MainSection = new()
+                {
+                    EncryptedTreeClassificationID = Service.Encrypt("96"),
                     EncryptedSpecificTreeClassificationID = Service.Encrypt("0"),
                 };
 

@@ -19,13 +19,12 @@ namespace WebApp_gastec.Controllers
         // Return Data Model after Consuming API
         private HomePageViewModel GetHomeViewModel(string encryptedClassificationId_, string encryptedTreeClassificationId_, int translationID_)
         {
+            var inputModel = GetClassificationIDByLang.GetClassificationIdByLanguageID();
             // Create Instance for home page view model to return Main Home Page View
             HomePageViewModel homePageViewModel = new()
             {
-                // Consuming Main Menu from Classification Tree API 
-                MainNavigationBar = API_GetClassificationTree.GetClassificationTree(Domain.Service.Encrypt("0"), Domain.Service.Encrypt("0"), translationID_),
                 // Consuming Main Cylindar Test Menu from Classification Tree API 
-                Main_Section = API_GetClassificationTree.GetClassificationTree(Domain.Service.Encrypt("6"), Domain.Service.Encrypt("0"), translationID_),
+                Main_Section = API_GetClassificationTree.GetClassificationTree(inputModel.Input_Lubricants_MainSection.EncryptedTreeClassificationID,inputModel.Input_Lubricants_MainSection.EncryptedSpecificTreeClassificationID, translationID_),
                 // Consuming Cylindar Category from Classification Tree API 
                 Sub_Section = API_GetClassificationTree.GetClassificationTree(encryptedClassificationId_, encryptedTreeClassificationId_, translationID_),
 
@@ -36,12 +35,12 @@ namespace WebApp_gastec.Controllers
         public async Task<IActionResult> Index(string ID_)
         {
             SessionHelper.SetObjectAsJson(HttpContext.Session, "Localization", Gastech_Vault.TranslationLanguageID);
-
+            var inputModel = GetClassificationIDByLang.GetClassificationIdByLanguageID();
             var model = new HomePageViewModel();
-            if (ID_ == "41")
-                model = this.GetHomeViewModel(Domain.Service.Encrypt(ID_), Domain.Service.Encrypt("0"), int.Parse(HttpContext.Session.GetString("Localization")));
+            if (ID_ == "41" || ID_ == "95")
+                model = this.GetHomeViewModel(Domain.Service.Encrypt(ID_), inputModel.Input_Industrial_Lub_MainSection.EncryptedSpecificTreeClassificationID, int.Parse(HttpContext.Session.GetString("Localization")));
             else
-                model = this.GetHomeViewModel(Domain.Service.Encrypt("6"), Domain.Service.Encrypt(ID_), int.Parse(HttpContext.Session.GetString("Localization")));
+                model = this.GetHomeViewModel(inputModel.Input_Lubricants_MainSection.EncryptedTreeClassificationID, Domain.Service.Encrypt(ID_), int.Parse(HttpContext.Session.GetString("Localization")));
             ActivateSelectedForMainCategories(model, ID_);
             await CachedAllImagesAsync(model, "Oil_Distribution");
             CachedAllHtmlLinks(model, "Oil_Distribution");
@@ -52,8 +51,8 @@ namespace WebApp_gastec.Controllers
         public async Task<IActionResult> SubCommercialAsync(string OilID_)
         {
             SessionHelper.SetObjectAsJson(HttpContext.Session, "Localization", Gastech_Vault.TranslationLanguageID);
-
-            var model = this.GetHomeViewModel(Domain.Service.Encrypt("6"), Domain.Service.Encrypt("42"), int.Parse(HttpContext.Session.GetString("Localization")));
+            var inputModel = GetClassificationIDByLang.GetClassificationIdByLanguageID();
+            var model = this.GetHomeViewModel(inputModel.Input_Lubricants_MainSection.EncryptedTreeClassificationID, inputModel.Input_Commerical_Lub_MainSection.EncryptedTreeClassificationID, int.Parse(HttpContext.Session.GetString("Localization")));
             model.WebSectionID = OilID_;
             await CachedAllImagesAsync(model, "Commerical_Oil");
             CachedAllHtmlLinks(model, "Commerical_Oil");
@@ -63,8 +62,8 @@ namespace WebApp_gastec.Controllers
         public async Task<IActionResult> SubIndustrialAsync(string OilID_)
         {
             SessionHelper.SetObjectAsJson(HttpContext.Session, "Localization", Gastech_Vault.TranslationLanguageID);
-
-            var model = this.GetHomeViewModel(Domain.Service.Encrypt(OilID_), Domain.Service.Encrypt("0"), int.Parse(HttpContext.Session.GetString("Localization")));
+            var inputModel = GetClassificationIDByLang.GetClassificationIdByLanguageID();
+            var model = this.GetHomeViewModel(Domain.Service.Encrypt(OilID_), inputModel.Input_Industrial_Lub_MainSection.EncryptedSpecificTreeClassificationID, int.Parse(HttpContext.Session.GetString("Localization")));
             await CachedAllImagesAsync(model, "Industrial_Oil");
             CachedAllHtmlLinks(model, "Industrial_Oil");
             return View(model);

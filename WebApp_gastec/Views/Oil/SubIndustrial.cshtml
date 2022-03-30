@@ -1,5 +1,4 @@
 ﻿@model HomePageViewModel
-@using WebApp_gastec.Domain
 
 @{
     ViewData["Title"] = "GASTEC";
@@ -21,13 +20,27 @@
 <div class="page-info">
     <div class="auto-container">
         <div class="inner-container clearfix">
-            <ul class="bread-crumb pull-right">
-                <li><a href="@Url.Action("Index","Home")">الرئيسية</a></li>
-                @foreach (var entity in Model.Main_Section)
-                {
-                    <li>@entity.ClassificationName</li>
-                }
-            </ul>
+            @if (Gastech_Vault.TranslationLanguageID == 0)
+            {
+
+                <ul class="bread-crumb pull-right">
+                    <li><a href="@Url.Action("Index","Home")">الرئيسية</a></li>
+                    @foreach (var entity in Model.Main_Section)
+                    {
+                        <li>@entity.ClassificationName</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <ul class="bread-crumb pull-left">
+                    <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                    @foreach (var entity in Model.Main_Section)
+                    {
+                        <li>@entity.ClassificationName</li>
+                    }
+                </ul>
+            }
         </div>
     </div>
 </div>
@@ -37,83 +50,167 @@
 <div class="sidebar-page-container">
     <div class="auto-container">
         <div class="row clearfix">
-            <!--Content Side-->
-            <div id="imgfull">
-                @foreach (var entity in Model.Sub_Section)
-                {
-                    <div class="sidebar-side col-lg-5 col-md-5 col-sm-12 col-xs-12 pull-right text-right">
-                        <img src="~/Images/Industrial_Oil/@entity.LstImages.Select(x=>x.ImageGUID).FirstOrDefault().ToString()" alt="">
-                    </div>
-                    @if (entity.LstChildClassification.Count == 0)
+            @if (Gastech_Vault.TranslationLanguageID == 0)
+            {
+
+                <!--Content Side-->
+                <div id="imgfull">
+                    @foreach (var entity in Model.Sub_Section)
                     {
-                        @foreach (var image in entity.LstImages.Skip(1))
+                        <div class="sidebar-side col-lg-5 col-md-5 col-sm-12 col-xs-12 pull-right text-right">
+                            <img src="~/Images/Industrial_Oil/@entity.LstImages.Select(x=>x.ImageGUID).FirstOrDefault().ToString()" alt="">
+                        </div>
+                        @if (entity.LstChildClassification.Count == 0)
                         {
-                            <div class="content-side col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                                <div class="services-single" dir="rtl">
-                                    <div class="sidebar-title"><h2>@entity.ClassificationName</h2></div>
-                                    <div class="inner-box">
-                                        <p><img src="~/Images/Industrial_Oil/@image.ImageGUID"></p>
+                            @foreach (var image in entity.LstImages.Skip(1))
+                            {
+                                <div class="content-side col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                                    <div class="services-single" dir="rtl">
+                                        <div class="sidebar-title"><h2>@entity.ClassificationName</h2></div>
+                                        <div class="inner-box">
+                                            <p><img src="~/Images/Industrial_Oil/@image.ImageGUID"></p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        }
-                    }
-                    else
-                    {
-                        @if (entity.LstChildClassification.Select(x=>x.LstFiles).FirstOrDefault().Count() == 0)
-                        {
-                            <div class="content-side col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                                <div class="services-single" dir="rtl">
-                                    <div class="sidebar-title"><h2>@entity.ClassificationName</h2></div>
-                                    <div class="inner-box">
-                                        <table border="1" cellpadding="1" cellspacing="1" style="width:100%">
-                                            <tbody>
-                                                <tr>
-                                                    @foreach (var child in entity.LstChildClassification)
-                                                    {
-                                                        <td style="text-align:center; padding-left:20px">
-                                                            <a href="@Url.Action("SubIndustrial", "Oil", new { oilID_ = child.ClassificationID.ToString()})">
-                                                                <img alt="" src="~/Images/Industrial_Oil/@child.LstImages.Select(x=>x.ImageGUID).FirstOrDefault().ToString() " style="height:262px; width:175px">
-                                                            </a>
-                                                            <div>
-                                                                <a href="@Url.Action("SubIndustrial", "Oil", new { oilID_ = child.ClassificationID.ToString()})">
-                                                                    @child.ClassificationName
-                                                                </a>
-                                                            </div>
-                                                        </td>
-                                                    }
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
+                            }
                         }
                         else
                         {
-                            <div class="content-side col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                                <div class="services-single" dir="rtl">
-                                    <div class="sidebar-title"><h2>@entity.ClassificationName</h2></div>
-                                    <div class="inner-box">
-                                        @foreach (var child in entity.LstChildClassification)
-                                        {
-                                            <h3> @child.ClassificationName</h3>
-                                            @foreach (var file in child.LstFiles)
-                                            {
-                                                <p>
-                                                    <a href="@file.FileLink" target="_blank">
-                                                        @file.FileName
-                                                    </a>
-                                                </p>
-                                            }
-                                        }
+                            @if (entity.LstChildClassification.Select(x => x.LstFiles).FirstOrDefault().Count() == 0)
+                            {
+                                <div class="content-side col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                                    <div class="services-single" dir="rtl">
+                                        <div class="sidebar-title"><h2>@entity.ClassificationName</h2></div>
+                                        <div class="inner-box">
+                                            <table border="1" cellpadding="1" cellspacing="1" style="width:100%">
+                                                <tbody>
+                                                    <tr>
+                                                        @foreach (var child in entity.LstChildClassification)
+                                                        {
+                                                            <td style="text-align:center; padding-left:20px">
+                                                                <a href="@Url.Action("SubIndustrial", "Oil", new { oilID_ = child.ClassificationID.ToString()})">
+                                                                    <img alt="" src="~/Images/Industrial_Oil/@child.LstImages.Select(x=>x.ImageGUID).FirstOrDefault().ToString() " style="height:262px; width:175px">
+                                                                </a>
+                                                                <div>
+                                                                    <a href="@Url.Action("SubIndustrial", "Oil", new { oilID_ = child.ClassificationID.ToString()})">
+                                                                        @child.ClassificationName
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                        }
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            }
+                            else
+                            {
+                                <div class="content-side col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                                    <div class="services-single" dir="rtl">
+                                        <div class="sidebar-title"><h2>@entity.ClassificationName</h2></div>
+                                        <div class="inner-box">
+                                            @foreach (var child in entity.LstChildClassification)
+                                            {
+                                                <h3> @child.ClassificationName</h3>
+                                                @foreach (var file in child.LstFiles)
+                                                {
+                                                    <p>
+                                                        <a href="@file.FileLink" target="_blank">
+                                                            @file.FileName
+                                                        </a>
+                                                    </p>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                         }
                     }
-                }
-            </div>
+                </div>
+            }
+            else
+            {
+                <!--Content Side-->
+                <div id="imgfull">
+                    @foreach (var entity in Model.Sub_Section)
+                    {
+                        <div class="sidebar-side col-lg-5 col-md-5 col-sm-12 col-xs-12 pull-left text-left">
+                            <img src="~/Images/Industrial_Oil/@entity.LstImages.Select(x=>x.ImageGUID).FirstOrDefault().ToString()" alt="">
+                        </div>
+                        @if (entity.LstChildClassification.Count == 0)
+                        {
+                            @foreach (var image in entity.LstImages.Skip(1))
+                            {
+                                <div class="content-side col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                                    <div class="services-single" dir="ltr">
+                                        <div class="sidebar-title"><h2>@entity.ClassificationName</h2></div>
+                                        <div class="inner-box">
+                                            <p><img src="~/Images/Industrial_Oil/@image.ImageGUID"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            @if (entity.LstChildClassification.Select(x => x.LstFiles).FirstOrDefault().Count() == 0)
+                            {
+                                <div class="content-side col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                                    <div class="services-single" dir="ltr">
+                                        <div class="sidebar-title"><h2>@entity.ClassificationName</h2></div>
+                                        <div class="inner-box">
+                                            <table border="1" cellpadding="1" cellspacing="1" style="width:100%">
+                                                <tbody>
+                                                    <tr>
+                                                        @foreach (var child in entity.LstChildClassification)
+                                                        {
+                                                            <td style="text-align:center; padding-left:20px">
+                                                                <a href="@Url.Action("SubIndustrial", "Oil", new { oilID_ = child.ClassificationID.ToString()})">
+                                                                    <img alt="" src="~/Images/Industrial_Oil/@child.LstImages.Select(x=>x.ImageGUID).FirstOrDefault().ToString() " style="height:262px; width:175px">
+                                                                </a>
+                                                                <div>
+                                                                    <a href="@Url.Action("SubIndustrial", "Oil", new { oilID_ = child.ClassificationID.ToString()})">
+                                                                        @child.ClassificationName
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                        }
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="content-side col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                                    <div class="services-single" dir="ltr">
+                                        <div class="sidebar-title"><h2>@entity.ClassificationName</h2></div>
+                                        <div class="inner-box">
+                                            @foreach (var child in entity.LstChildClassification)
+                                            {
+                                                <h3> @child.ClassificationName</h3>
+                                                @foreach (var file in child.LstFiles)
+                                                {
+                                                    <p>
+                                                        <a href="@file.FileLink" target="_blank">
+                                                            @file.FileName
+                                                        </a>
+                                                    </p>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+            }
         </div>
     </div>
 </div>
