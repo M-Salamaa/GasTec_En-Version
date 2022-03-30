@@ -18,12 +18,13 @@ namespace WebApp_gastec.Models
         public InputGetClassificationTreeModel Main_Section { get; set; }
         public InputGetClassificationTreeModel Sub_Section { get; set; }
         #region About Us Input Models
-        public InputGetClassificationTreeModel Input_AboutUs_SubSection { get; set; }
         public InputGetClassificationTreeModel Input_AboutUs_MainSection { get; set; }
         #endregion
-        #region Car Conversion Input Models
-        public InputGetClassificationTreeModel Input_CarConversion_SubSection { get; set; }
+        #region Vehicles Conversion Input Models
         public InputGetClassificationTreeModel Input_CarConversion_MainSection { get; set; }
+        #endregion
+        #region Cylindar Test Input Models
+        public InputGetClassificationTreeModel Input_CylindarTest_MainSection { get; set; }
         #endregion
         #region Media Center Input Models
         public InputGetClassificationTreeModel Input_MediaCenter { get; set; }
