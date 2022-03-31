@@ -55,7 +55,7 @@
                 <div class="sidebar-side col-lg-3 col-md-4 col-sm-12 col-xs-12 pull-right">
                     <aside class="sidebar">
                         <!--Blog Category Widget-->
-                    <div id="sidenavelist">
+                        <div id="sidenavelist">
                             <div class="sidebar-widget sidebar-blog-category">
                                 <ul class="blog-cat">
                                     @foreach (var mainSection in Model.Main_Section)
@@ -349,12 +349,12 @@
                                                     </span>
                                                 </strong>
                                             <p>&nbsp;</p>
-                                                @foreach (var image in entity.LstImages)
-                                                {
+                                            @foreach (var image in entity.LstImages)
+                                            {
                                                 <span style="font-family:Arial,Helvetica,sans-serif;">
                                                     <img src="~/Images/Stations/@image.ImageGUID" style="height: 267px; width: 400px;">
                                                 </span>
-                                                }
+                                            }
                                             </p>
                                         </div>
                                     </div>
@@ -371,7 +371,7 @@
                 <div class="sidebar-side col-lg-3 col-md-4 col-sm-12 col-xs-12 pull-left">
                     <aside class="sidebar">
                         <!--Blog Category Widget-->
-                    <div id="sidenavelist">
+                        <div id="sidenavelist">
                             <div class="sidebar-widget sidebar-blog-category">
                                 <ul class="blog-cat">
                                     @foreach (var mainSection in Model.Main_Section)
@@ -506,13 +506,15 @@
                                 <div class="inner-box">
                                     <div id="cmspage1">
                                         <div style="font-size:14px; position:relative">
-                                            <h3 dir="rtl" style="text-align: justify;">
+                                            <h3 dir="ltr" style="text-align: justify;">
                                                 <span style="color:#263a69;">
-                                                    <span style="font-size:18px;">- محطات تموين نموذجية متكاملة الخدمات بالوقود السائل والغاز الطبيعي والشحن الكهربائي</span>
+                                                    <span style="font-size:18px;">
+                                                        Integrated Model Fueling Services (Liquid Fuel, CNG and Electrical Charging)
+                                                    </span>
                                                 </span>
                                             </h3>
 
-                                            <table border="1" cellpadding="1" cellspacing="1" dir="rtl" style="width:100%;">
+                                            <table border="1" cellpadding="1" cellspacing="1" dir="ltr" style="width:100%;">
                                                 <tbody>
                                                     <tr>
                                                         @foreach (var child in entity.LstChildClassification)
@@ -526,16 +528,9 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            <p dir="rtl" style="text-align: justify;">&nbsp;</p>
-                                            <p dir="rtl" style="text-align: justify;">
-                                                <span style="color:#263a69;">
-                                                    <span style="font-size:18px;">
-                                                        @Html.Raw(entity.Body)
-                                                    </span>
-                                                </span>
-                                            </p>
-                                            <p dir="rtl" style="text-align: justify;">&nbsp;</p>
-                                            <h3 dir="rtl" style="text-align: justify;">
+                                            @Html.Raw(entity.Body)
+                                            <p dir="ltr" style="text-align: justify;">&nbsp;</p>
+                                            <h3 dir="ltr" style="text-align: justify;">
                                                 <span style="color:#263a69;">
                                                     @foreach (var image in entity.LstImages)
                                                     {
@@ -664,13 +659,13 @@
                                             <table>
                                                 <tbody>
                                                     <tr>
-                                                            @foreach (var image in entity.LstImages)
-                                                            {
-                                                                <td>
-                                                            <img src="~/Images/Stations/@image.ImageGUID" style="height: 267px; width: 400px; padding:5px">
-                                                                </td>
+                                                        @foreach (var image in entity.LstImages)
+                                                        {
+                                                            <td>
+                                                                <img src="~/Images/Stations/@image.ImageGUID" style="height: 267px; width: 400px; padding:5px">
+                                                            </td>
 
-                                                            }
+                                                        }
                                                     </tr>
                                                 </tbody>
                                             </table>

@@ -48,164 +48,204 @@
 <div class="sidebar-page-container">
     <div class="auto-container">
         <div class="row clearfix">
-            @if(Gastech_Vault.TranslationLanguageID == 0)
+            @if (Gastech_Vault.TranslationLanguageID == 0)
             {
-                
-            <!--Sidebar Side-->
-            <div class="sidebar-side col-lg-3 col-md-4 col-sm-12 col-xs-12 pull-right">
-                <aside class="sidebar">
-                    <!--Blog Category Widget-->
-                    <div id="sidenavelist">
-                        <div class="sidebar-widget sidebar-blog-category">
-                            <ul class="blog-cat">
-                                @foreach (var mainSection in Model.Main_Section)
+
+                <!--Sidebar Side-->
+                <div class="sidebar-side col-lg-3 col-md-4 col-sm-12 col-xs-12 pull-right">
+                    <aside class="sidebar">
+                        <!--Blog Category Widget-->
+                        <div id="sidenavelist">
+                            <div class="sidebar-widget sidebar-blog-category">
+                                <ul class="blog-cat">
+                                    @foreach (var mainSection in Model.Main_Section)
+                                    {
+                                        @foreach (var entity in mainSection.LstChildClassification)
+                                        {
+                                            @if (entity.IsActive == true)
+                                            {
+                                                <li class="active">
+                                                    <a href="@Url.Action("Index", "Catering_Stations", new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li>
+                                                    <a href="@Url.Action("Index", "Catering_Stations", new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
+                                                </li>
+                                            }
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+                <!--Content Side-->
+                <div class="content-side pull-left col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                    <div class="services-single" dir="rtl">
+                        <div class="inner-box">
+                            <div id="cmspage1">
+                                <!--//end backend to retrieve variables  -->
+                                <!--//Start backend to retrieve variables  -->
+                                @foreach (var station in Model.Sub_Section)
                                 {
-                                    @foreach (var entity in mainSection.LstChildClassification)
-                                    {
-                                        @if (entity.IsActive == true)
+                                    <h2>
+                                        @station.ClassificationName
+                                    </h2>
+                                    <link href="" rel="stylesheet" type="text/css">
+                                    <div style="font-size:14px; position:relative">
+                                        @foreach (var webSection in station.LstWebSections)
                                         {
-                                            <li class="active">
-                                                <a href="@Url.Action("Index", "Catering_Stations", new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
-                                            </li>
+                                            @Html.Raw(webSection.Body)
+                                            @foreach (var image in webSection.LstImages)
+                                            {
+                                                @if (webSection.WebSectionID == 231 || webSection.WebSectionID == 233 || webSection.WebSectionID == 127 || webSection.WebSectionID == 130 || webSection.WebSectionID == 136 || webSection.WebSectionID == 142 || webSection.WebSectionID == 148)
+                                                {
+                                                    <img src="~/Images/Integrated_Stations/@image.ImageGUID" style="padding:10px">
+                                                }
+                                                else if (webSection.WebSectionID == 232 || webSection.WebSectionID == 128 || webSection.WebSectionID == 129 || webSection.WebSectionID == 137)
+                                                {
+                                                    <img src="~/Images/Integrated_Stations/@image.ImageGUID" style="height: 200px; width: 300px; padding: 10px">
+                                                }
+                                                else if (webSection.WebSectionID == 149 || webSection.WebSectionID == 143)
+                                                {
+                                                    <img src="~/Images/Integrated_Stations/@image.ImageGUID" style="padding:10px">
+                                                }
+                                            }
+                                            <p> &nbsp; &nbsp; </p>
                                         }
-                                        else
-                                        {
-                                            <li>
-                                                <a href="@Url.Action("Index", "Catering_Stations", new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
-                                            </li>
-                                        }
-                                    }
+                                    </div>
                                 }
-                            </ul>
+                            </div>
                         </div>
                     </div>
-                </aside>
-            </div>
-            <!--Content Side-->
-            <div class="content-side pull-left col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                <div class="services-single" dir="rtl">
-                    <div class="inner-box">
-                        <div id="cmspage1">
-                            <!--//end backend to retrieve variables  -->
-                            <!--//Start backend to retrieve variables  -->
-                            @foreach (var station in Model.Sub_Section)
-                            {
-                                <h2>
-                                    @station.ClassificationName
-                                </h2>
-                                <link href="" rel="stylesheet" type="text/css">
-                                <div style="font-size:14px; position:relative">
-                                    @foreach (var webSection in station.LstWebSections)
-                                    {
-                                        @Html.Raw(webSection.Body)
-                                        @foreach (var image in webSection.LstImages)
-                                        {
-                                            @if (webSection.WebSectionID == 231 || webSection.WebSectionID == 233 || webSection.WebSectionID == 127 || webSection.WebSectionID == 130 || webSection.WebSectionID == 136 || webSection.WebSectionID == 142 || webSection.WebSectionID == 148)
-                                            {
-                                                <img src="~/Images/Integrated_Stations/@image.ImageGUID" style="padding:10px">
-                                            }
-                                            else if (webSection.WebSectionID == 232 || webSection.WebSectionID == 128 || webSection.WebSectionID == 129 || webSection.WebSectionID == 137)
-                                            {
-                                                <img src="~/Images/Integrated_Stations/@image.ImageGUID" style="height: 200px; width: 300px; padding: 10px">
-                                            }
-                                            else if (webSection.WebSectionID == 149 || webSection.WebSectionID == 143)
-                                            {
-                                                <img src="~/Images/Integrated_Stations/@image.ImageGUID" style="padding:10px">
-                                            }
-                                        }
-                                        <p> &nbsp; &nbsp; </p>
-                                    }
-                                </div>
-                            }
+                    <div class="team-column col-md-12 col-sm-12 col-xs-12" style="margin-top: 30px">
+                        <div class="inner-column">
+                            <div class="row clearfix">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="team-column col-md-12 col-sm-12 col-xs-12" style="margin-top: 30px">
-                    <div class="inner-column">
-                        <div class="row clearfix">
-                        </div>
-                    </div>
-                </div>
                 </div>
             }
             else
             {
-                 <!--Sidebar Side-->
-            <div class="sidebar-side col-lg-3 col-md-4 col-sm-12 col-xs-12 pull-left">
-                <aside class="sidebar">
-                    <!--Blog Category Widget-->
-                    <div id="sidenavelist">
-                        <div class="sidebar-widget sidebar-blog-category">
-                            <ul class="blog-cat">
-                                @foreach (var mainSection in Model.Main_Section)
+                <!--Sidebar Side-->
+                <div class="sidebar-side col-lg-3 col-md-4 col-sm-12 col-xs-12 pull-left">
+                    <aside class="sidebar">
+                        <!--Blog Category Widget-->
+                        <div id="sidenavelist">
+                            <div class="sidebar-widget sidebar-blog-category">
+                                <ul class="blog-cat">
+                                    @foreach (var mainSection in Model.Main_Section)
+                                    {
+                                        @foreach (var entity in mainSection.LstChildClassification)
+                                        {
+                                            @if (entity.IsActive == true)
+                                            {
+                                                <li class="active">
+                                                    <a href="@Url.Action("Index", "Catering_Stations", new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li>
+                                                    <a href="@Url.Action("Index", "Catering_Stations", new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
+                                                </li>
+                                            }
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+                <!--Content Side-->
+                <div class="content-side pull-right col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                    <div class="services-single" dir="ltr">
+                        <div class="inner-box">
+                            <div id="cmspage1">
+                                <!--//end backend to retrieve variables  -->
+                                <!--//Start backend to retrieve variables  -->
+                                @foreach (var station in Model.Sub_Section)
                                 {
-                                    @foreach (var entity in mainSection.LstChildClassification)
-                                    {
-                                        @if (entity.IsActive == true)
+                                    <h2>
+                                        @station.ClassificationName
+                                    </h2>
+                                    <link href="" rel="stylesheet" type="text/css">
+                                    <div style="font-size:14px; position:relative">
+                                        @foreach (var webSection in station.LstWebSections)
                                         {
-                                            <li class="active">
-                                                <a href="@Url.Action("Index", "Catering_Stations", new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
-                                            </li>
+                                            @Html.Raw(webSection.Body)
+                                            @if (webSection.WebSectionID == 140)
+                                            {
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            @foreach (var image in webSection.LstImages)
+                                                            {
+                                                                <td>
+                                                                    <img src="~/Images/Integrated_Stations/@image.ImageGUID" style="width: 250px; height: 167px; padding:5px">
+
+                                                                </td>
+                                                            }
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            }
+                                            else if (webSection.WebSectionID == 133)
+                                            {
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            @foreach (var image in webSection.LstImages)
+                                                            {
+                                                                <td>
+                                                                    <img src="~/Images/Integrated_Stations/@image.ImageGUID" style="height:200px; width:300px;padding:5px">
+
+                                                                </td>
+                                                            }
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            }
+                                            else if (webSection.WebSectionID == 125)
+                                            {
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            @foreach (var image in webSection.LstImages)
+                                                            {
+                                                                <td>
+                                                                    <img src="~/Images/Integrated_Stations/@image.ImageGUID" style="height: 135px; width: 300px;padding: 5px">
+
+                                                                </td>
+                                                            }
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            }
+                                            else
+                                            {
+                                                @foreach (var image in webSection.LstImages)
+                                                {
+                                                    <img src="~/Images/Integrated_Stations/@image.ImageGUID" style="padding:10px">
+                                                }
+                                            }
+                                            <p> &nbsp; &nbsp; </p>
                                         }
-                                        else
-                                        {
-                                            <li>
-                                                <a href="@Url.Action("Index", "Catering_Stations", new { ID_ = entity.ClassificationID.ToString()})">@entity.ClassificationName</a>
-                                            </li>
-                                        }
-                                    }
+                                    </div>
                                 }
-                            </ul>
+                            </div>
                         </div>
                     </div>
-                </aside>
-            </div>
-            <!--Content Side-->
-            <div class="content-side pull-right col-lg-9 col-md-8 col-sm-12 col-xs-12">
-                <div class="services-single" dir="ltr">
-                    <div class="inner-box">
-                        <div id="cmspage1">
-                            <!--//end backend to retrieve variables  -->
-                            <!--//Start backend to retrieve variables  -->
-                            @foreach (var station in Model.Sub_Section)
-                            {
-                                <h2>
-                                    @station.ClassificationName
-                                </h2>
-                                <link href="" rel="stylesheet" type="text/css">
-                                <div style="font-size:14px; position:relative">
-                                    @foreach (var webSection in station.LstWebSections)
-                                    {
-                                        @Html.Raw(webSection.Body)
-                                        @foreach (var image in webSection.LstImages)
-                                        {
-                                            @if (webSection.WebSectionID == 231 || webSection.WebSectionID == 233 || webSection.WebSectionID == 127 || webSection.WebSectionID == 130 || webSection.WebSectionID == 136 || webSection.WebSectionID == 142 || webSection.WebSectionID == 148)
-                                            {
-                                                <img src="~/Images/Integrated_Stations/@image.ImageGUID" style="padding:10px">
-                                            }
-                                            else if (webSection.WebSectionID == 232 || webSection.WebSectionID == 128 || webSection.WebSectionID == 129 || webSection.WebSectionID == 137)
-                                            {
-                                                <img src="~/Images/Integrated_Stations/@image.ImageGUID" style="height: 200px; width: 300px; padding: 10px">
-                                            }
-                                            else if (webSection.WebSectionID == 149 || webSection.WebSectionID == 143)
-                                            {
-                                                <img src="~/Images/Integrated_Stations/@image.ImageGUID" style="padding:10px">
-                                            }
-                                        }
-                                        <p> &nbsp; &nbsp; </p>
-                                    }
-                                </div>
-                            }
+                    <div class="team-column col-md-12 col-sm-12 col-xs-12" style="margin-top: 30px">
+                        <div class="inner-column">
+                            <div class="row clearfix">
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="team-column col-md-12 col-sm-12 col-xs-12" style="margin-top: 30px">
-                    <div class="inner-column">
-                        <div class="row clearfix">
-                        </div>
-                    </div>
-                </div>
-            </div>
             }
         </div>
     </div>
