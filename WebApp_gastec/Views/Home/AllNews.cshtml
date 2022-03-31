@@ -19,86 +19,103 @@
 <div class="page-info">
     <div class="auto-container">
         <div class="inner-container clearfix">
-            <ul class="bread-crumb pull-right">
-                <li><a href="@Url.Action("Index", "Home")">الرئيسية</a></li>
-                <li>
-                    أخبار وفاعليات غازتك
-                </li>
-            </ul>
+            @if (Gastech_Vault.TranslationLanguageID == 0)
+            {
+
+                <ul class="bread-crumb pull-right">
+                    <li><a href="@Url.Action("Index", "Home")">الرئيسية</a></li>
+                    <li>
+                        أخبار وفاعليات غازتك
+                    </li>
+                </ul>
+            }
+            else
+            {
+                <ul class="bread-crumb pull-left">
+                    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li>
+                        GASTEC News And Events
+                    </li>
+                </ul>
+            }
         </div>
     </div>
 </div>
 <!-- End Page Info-->
-<div class="sidebar-page-container">
-    <div class="auto-container">
-        <div class="row clearfix">
-            <!--Content Side-->
-            <div class="content-side col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="services-single" dir="rtl">
-                    <div class="inner-box">
-                        <div id="events1">
-                            <ul class="nav nav-tabs" dir="rtl">
-                                @foreach (var year in Model.News_Group)
-                                {
-                                    @if (year.GroupID == 3 || year.GroupID == 4)
+@if (Gastech_Vault.TranslationLanguageID == 0)
+{
+
+    <div class="sidebar-page-container">
+        <div class="auto-container">
+            <div class="row clearfix">
+                <!--Content Side-->
+                <div class="content-side col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="services-single" dir="rtl">
+                        <div class="inner-box">
+                            <div id="events1">
+                                <ul class="nav nav-tabs" dir="rtl">
+                                    @foreach (var year in Model.News_Group)
                                     {
-                                        continue;
+                                        @if (year.GroupID == 3 || year.GroupID == 4)
+                                        {
+                                            continue;
+                                        }
+                                        else
+                                        {
+                                            <li id="active-tab">
+                                                <a data-toggle="tab" href="#@year.GroupID" aria-expanded="true">@year.GroupName</a>
+                                            </li>
+                                        }
                                     }
-                                    else
+                                </ul>
+                                <div class="tab-content text-right" style="padding-top: 20px">
+                                    @foreach (var year in Model.News_Group)
                                     {
-                                        <li id="active-tab">
-                                            <a data-toggle="tab" href="#@year.GroupID" aria-expanded="true">@year.GroupName</a>
-                                        </li>
-                                    }
-                                }
-                            </ul>
-                            <div class="tab-content text-right" style="padding-top: 20px">
-                                @foreach (var year in Model.News_Group)
-                                {
-                                    <div id="@year.GroupID" class="tab-pane fade in">
-                                        <div class="clearfix"></div>
-                                        <div class="page-info" style="margin-bottom: 10px;">
-                                            <div class="auto-container">
-                                                <div class="inner-container clearfix text-right">
-                                                    <h4>
-                                                        أهم أخبار @year.GroupName
-                                                    </h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <!--//Start backend to retrieve variables  -->
-                                            <!--//End backend to retrieve variables  -->
-                                            <!--News Block-->
-                                            @foreach (var topic in Model.NewsTopics.LstNews.Where(x => x.GroupID == year.GroupID).ToList())
-                                            {
-                                                <div class="news-block col-md-3 col-sm-6 col-xs-12 wow fadeIn pull-right" style="max-height:400px; overflow:hidden; margin-top:20px">
-                                                    <div class="inner-box">
-                                                        <div class="image">
-                                                            <a href="@Url.Action("NewsDetails", "Home", new { serial_ = topic.Serial})">
-                                                                <img src="~/Images/MediaCenter_NewsSection/@topic.ImageGUID" style="height:150px" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div class="lower-box" style="min-height:200px">
-                                                            <div class="post-info">
-                                                                @topic.TopicDate.ToShortDateString()
-                                                            </div>
-                                                            <h3>
-                                                                <a href="@Url.Action("NewsDetails", "Home", new { serial_ = topic.Serial})" class="theme-btn read-more" style="margin-top: 10px;">
-                                                                    @topic.NewsTitle
-                                                                </a>
-                                                            </h3>
-                                                            <a href="@Url.Action("NewsDetails", "Home", new { serial_ = topic.Serial})" class="theme-btn read-more" style="margin-top: 10px; font-size: 14px;">
-                                                                إقرأ المزيد
-                                                                <span class="icon flaticon-left-arrow" style="margin-right: 10px;font-size: 20px;vertical-align: sub;"></span>
-                                                            </a>
-                                                        </div>
+                                        <div id="@year.GroupID" class="tab-pane fade in">
+                                            <div class="clearfix"></div>
+                                            <div class="page-info" style="margin-bottom: 10px;">
+                                                <div class="auto-container">
+                                                    <div class="inner-container clearfix text-right">
+                                                        <h4>
+                                                            أهم أخبار @year.GroupName
+                                                        </h4>
                                                     </div>
                                                 </div>
-                                            }
+                                            </div>
+                                            <div class="row">
+                                                <!--//Start backend to retrieve variables  -->
+                                                <!--//End backend to retrieve variables  -->
+                                                <!--News Block-->
+                                                @foreach (var topic in Model.NewsTopics.LstNews.Where(x => x.GroupID == year.GroupID).ToList())
+                                                {
+                                                    <div class="news-block col-md-3 col-sm-6 col-xs-12 wow fadeIn pull-right" style="max-height:400px; overflow:hidden; margin-top:20px">
+                                                        <div class="inner-box">
+                                                            <div class="image">
+                                                                <a href="@Url.Action("NewsDetails", "Home", new { serial_ = topic.Serial})">
+                                                                    <img src="~/Images/MediaCenter_NewsSection/@topic.ImageGUID" style="height:150px" alt="">
+                                                                </a>
+                                                            </div>
+                                                            <div class="lower-box" style="min-height:200px">
+                                                                <div class="post-info">
+                                                                    @topic.TopicDate.ToShortDateString()
+                                                                </div>
+                                                                <h3>
+                                                                    <a href="@Url.Action("NewsDetails", "Home", new { serial_ = topic.Serial})" class="theme-btn read-more" style="margin-top: 10px;">
+                                                                        @topic.NewsTitle
+                                                                    </a>
+                                                                </h3>
+                                                                <a href="@Url.Action("NewsDetails", "Home", new { serial_ = topic.Serial})" class="theme-btn read-more" style="margin-top: 10px; font-size: 14px;">
+                                                                    إقرأ المزيد
+                                                                    <span class="icon flaticon-left-arrow" style="margin-right: 10px;font-size: 20px;vertical-align: sub;"></span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
                                         </div>
-                                    </div>
-                                }
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -106,7 +123,89 @@
             </div>
         </div>
     </div>
-</div>
+}
+else
+{
+    <div class="sidebar-page-container">
+        <div class="auto-container">
+            <div class="row clearfix">
+                <!--Content Side-->
+                <div class="content-side col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="services-single" dir="ltr">
+                        <div class="inner-box">
+                            <div id="events1">
+                                <ul class="nav nav-tabs" dir="ltr">
+                                    @foreach (var year in Model.News_Group)
+                                    {
+                                        @if (year.GroupID == 3 || year.GroupID == 4)
+                                        {
+                                            continue;
+                                        }
+                                        else
+                                        {
+                                            <li id="active-tab">
+                                                <a data-toggle="tab" href="#@year.GroupID" aria-expanded="true">@year.GroupName</a>
+                                            </li>
+                                        }
+                                    }
+                                </ul>
+                                <div class="tab-content text-left" style="padding-top: 20px">
+                                    @foreach (var year in Model.News_Group)
+                                    {
+                                        <div id="@year.GroupID" class="tab-pane fade in">
+                                            <div class="clearfix"></div>
+                                            <div class="page-info" style="margin-bottom: 10px;">
+                                                <div class="auto-container">
+                                                    <div class="inner-container clearfix text-left">
+                                                        <h4>
+                                                            Top News @year.GroupName
+                                                        </h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <!--//Start backend to retrieve variables  -->
+                                                <!--//End backend to retrieve variables  -->
+                                                <!--News Block-->
+                                                @foreach (var topic in Model.NewsTopics.LstNews.Where(x => x.GroupID == year.GroupID).ToList())
+                                                {
+                                                    <div class="news-block col-md-3 col-sm-6 col-xs-12 wow fadeIn pull-left" style="max-height:400px; overflow:hidden; margin-top:20px">
+                                                        <div class="inner-box">
+                                                            <div class="image">
+                                                                <a href="@Url.Action("NewsDetails", "Home", new { serial_ = topic.Serial})">
+                                                                    <img src="~/Images/MediaCenter_NewsSection/@topic.ImageGUID" style="height:150px" alt="">
+                                                                </a>
+                                                            </div>
+                                                            <div class="lower-box" style="min-height:200px">
+                                                                <div class="post-info">
+                                                                    @topic.TopicDate.ToShortDateString()
+                                                                </div>
+                                                                <h3>
+                                                                    <a href="@Url.Action("NewsDetails", "Home", new { serial_ = topic.Serial})" class="theme-btn read-more" style="margin-top: 10px;">
+                                                                        @topic.NewsTitle
+                                                                    </a>
+                                                                </h3>
+                                                                <a href="@Url.Action("NewsDetails", "Home", new { serial_ = topic.Serial})" class="theme-btn read-more" style="margin-top: 10px; font-size: 14px;">
+                                                                    Read More
+                                                                    <span class="icon flaticon-right-arrow-1" style="margin-right: 10px;font-size: 20px;vertical-align: sub;"></span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
 
 <script>
     $(document).ready(function () {

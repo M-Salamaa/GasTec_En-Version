@@ -32,7 +32,7 @@
 <div class="sidebar-page-container">
     <div class="auto-container">
         <div class="row clearfix">
-            <div class="sidebar-side col-lg-3 col-md-4 col-sm-12 col-xs-12">
+            <div class="sidebar-side col-lg-3 col-md-4 col-sm-12 col-xs-12 pull-left">
                 <aside class="sidebar">
                     <div id="sideevents">
                         <!-- Popular Posts -->
@@ -61,66 +61,53 @@
             </div>
             <!--Content Side-->
             <div class="content-side col-lg-9 col-md-8 col-sm-12 col-xs-12 pull-right">
-                @foreach (var entity in Model.News_Details)
-                {
-                    <section class="services-section" style="padding:0">
-                        <div class="auto-container">
-                            <div class="single-item-carousel owl-carousel owl-theme owl-loaded owl-drag">
-                                @foreach (var image in entity.LstImages)
-                                {
-                                    <div class="testimonial-block" >
-                                        <div class="inner-box">
-                                            <div class="upper-box">
-                                                <div class="image">
-                                                    <img src="~/Images/News/@image.ImageGUID"  alt="" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                            </div>
-                        </div>
-                    </section>
-                }
                 <div class="services-single" dir="rtl">
                     <div class="inner-box">
                         <div id="events1">
                             <div class="blog-classic padding-right" style="padding-right:0;">
                                 <!--Large Image Posts-->
                                 <div class="large-image-posts">
+
                                     <!--News Block Three-->
                                     <div class="news-block-three">
                                         <div class="inner-box">
-                                            @foreach (var entity in Model.News_Details)
-                                            {
-                                                <div class="lower-content">
-                                                    <div class="lower-box">
-                                                        <p style="color: #999">
-                                                            <i class="fa fa-calendar"></i> @entity.TopicDate.ToShortDateString()
-                                                        </p>
-                                                        <h3>
-                                                            <a href="#">
-                                                                @entity.NewsTitle
-                                                            </a>
-                                                        </h3>
-                                                        @Html.Raw(entity.body)
-
-                                                        <a href="@Url.Action("AllNews","Home")" class="theme-btn read-more" style="float: left;direction: rtl;font-size: 18px;">
-                                                            عرض جميع الأخبار<span class="icon flaticon-left-arrow" style="margin-right: 10px;font-size: 20px;vertical-align: sub;">
-                                                            </span>
+                                            <div class="image">
+                                                @foreach (var entity in Model.News_Details)
+                                                {
+                                                        <a href="#" alt="@entity.LstImages.Select(x=>x.Image_AltText).FirstOrDefault()" title="@entity.NewsTitle">
+                                                            <img src="~/Images/News/@entity.LstImages.Select(x=>x.ImageGUID).FirstOrDefault()" alt="">
                                                         </a>
-                                                    </div>
+                                                }
+                                            </div>
+                                            <div class="lower-content">
+                                                <div class="lower-box">
+                                                    <p style="color: #999">
+                                                        <i class="fa fa-calendar"></i> 05/01/2021
+                                                    </p>
+                                                    <h3>
+                                                        <a href="#">تقرير قناة Extra News عن المعرض الأول لتكنولوجيا تحويل وإحلال المركبات للعمل بالطاقة النظيفة</a>
+                                                    </h3>
+                                                    <p>
+                                                        تقرير قناة Extra News عن المعرض الأول لتكنولوجيا تحويل وإحلال المركبات للعمل بالطاقة النظيفة<br> <a href="https://www.youtube.com/watch?fbclid=IwAR0XzTYIBVJisX94wOEJ1XybHbSx2jNS2bikPn6zWLTP8Ol6qGXopZ28f9E&amp;v=KqTsY92fECI&amp;feature=youtu.be">
+                                                            https://www.youtube.com/watch?fbclid=IwAR0XzTYIBVJisX94wOEJ1XybHbSx2jNS2bikPn6zWLTP8Ol6qGXopZ28f9E&amp;v=KqTsY92fECI&amp;feature=youtu.be
+                                                        </a>
+                                                    </p>
+                                                    <a href="https://www.gastec-egypt.com/public/allnews/32817" class="theme-btn read-more" style="float: left;direction: rtl;font-size: 18px;">
+                                                        عرض جميع الأخبار<span class="icon flaticon-left-arrow" style="margin-right: 10px;font-size: 20px;vertical-align: sub;">
+                                                        </span>
+                                                    </a>
+
                                                 </div>
-                                            }
+                                            </div>
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

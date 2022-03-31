@@ -12,7 +12,7 @@ namespace WebApp_gastec.Domain
     public class API_GetNewsTopics
     {
         // this functions to Get Topics for Latest News Section
-        public static async Task<OutputGetNewsTopicsModel> GetAllNewsTopics(int groupId_, int translationID_)
+        public static async Task<OutputGetNewsTopicsModel> GetAllNewsTopics(int groupId_)
         {
             // Create instance for Save returned API Consuming
             OutputGetNewsTopicsModel newsTopics = new();
@@ -35,8 +35,6 @@ namespace WebApp_gastec.Domain
                 ApiURL.Append($"&InputX.encryptedEXAppID={Gastech_Vault.EncryptedEXAppID}");
                 //Add resultCount to specify the number of returned Data
                 ApiURL.Append($"&InputX.groupID={groupId_}");
-                //Add showFeaturedOnly
-                ApiURL.Append($"&InputX.translationLanguageID={translationID_}");
                 // Create instance to get a Response from the URL Passed
                 var responseTask = await client.GetAsync(ApiURL.ToString());
                 // Check if Request Successed

@@ -143,11 +143,11 @@ namespace WebApp_gastec.Controllers
                 //Consuming Mid Banner from Classification Tree API 
                 MidBanner = API_GetClassificationTree.GetClassificationTree(inputModel.Input_MidBanner.EncryptedTreeClassificationID, inputModel.Input_MidBanner.EncryptedSpecificTreeClassificationID, translationID_),
                 // Consuming Latest News API 
-                NewsTopics = await API_GetNewsTopics.GetAllNewsTopics(0, translationID_),
+                NewsTopics = await API_GetNewsTopics.GetAllNewsTopics(0),
                 //Consuming Service Section (Eni Gastech) from Classification Tree API 
-                EniGastech = await API_GetNewsTopics.GetAllNewsTopics(3, translationID_),
+                EniGastech = await API_GetNewsTopics.GetAllNewsTopics(3),
                 //Consuming News Section from Classification Tree API 
-                NewsSection = await API_GetNewsTopics.GetAllNewsTopics(4, translationID_),
+                NewsSection = await API_GetNewsTopics.GetAllNewsTopics(4),
                 //Consuming Cities from GetCities API 
                 Cities = await API_GetCities.GetAllCitiesAsync(translationID_),
                 //Consuming Map Files from Classification Tree API
@@ -167,9 +167,9 @@ namespace WebApp_gastec.Controllers
                 // Consuming Main Cylindar Test Menu from Classification Tree API 
                 MediaCenter = API_GetClassificationTree.GetClassificationTree(inputModel.Input_MediaCenter.EncryptedTreeClassificationID, inputModel.Input_MediaCenter.EncryptedSpecificTreeClassificationID, translationID_),
                 // Consuming News Groups from Get News Topic API
-                News_Group = await API_GetNewsGroup.GetNewsGroup(translationID_),
+                News_Group = await API_GetNewsGroup.GetNewsGroup(),
                 // Consuming All News from Get News Topic API
-                NewsTopics = await API_GetNewsTopics.GetAllNewsTopics(0, translationID_),
+                NewsTopics = await API_GetNewsTopics.GetAllNewsTopics(0),
             };
             return homePageViewModel;
         }
@@ -184,7 +184,7 @@ namespace WebApp_gastec.Controllers
                 // Consuming News Details form News Details API 
                 News_Details = await API_GetNewsTopics.GetNewsDetails(serial_, translationID_),
                 // Consuming All News from Get News Topic API
-                NewsTopics = await API_GetNewsTopics.GetAllNewsTopics(0, translationID_),
+                NewsTopics = await API_GetNewsTopics.GetAllNewsTopics(0),
             };
             return homePageViewModel;
 
