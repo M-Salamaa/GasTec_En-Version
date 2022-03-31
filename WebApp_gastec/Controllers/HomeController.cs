@@ -21,10 +21,12 @@ namespace WebApp_gastec.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         public readonly IWebHostEnvironment _hostingEnvironment;
-        public HomeController(ILogger<HomeController> logger, IWebHostEnvironment hostingEnvironment)
+        public readonly IHttpContextAccessor _httpContextAccessor;
+        public HomeController(ILogger<HomeController> logger, IWebHostEnvironment hostingEnvironment , IHttpContextAccessor httpContextAccessor)
         {
             _logger = logger;
             _hostingEnvironment = hostingEnvironment;
+            _httpContextAccessor = httpContextAccessor;
         }
         // function to Cahcing All Images Returned
         private async Task CachedAllImagesAsync(HomePageViewModel model_)
@@ -206,7 +208,11 @@ namespace WebApp_gastec.Controllers
             else
                 Gastech_Vault.TranslationLanguageID = 0;
             SessionHelper.SetObjectAsJson(HttpContext.Session, "Localization", Gastech_Vault.TranslationLanguageID);
+            //string host = HttpContext.Request.Headers["Referer"];
+            //string controllerNAme = (host.Split('/')[3]).Split('?')[0];
+            //return Redirect(HttpContext.Request.Headers["Referer"]);
             return RedirectToAction("Index");
+
         }
         //Action to get News Details
         public async Task<IActionResult> NewsDetailsAsync(int serial_)

@@ -30,7 +30,7 @@ namespace WebApp_gastec.Domain
             }
         }
         // Function To get sub string between two words in string
-        public string Between(string STR, string FirstString, string LastString)
+        public static string Between(string STR, string FirstString, string LastString)
         {
             string FinalString;
             int Pos1 = STR.IndexOf(FirstString) + FirstString.Length;

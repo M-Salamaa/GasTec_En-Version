@@ -66,7 +66,7 @@ namespace WebApp_gastec.Domain
                 string getClassificationInputJson = JsonConvert.SerializeObject(getClassificationInputObject);
                 var httpContent = new StringContent(getClassificationInputJson, Encoding.UTF8, "application/json");
                 var responseTask = client.PostAsync("ClassificationTree/GetClassificationTree", httpContent);   
-                responseTask.Wait();
+                //responseTask.Wait();
                 var result = responseTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
@@ -77,5 +77,6 @@ namespace WebApp_gastec.Domain
                 return descrptionText;
             }
         }
+
     }
 }
