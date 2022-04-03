@@ -841,9 +841,6 @@ D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Debug\net5.0\Razor\Views\Home\_Ret
 D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Debug\net5.0\Razor\Views\Home\_ShowMapPartial.cshtml.g.cs
 D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Debug\net5.0\Razor\Views\MediaCenter\Index.cshtml.g.cs
 D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Debug\net5.0\Razor\Views\MediaCenter\News.cshtml.g.cs
-D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Debug\net5.0\Razor\Views\Oil\Index.cshtml.g.cs
-D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Debug\net5.0\Razor\Views\Oil\SubCommercial.cshtml.g.cs
-D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Debug\net5.0\Razor\Views\Oil\SubIndustrial.cshtml.g.cs
 D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Debug\net5.0\Razor\Views\Partial\SearchResult.cshtml.g.cs
 D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
 D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Debug\net5.0\Razor\Views\Shared\_ContactUsPartial.cshtml.g.cs
@@ -1007,3 +1004,6 @@ E:\Softex\GitHub\GasTec_En-Version\WebApp_gastec\obj\Debug\net5.0\refint\WebApp_
 E:\Softex\GitHub\GasTec_En-Version\WebApp_gastec\obj\Debug\net5.0\WebApp_gastec.pdb
 E:\Softex\GitHub\GasTec_En-Version\WebApp_gastec\obj\Debug\net5.0\WebApp_gastec.genruntimeconfig.cache
 E:\Softex\GitHub\GasTec_En-Version\WebApp_gastec\obj\Debug\net5.0\ref\WebApp_gastec.dll
+D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Debug\net5.0\Razor\Views\Lubricants\Index.cshtml.g.cs
+D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Debug\net5.0\Razor\Views\Lubricants\SubCommercial.cshtml.g.cs
+D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Debug\net5.0\Razor\Views\Lubricants\SubIndustrial.cshtml.g.cs

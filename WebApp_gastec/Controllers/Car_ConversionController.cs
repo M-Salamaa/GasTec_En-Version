@@ -100,6 +100,7 @@ namespace WebApp_gastec.Controllers
             };
             return homePageViewModel;
         }
+        [Route("VechileConversion")]
         // Routing for Car Conversion Setcion Pages with Classification ID
         public async Task<IActionResult> Index(string ID_)
         {
@@ -107,8 +108,17 @@ namespace WebApp_gastec.Controllers
 
             var model = this.GetHomeViewModel(Domain.Service.Encrypt(ID_), int.Parse(HttpContext.Session.GetString("Localization")));
             ActivateSelectedForMainCategories(model, ID_);
-            await CachedAllImagesAsync(model, "Car_Conversion");
-            CachedAllHtmlLinks(model, "Car_Conversion");
+            if(Gastech_Vault.TranslationLanguageID ==0)
+            {
+
+            await CachedAllImagesAsync(model, "Car_Conversion-ar");
+            CachedAllHtmlLinks(model, "Car_Conversion-ar");
+            }
+            else
+            {
+                await CachedAllImagesAsync(model, "Car_Conversion-en");
+                CachedAllHtmlLinks(model, "Car_Conversion-en");
+            }
             return View(model);
         }
     }

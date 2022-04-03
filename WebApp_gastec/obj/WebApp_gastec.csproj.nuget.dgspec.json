@@ -46,7 +46,7 @@
           "dependencies": {
             "GoogleReCaptcha.V3": {
               "target": "Package",
-              "version": "[1.3.0, )"
+              "version": "[1.3.1, )"
             },
             "Microsoft.AspNetCore.Session": {
               "target": "Package",

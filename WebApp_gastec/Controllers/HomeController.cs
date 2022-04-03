@@ -22,7 +22,7 @@ namespace WebApp_gastec.Controllers
         private readonly ILogger<HomeController> _logger;
         public readonly IWebHostEnvironment _hostingEnvironment;
         public readonly IHttpContextAccessor _httpContextAccessor;
-        public HomeController(ILogger<HomeController> logger, IWebHostEnvironment hostingEnvironment , IHttpContextAccessor httpContextAccessor)
+        public HomeController(ILogger<HomeController> logger, IWebHostEnvironment hostingEnvironment, IHttpContextAccessor httpContextAccessor)
         {
             _logger = logger;
             _hostingEnvironment = hostingEnvironment;
@@ -38,7 +38,10 @@ namespace WebApp_gastec.Controllers
             {
                 foreach (var image in entity.LstImages)
                 {
-                    image.ImageGUID = await cacheImages.CahceAllImageAsync("Banners", image.ImageGUID, image.ImageLink);
+                    if (Gastech_Vault.TranslationLanguageID == 0)
+                        image.ImageGUID = await cacheImages.CahceAllImageAsync("Banners-ar", image.ImageGUID, image.ImageLink);
+                    else
+                        image.ImageGUID = await cacheImages.CahceAllImageAsync("Banners-en", image.ImageGUID, image.ImageLink);
                 }
             }
             //Caching News Topics Section images
@@ -46,7 +49,10 @@ namespace WebApp_gastec.Controllers
             {
                 if (topic.GroupID == 1 || topic.GroupID == 2)
                 {
-                    topic.ImageGUID = await cacheImages.CahceAllImageAsync("NewsTopics", topic.ImageGUID, topic.ImageLink);
+                    if (Gastech_Vault.TranslationLanguageID == 0)
+                        topic.ImageGUID = await cacheImages.CahceAllImageAsync("NewsTopics-ar", topic.ImageGUID, topic.ImageLink);
+                    else
+                        topic.ImageGUID = await cacheImages.CahceAllImageAsync("NewsTopics-en", topic.ImageGUID, topic.ImageLink);
                 }
                 else
                     continue;
@@ -59,6 +65,7 @@ namespace WebApp_gastec.Controllers
                     foreach (var image in webSection.LstImages)
                     {
                         image.ImageGUID = await cacheImages.CahceAllImageAsync("GastechNumbers", image.ImageGUID, image.ImageLink);
+
                     }
                 }
             }
@@ -67,7 +74,10 @@ namespace WebApp_gastec.Controllers
             {
                 foreach (var image in listImage.LstImages)
                 {
-                    image.ImageGUID = await cacheImages.CahceAllImageAsync("MidSection", image.ImageGUID, image.ImageLink);
+                    if (Gastech_Vault.TranslationLanguageID == 0)
+                        image.ImageGUID = await cacheImages.CahceAllImageAsync("MidSection-ar", image.ImageGUID, image.ImageLink);
+                    else
+                        image.ImageGUID = await cacheImages.CahceAllImageAsync("MidSection-en", image.ImageGUID, image.ImageLink);
 
                 }
             }
@@ -76,18 +86,29 @@ namespace WebApp_gastec.Controllers
             {
                 foreach (var image in listImages.LstImages)
                 {
-                    image.ImageGUID = await cacheImages.CahceAllImageAsync("MidBanner", image.ImageGUID, image.ImageLink);
+                    if (Gastech_Vault.TranslationLanguageID == 0)
+                        image.ImageGUID = await cacheImages.CahceAllImageAsync("MidBanner-ar", image.ImageGUID, image.ImageLink);
+                    else
+                        image.ImageGUID = await cacheImages.CahceAllImageAsync("MidBanner-en", image.ImageGUID, image.ImageLink);
+
                 }
             }
             //Caching News Section images
             foreach (var image in model_.NewsSection.LstNews)
             {
-                image.ImageGUID = await cacheImages.CahceAllImageAsync("NewsSection", image.ImageGUID, image.ImageLink);
+                if (Gastech_Vault.TranslationLanguageID == 0)
+                    image.ImageGUID = await cacheImages.CahceAllImageAsync("NewsSection-ar", image.ImageGUID, image.ImageLink);
+                else
+                    image.ImageGUID = await cacheImages.CahceAllImageAsync("NewsSection-en", image.ImageGUID, image.ImageLink);
+
             }
 
             foreach (var topic in model_.EniGastech.LstNews)
             {
-                topic.ImageGUID = await cacheImages.CahceAllImageAsync("EniGastec", topic.ImageGUID, topic.ImageLink);
+                if (Gastech_Vault.TranslationLanguageID == 0)
+                    topic.ImageGUID = await cacheImages.CahceAllImageAsync("EniGastec-ar", topic.ImageGUID, topic.ImageLink);
+                else
+                    topic.ImageGUID = await cacheImages.CahceAllImageAsync("EniGastec-en", topic.ImageGUID, topic.ImageLink);
             }
             #endregion Caching images returned from API
         }
