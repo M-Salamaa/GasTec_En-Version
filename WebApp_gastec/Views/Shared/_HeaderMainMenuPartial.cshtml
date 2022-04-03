@@ -135,7 +135,7 @@
                                     @foreach (var entity in classification.LstChildClassification)
                                     {
                                         <li>
-                                            <a href="@Url.Action("Index", "Oil", new { ID_ = entity.ClassificationID})">@entity.ClassificationName</a>
+                                            <a href="@Url.Action("Index", "Lubricants", new { ID_ = entity.ClassificationID})">@entity.ClassificationName</a>
                                         </li>
                                     }
                                 </ul>
@@ -266,7 +266,7 @@
                                     @foreach (var entity in classification.LstChildClassification)
                                     {
                                         <li>
-                                            <a href="@Url.Action("Index", "Oil", new { ID_ = entity.ClassificationID})">@entity.ClassificationName</a>
+                                            <a href="@Url.Action("Index", "Lubricants", new { ID_ = entity.ClassificationID})">@entity.ClassificationName</a>
                                         </li>
                                     }
                                 </ul>

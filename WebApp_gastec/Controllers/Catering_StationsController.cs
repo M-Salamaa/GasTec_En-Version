@@ -86,8 +86,6 @@ namespace WebApp_gastec.Controllers
             // Create Instance for home page view model to return Main Home Page View
             HomePageViewModel homePageViewModel = new()
             {
-                // Consuming Main Menu from Classification Tree API 
-                //MainNavigationBar = API_GetClassificationTree.GetClassificationTree(Domain.Service.Encrypt("c0"), Domain.Service.Encrypt("0"), translationID_),
                 // Consuming Main Cylindar Test Menu from Classification Tree API 
                 Main_Section = API_GetClassificationTree.GetClassificationTree(inputModel.Input_FuelingStations_MainSection.EncryptedTreeClassificationID, inputModel.Input_FuelingStations_MainSection.EncryptedSpecificTreeClassificationID, translationID_),
                 // Consuming Cylindar Category from Classification Tree API 
@@ -106,33 +104,52 @@ namespace WebApp_gastec.Controllers
             CachedAllHtmlLinks(model, "Integrated_Stations");
             return View(model);
         }
-
+        [Route("Fueling")]
         public async Task<IActionResult> Index(string ID_)
         {
             SessionHelper.SetObjectAsJson(HttpContext.Session, "Localization", Gastech_Vault.TranslationLanguageID);
             InputHomePageViewModel inputModel = GetClassificationIDByLang.GetClassificationIdByLanguageID();
             Cache cachedHtml = new Cache(_hostingEnvironment);
             var model = new HomePageViewModel();
-            if (ID_ == "28" || ID_=="87")
+            if (ID_ == "28" || ID_ == "87")
             {
                 model = this.GetHomeViewModel(Domain.Service.Encrypt(ID_), Domain.Service.Encrypt("0"), int.Parse(HttpContext.Session.GetString("Localization")));
-                await CachedAllImagesAsync(model, "Stations");
-                CachedAllHtmlLinks(model, "Stations");
+                if (Gastech_Vault.TranslationLanguageID == 0)
+                {
+                    await CachedAllImagesAsync(model, "Stations-ar");
+                    CachedAllHtmlLinks(model, "Stations-ar");
+                }
+                else
+                {
+                    await CachedAllImagesAsync(model, "Stations-en");
+                    CachedAllHtmlLinks(model, "Stations-en");
+                }
                 foreach (var entity in model.Sub_Section)
                 {
                     string path = cachedHtml.CahceAllHtmlLinks("Stations", entity.HTML_GUID, entity.Classification_HTMLLink);
                     entity.Body = Domain.Service.ReadFileAsStringForBody(path);
                     foreach (var image in entity.LstImages)
                     {
-                        image.ImageGUID = await cachedHtml.CahceAllImageAsync("Stations", image.ImageGUID, image.ImageLink);
+                        if (Gastech_Vault.TranslationLanguageID == 0)
+                            image.ImageGUID = await cachedHtml.CahceAllImageAsync("Stations-ar", image.ImageGUID, image.ImageLink);
+                        else
+                            image.ImageGUID = await cachedHtml.CahceAllImageAsync("Stations-en", image.ImageGUID, image.ImageLink);
                     }
                 }
             }
             else
             {
                 model = this.GetHomeViewModel(inputModel.Input_FuelingStations_MainSection.EncryptedTreeClassificationID, Domain.Service.Encrypt(ID_), int.Parse(HttpContext.Session.GetString("Localization")));
-                await CachedAllImagesAsync(model, "Stations");
-                CachedAllHtmlLinks(model, "Stations");
+                if (Gastech_Vault.TranslationLanguageID == 0)
+                {
+                    await CachedAllImagesAsync(model, "Stations-ar");
+                    CachedAllHtmlLinks(model, "Stations-ar");
+                }
+                else
+                {
+                    await CachedAllImagesAsync(model, "Stations-en");
+                    CachedAllHtmlLinks(model, "Stations-en");
+                }
             }
             ActivateSelectedForMainCategories(model, ID_);
             return View(model);

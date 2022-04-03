@@ -67,7 +67,7 @@ namespace WebApp_gastec.Controllers
             #endregion Caching images returned from API
         }
         // Return Data Model after Consuming API
-        private HomePageViewModel GetHomeViewModel( string encryptedTreeClassificationId_, int translationID_)
+        private HomePageViewModel GetHomeViewModel(string encryptedTreeClassificationId_, int translationID_)
         {
             var inputModel = GetClassificationIDByLang.GetClassificationIdByLanguageID();
             // Create Instance for home page view model to return Main Home Page View
@@ -96,8 +96,16 @@ namespace WebApp_gastec.Controllers
                         classification.IsActive = true;
                 }
             }
-            await CachedAllImagesAsync(model, "Cylinder_Testing");
-            CachedAllHtmlLinks(model, "Cylinder_Testing");
+            if (Gastech_Vault.TranslationLanguageID == 0)
+            {
+                await CachedAllImagesAsync(model, "Cylinder_Testing-ar");
+                CachedAllHtmlLinks(model, "Cylinder_Testing-ar");
+            }
+            else
+            {
+                await CachedAllImagesAsync(model, "Cylinder_Testing-en");
+                CachedAllHtmlLinks(model, "Cylinder_Testing-en");
+            }
             return View(model);
         }
     }

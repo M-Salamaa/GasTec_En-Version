@@ -1,0 +1,380 @@
+﻿@model HomePageViewModel
+
+@{
+    ViewData["Title"] = "GASTEC";
+    Layout = "_Layout";
+}
+
+
+<!-- Page Title-->
+<section class="page-title" style="background-image:url('../../wwwroot/public/assets/softextwo/images/background/eni-header.jpg');">
+    <div class="auto-container">
+        @foreach (var entity in Model.Sub_Section)
+        {
+            <!-- <h1>@entity.ClassificationName  </h1>-->
+        }
+    </div>
+</section>
+<!-- End Page Title-->
+<!-- Page Info-->
+<div class="page-info">
+    <div class="auto-container">
+        <div class="inner-container clearfix">
+            @if (Gastech_Vault.TranslationLanguageID == 0)
+            {
+
+                <ul class="bread-crumb pull-right">
+                    <li><a href="@Url.Action("Index","Home")">الرئيسية</a></li>
+                    @foreach (var entity in Model.Sub_Section)
+                    {
+                        <li>@entity.ClassificationName</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <ul class="bread-crumb pull-left">
+                    <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                    @foreach (var entity in Model.Sub_Section)
+                    {
+                        <li>@entity.ClassificationName</li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
+</div>
+<!-- End Page Info-->
+<div class="sidebar-page-container">
+    <div class="auto-container">
+        <div class="row clearfix">
+            @if (Gastech_Vault.TranslationLanguageID == 0)
+            {
+                <!--Sidebar Side-->
+                <div class="sidebar-side col-lg-3 col-md-4 col-sm-12 col-xs-12 pull-right">
+                    <aside class="sidebar">
+                        <!--Blog Category Widget-->
+                        <div id="sidenavelist">
+                            <div class="sidebar-widget sidebar-blog-category">
+                                <ul class="blog-cat">
+                                    @foreach (var mainSection in Model.Main_Section)
+                                    {
+                                        @foreach (var entity in mainSection.LstChildClassification)
+                                        {
+                                            @if (entity.IsActive == true)
+                                            {
+
+                                                <li class="active">
+                                                    <a href="@Url.Action("Index", "Lubricants", new { ID_ = entity.ClassificationID})">@entity.ClassificationName</a>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li>
+                                                    <a href="@Url.Action("Index", "Lubricants", new { ID_ = entity.ClassificationID})">@entity.ClassificationName</a>
+                                                </li>
+                                            }
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+                <!--Content Side-->
+                @foreach (var entity in Model.Sub_Section)
+                {
+                    <div class="content-side pull-left col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                        <!--Check ID = 40 for Agency Section-->
+
+                        @if (entity.ClassificationID == 40)
+                        {
+                            <div class="services-single" dir="rtl">
+                                <div class="inner-box">
+                                    <div id="cmspage1">
+                                        <h2>@entity.ClassificationName</h2>
+                                        <div style="font-size:14px; position:relative">
+                                            @foreach (var webSection in entity.LstWebSections)
+                                            {
+                                                @Html.Raw(webSection.Body)
+
+                                                <p dir="rtl">&nbsp;</p>
+                                                @foreach (var image in webSection.LstImages)
+                                                {
+                                                    <p dir="rtl">
+                                                        <img src="~/Images/Lubricants-ar/@image.ImageGUID" />
+                                                    </p>
+                                                }
+                                                <hr />
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        //Check ID = 41 for Industrial oils Section
+                        else if (entity.ClassificationID == 41)
+                        {
+                            <div class="team-column col-md-12 col-sm-12 col-xs-12" style="margin-top: 30px">
+                                <div class="inner-column">
+                                    <div class="row clearfix">
+                                        <div id="teambox">
+                                            @foreach (var subSection in entity.LstChildClassification)
+                                            {
+                                                <div class="team-block col-md-3 col-sm-6 col-xs-12 pull-left">
+                                                    <div class="inner-box">
+                                                        <div class="image" style="max-height:350px; overflow:hidden">
+                                                            <a href="@Url.Action("SubIndustrial", "Lubricants", new { oilID_ = subSection.ClassificationID.ToString()})">
+                                                                <img src="~/Images/Lubricants-ar/@subSection.LstImages.Select(x=>x.ImageGUID).FirstOrDefault().ToString()" alt="" style="min-height:350px" />
+                                                            </a>
+                                                        </div>
+                                                        <div class="lower-box">
+                                                            <h3>
+                                                                <a href="@Url.Action("SubIndustrial", "Lubricants", new { oilID_ = subSection.ClassificationID.ToString()})">
+                                                                    @subSection.ClassificationName
+                                                                </a>
+                                                            </h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        //Check ID = 42 for Commerical Oils Section
+                        else if (entity.ClassificationID == 42)
+                        {
+                            <div class="services-single" dir="rtl">
+                                <div class="inner-box">
+                                    <div id="cmspage1"></div>
+                                </div>
+                            </div>
+                            <div class="team-column col-md-12 col-sm-12 col-xs-12" style="margin-top: 30px">
+                                <div class="inner-column">
+                                    <div class="row clearfix">
+                                        <div id="teambox">
+                                            @foreach (var webSection in entity.LstWebSections)
+                                            {
+                                                <div class="team-block col-md-3 col-sm-6 col-xs-12 pull-left">
+                                                    <div class="inner-box">
+
+                                                        <div class="image">
+                                                            <a href="@Url.Action("SubCommercial", "Lubricants" , new { oilID_ = webSection.WebSectionID.ToString()})">
+                                                                <img src="~/Images/Lubricants-ar/@webSection.LstImages.Select(x=>x.ImageGUID).FirstOrDefault().ToString()" />
+                                                            </a>
+                                                        </div>
+                                                        <div class="lower-box">
+                                                            <h3>
+                                                                <a href="@Url.Action("SubCommercial", "Lubricants" , new { oilID_ = webSection.WebSectionID.ToString()})">
+                                                                    @Html.Raw(webSection.Body)
+                                                                </a>
+                                                            </h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        //Check ID = 43 for Oils Distributer Section
+                        else if (entity.ClassificationID == 43)
+                        {
+                            <div class="services-single" dir="rtl">
+                                <div class="inner-box">
+                                    <div id="cmspage1">
+                                        <h2>@entity.ClassificationName</h2>
+                                        <div style="font-size:14px; position:relative">
+                                            @foreach (var image in entity.LstImages)
+                                            {
+                                                @if (image.ImageID == "88")
+                                                {
+                                                    <a href="@image.ImageLink" target="_blank">
+                                                        <img src="~/Images/Lubricants-ar/@image.ImageGUID" style="padding:10px">
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="@image.ImageLink" target="_blank">
+                                                        <img src="~/Images/Lubricants-ar/@image.ImageGUID" style="height: 464px; width: 450px; padding: 5px">
+                                                    </a>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="team-column col-md-12 col-sm-12 col-xs-12" style="margin-top: 30px">
+                                <div class="inner-column">
+                                    <div class="row clearfix">
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            }
+            else
+            {
+                <!--Sidebar Side-->
+                <div class="sidebar-side col-lg-3 col-md-4 col-sm-12 col-xs-12 pull-left">
+                    <aside class="sidebar">
+                        <!--Blog Category Widget-->
+                        <div id="sidenavelist">
+                            <div class="sidebar-widget sidebar-blog-category">
+                                <ul class="blog-cat">
+                                    @foreach (var mainSection in Model.Main_Section)
+                                    {
+                                        @foreach (var entity in mainSection.LstChildClassification)
+                                        {
+                                            @if (entity.IsActive == true)
+                                            {
+
+                                                <li class="active">
+                                                    <a href="@Url.Action("Index", "Lubricants", new { ID_ = entity.ClassificationID})">@entity.ClassificationName</a>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li>
+                                                    <a href="@Url.Action("Index", "Lubricants", new { ID_ = entity.ClassificationID})">@entity.ClassificationName</a>
+                                                </li>
+                                            }
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+                <!--Content Side-->
+                @foreach (var entity in Model.Sub_Section)
+                {
+                    <div class="content-side pull-right col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                        <!--Check ID = 94 for Agency Section-->
+
+                        @if (entity.ClassificationID == 94)
+                        {
+                            <div class="services-single" dir="ltr">
+                                <div class="inner-box">
+                                    <div id="cmspage1">
+                                        <h2>@entity.ClassificationName</h2>
+                                        <div style="font-size:14px; position:relative">
+                                            @foreach (var webSection in entity.LstWebSections)
+                                            {
+                                                @Html.Raw(webSection.Body)
+                                                <p dir="ltr">
+                                                    &nbsp;
+                                                </p>
+                                                @foreach (var image in webSection.LstImages)
+                                                {
+                                                    <p dir="ltr">
+                                                        <img src="~/Images/Lubricants-en/@image.ImageGUID" />
+                                                    </p>
+                                                }
+                                                <hr />
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        //Check ID = 95 for Industrial oils Section
+                        else if (entity.ClassificationID == 95)
+                        {
+                            <div class="team-column col-md-12 col-sm-12 col-xs-12" style="margin-top: 30px">
+                                <div class="inner-column">
+                                    <div class="row clearfix">
+                                        <div id="teambox">
+                                            @foreach (var subSection in entity.LstChildClassification)
+                                            {
+                                                <div class="team-block col-md-3 col-sm-6 col-xs-12 pull-left">
+                                                    <div class="inner-box">
+                                                        <div class="image" style="max-height:350px; overflow:hidden">
+                                                            <a href="@Url.Action("SubIndustrial", "Lubricants", new { oilID_ = subSection.ClassificationID.ToString()})">
+                                                                <img src="~/Images/Lubricants-en/@subSection.LstImages.Select(x=>x.ImageGUID).FirstOrDefault().ToString()" alt="" style="min-height:350px" />
+                                                            </a>
+                                                        </div>
+                                                        <div class="lower-box">
+                                                            <h3>
+                                                                <a href="@Url.Action("SubIndustrial", "Lubricants", new { oilID_ = subSection.ClassificationID.ToString()})">
+                                                                    @subSection.ClassificationName
+                                                                </a>
+                                                            </h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        //Check ID = 96 for Commerical Oils Section
+                        else if (entity.ClassificationID == 96)
+                        {
+                            <div class="services-single" dir="ltr">
+                                <div class="inner-box">
+                                    <div id="cmspage1"></div>
+                                </div>
+                            </div>
+                            <div class="team-column col-md-12 col-sm-12 col-xs-12" style="margin-top: 30px">
+                                <div class="inner-column">
+                                    <div class="row clearfix">
+                                        <div id="teambox">
+                                            @foreach (var webSection in entity.LstWebSections)
+                                            {
+                                                <div class="team-block col-md-3 col-sm-6 col-xs-12 pull-right">
+                                                    <div class="inner-box">
+                                                        <div class="image">
+                                                            <a href="@Url.Action("SubCommercial", "Lubricants" , new { oilID_ = webSection.WebSectionID.ToString()})">
+                                                                <img src="~/Images/Lubricants-en/@webSection.LstImages.Select(x=>x.ImageGUID).FirstOrDefault().ToString()" />
+                                                            </a>
+                                                        </div>
+                                                        <div class="lower-box">
+                                                            <h3>
+                                                                <a href="@Url.Action("SubCommercial", "Lubricants" , new { oilID_ = webSection.WebSectionID.ToString()})">
+                                                                    @Html.Raw(webSection.Body)
+                                                                </a>
+                                                            </h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        //Check ID = 97 for Oils Distributer Section
+                        else if (entity.ClassificationID == 97)
+                        {
+                            <div class="services-single" dir="ltr">
+                                <div class="inner-box">
+                                    <div id="cmspage1">
+                                        <h2>@entity.ClassificationName</h2>
+                                        @foreach (var image in entity.LstImages)
+                                        {
+                                            <a href="@image.ImageLink" target="_blank">
+                                                <img src="~/Images/Lubricants-en/@image.ImageGUID" style="padding: 5px">
+                                            </a>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="team-column col-md-12 col-sm-12 col-xs-12" style="margin-top: 30px">
+                                <div class="inner-column">
+                                    <div class="row clearfix">
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

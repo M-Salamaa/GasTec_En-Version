@@ -1,0 +1,130 @@
+﻿@model HomePageViewModel
+
+@{
+    ViewData["Title"] = "GASTEC";
+    Layout = "_Layout";
+}
+
+
+<!-- Page Title-->
+<section class="page-title" style="background-image:url('../../wwwroot/public/assets/softextwo/images/background/Integrated_station.jpg');">
+    <div class="auto-container">
+        @foreach (var entity in Model.Sub_Section)
+        {
+            <!-- <h1>@entity.ClassificationName  </h1>-->
+        }
+
+    </div>
+</section>
+
+<!-- End Page Title-->
+<!-- Page Info-->
+<div class="page-info">
+    <div class="auto-container">
+        <div class="inner-container clearfix">
+            @if (Gastech_Vault.TranslationLanguageID == 0)
+            {
+
+                <ul class="bread-crumb pull-right">
+                    <li><a href="@Url.Action("Index","Home")">الرئيسية</a></li>
+                    @foreach (var entity in Model.Main_Section)
+                    {
+                        <li>@entity.ClassificationName</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <ul class="bread-crumb pull-left">
+                    <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                    @foreach (var entity in Model.Main_Section)
+                    {
+                        <li>@entity.ClassificationName</li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
+</div>
+<!-- End Page Info-->
+<div class="sidebar-page-container">
+    <div class="auto-container">
+        <div class="row clearfix">
+            @if (Gastech_Vault.TranslationLanguageID == 0)
+            {
+
+                <!--Content Side-->
+                @foreach (var type in Model.Sub_Section)
+                {
+                    @foreach (var webSection in type.LstWebSections)
+                    {
+                        @if (webSection.WebSectionID.ToString() == Model.WebSectionID)
+                        {
+
+                            <div class="sidebar-side col-lg-5 col-md-5 col-sm-12 col-xs-12 pull-right text-right">
+                                <img src="~/Images/Commerical_ar/@webSection.LstImages.Select(x=>x.ImageGUID).FirstOrDefault().ToString()" alt="">
+                            </div>
+                            <div id="imgfull">
+                                <div class="content-side col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                                    <div class="services-single" dir="rtl">
+                                        <div class="sidebar-title">
+                                            <h2>
+                                                @Html.Raw(webSection.Body)
+                                            </h2>
+                                        </div>
+                                        <div class="inner-box">
+                                            @foreach (var image in webSection.LstImages.Skip(1))
+                                            {
+                                                <p>
+                                                    <img src="~/Images/Commerical_ar/@image.ImageGUID" style="height:392px; width:350px">
+                                                </p>
+                                                <h3 style="text-align:right">@Html.Raw(image.Body)</h3>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+            }
+            else
+            {
+                <!--Content Side-->
+                @foreach (var type in Model.Sub_Section)
+                {
+                    @foreach (var webSection in type.LstWebSections)
+                    {
+                        @if (webSection.WebSectionID.ToString() == Model.WebSectionID)
+                        {
+
+                            <div class="sidebar-side col-lg-5 col-md-5 col-sm-12 col-xs-12 pull-left text-left">
+                                <img src="~/Images/Commerical_en/@webSection.LstImages.Select(x=>x.ImageGUID).FirstOrDefault().ToString()" alt="">
+                            </div>
+                            <div id="imgfull">
+                                <div class="content-side col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                                    <div class="services-single" dir="ltr">
+                                        <div class="sidebar-title">
+                                            <h2>
+                                                @Html.Raw(webSection.Body)
+                                            </h2>
+                                        </div>
+                                        <div class="inner-box">
+                                            @foreach (var image in webSection.LstImages.Skip(1))
+                                            {
+                                                <p>
+                                                    <img src="~/Images/Commerical_en/@image.ImageGUID" style="height:392px; width:350px">
+                                                </p>
+                                                @Html.Raw(image.Body)
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+            }
+        </div>
+    </div>
+</div>
