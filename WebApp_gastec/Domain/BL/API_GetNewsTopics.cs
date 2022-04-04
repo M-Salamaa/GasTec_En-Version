@@ -35,6 +35,8 @@ namespace WebApp_gastec.Domain
                 ApiURL.Append($"&InputX.encryptedEXAppID={Gastech_Vault.EncryptedEXAppID}");
                 //Add resultCount to specify the number of returned Data
                 ApiURL.Append($"&InputX.groupID={groupId_}");
+                //Add Translation ID
+                ApiURL.Append($"&InputX.translationLanguageID={Gastech_Vault.TranslationLanguageID}");
                 // Create instance to get a Response from the URL Passed
                 var responseTask = await client.GetAsync(ApiURL.ToString());
                 // Check if Request Successed
@@ -50,7 +52,7 @@ namespace WebApp_gastec.Domain
             }
         }
         // this functions to Get Specific News for
-        public static async Task<List<OutputGetNewsDetails>> GetNewsDetails(int serial_, int translationID_)
+        public static async Task<List<OutputGetNewsDetails>> GetNewsDetails(int serial_)
         {
             // Create instance for Save returned API Consuming
             List<OutputGetNewsDetails> newsDetails = new();
@@ -74,7 +76,7 @@ namespace WebApp_gastec.Domain
                 //Add resultCount to specify the number of returned Data
                 ApiURL.Append($"&InputX.newsID={serial_}");
                 //Add showFeaturedOnly
-                ApiURL.Append($"&InputX.translationLanguageID={translationID_}");
+                ApiURL.Append($"&InputX.translationLanguageID={Gastech_Vault.TranslationLanguageID}");
                 // Create instance to get a Response from the URL Passed
                 var responseTask = await client.GetAsync(ApiURL.ToString());
                 // Check if Request Successed

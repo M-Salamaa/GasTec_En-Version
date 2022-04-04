@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Softex\\GitHub\\GasTec_En-Version\\WebApp_gastec\\WebApp_gastec.csproj": {}
+    "D:\\GitHub\\GasTec_En-Version\\WebApp_gastec\\WebApp_gastec.csproj": {}
   },
   "projects": {
-    "E:\\Softex\\GitHub\\GasTec_En-Version\\WebApp_gastec\\WebApp_gastec.csproj": {
+    "D:\\GitHub\\GasTec_En-Version\\WebApp_gastec\\WebApp_gastec.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Softex\\GitHub\\GasTec_En-Version\\WebApp_gastec\\WebApp_gastec.csproj",
+        "projectUniqueName": "D:\\GitHub\\GasTec_En-Version\\WebApp_gastec\\WebApp_gastec.csproj",
         "projectName": "WebApp_gastec",
-        "projectPath": "E:\\Softex\\GitHub\\GasTec_En-Version\\WebApp_gastec\\WebApp_gastec.csproj",
-        "packagesPath": "C:\\Users\\Salama\\.nuget\\packages\\",
-        "outputPath": "E:\\Softex\\GitHub\\GasTec_En-Version\\WebApp_gastec\\obj\\",
+        "projectPath": "D:\\GitHub\\GasTec_En-Version\\WebApp_gastec\\WebApp_gastec.csproj",
+        "packagesPath": "C:\\Users\\Softex\\.nuget\\packages\\",
+        "outputPath": "D:\\GitHub\\GasTec_En-Version\\WebApp_gastec\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Salama\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Softex\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -79,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
         }
       }
     }

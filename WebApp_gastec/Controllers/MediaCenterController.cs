@@ -114,6 +114,8 @@ namespace WebApp_gastec.Controllers
             SessionHelper.SetObjectAsJson(HttpContext.Session, "Localization", Gastech_Vault.TranslationLanguageID);
 
             var model = this.GetHomeViewModel(Domain.Service.Encrypt(ID_), int.Parse(HttpContext.Session.GetString("Localization")));
+            var li = model.Sub_Section.Select(x => x.LstChildClassification).OrderByDescending(x => x.Select(x => x.ClassificationName)).ToList();
+
             foreach (var section in model.Sub_Section)
             {
                 if (section.ClassificationID == 48 || section.ClassificationID == 102)

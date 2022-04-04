@@ -1,6 +1,5 @@
 ﻿@model HomePageViewModel
 @using WebApp_gastec.Domain
-
 @{
 
     ViewData["Title"] = "GASTEC";
@@ -338,19 +337,19 @@
                             <div class="services-block-three">
                                 <div class="inner-box">
                                     <div class="image">
-                                        <a href="@Url.Action("Index" , "Oil" , new { ID_ = GetActionName.GetActionNameforEniImagesByID(image.ImageID) })">
+                                        <a href="@Url.Action("Index" , "Lubricants" , new { ID_ = GetActionName.GetActionNameforEniImagesByID(image.ImageID) })">
                                             <img src="~/Images/MidSection/@image.ImageGUID" alt="" />
                                         </a>
                                     </div>
                                     <div class="lower-content">
                                         <h3>
-                                            <a href="@Url.Action("Index" , "Oil" , new { ID_ = GetActionName.GetActionNameforEniImagesByID(image.ImageID) })">@image.ImageName</a>
+                                            <a href="@Url.Action("Index" , "Lubricants" , new { ID_ = GetActionName.GetActionNameforEniImagesByID(image.ImageID) })">@image.ImageName</a>
                                         </h3>
                                         @if (Gastech_Vault.TranslationLanguageID == 0)
                                         {
 
                                             <div class="text">
-                                                <a href="@Url.Action("Index" , "Oil" , new { ID_ = GetActionName.GetActionNameforEniImagesByID(image.ImageID) })" class="theme-btn read-more" dir="rtl">
+                                                <a href="@Url.Action("Index" , "Lubricants" , new { ID_ = GetActionName.GetActionNameforEniImagesByID(image.ImageID) })" class="theme-btn read-more" dir="rtl">
                                                     إقرأ المزيد<span class="icon flaticon-left-arrow" style="margin-right: 10px;font-size: 20px;vertical-align: sub;"></span>
                                                 </a>
                                             </div>
@@ -358,7 +357,7 @@
                                         else
                                         {
                                             <div class="text">
-                                                <a href="@Url.Action("Index" , "Oil" , new { ID_ = GetActionName.GetActionNameforEniImagesByID(image.ImageID) })" class="theme-btn read-more" dir="ltr">
+                                                <a href="@Url.Action("Index" , "Lubricants" , new { ID_ = GetActionName.GetActionNameforEniImagesByID(image.ImageID) })" class="theme-btn read-more" dir="ltr">
                                                     Read More <span class="icon flaticon-right-arrow-1" style="margin-right: 10px;font-size: 20px;vertical-align: sub;"></span>
                                                 </a>
                                             </div>
@@ -404,19 +403,19 @@
                             <div class="services-block-three">
                                 <div class="inner-box">
                                     <div class="image">
-                                        <a href="@Url.Action("Index" , "Oil" , new { ID_ = GetActionName.GetActionNameforEniImagesByID(image.ImageID) })">
+                                        <a href="@Url.Action("Index" , "Lubricants" , new { ID_ = GetActionName.GetActionNameforEniImagesByID(image.ImageID) })">
                                             <img src="~/Images/MidSection/@image.ImageGUID" alt="" />
                                         </a>
                                     </div>
                                     <div class="lower-content">
                                         <h3>
-                                            <a href="@Url.Action("Index" , "Oil" , new { ID_ = GetActionName.GetActionNameforEniImagesByID(image.ImageID) })">@image.ImageName</a>
+                                            <a href="@Url.Action("Index" , "Lubricants" , new { ID_ = GetActionName.GetActionNameforEniImagesByID(image.ImageID) })">@image.ImageName</a>
                                         </h3>
                                         @if (Gastech_Vault.TranslationLanguageID == 0)
                                         {
 
                                             <div class="text">
-                                                <a href="@Url.Action("Index" , "Oil" , new { ID_ = GetActionName.GetActionNameforEniImagesByID(image.ImageID) })" class="theme-btn read-more" dir="rtl">
+                                                <a href="@Url.Action("Index" , "Lubricants" , new { ID_ = GetActionName.GetActionNameforEniImagesByID(image.ImageID) })" class="theme-btn read-more" dir="rtl">
                                                     إقرأ المزيد<span class="icon flaticon-left-arrow" style="margin-right: 10px;font-size: 20px;vertical-align: sub;"></span>
                                                 </a>
                                             </div>
@@ -424,7 +423,7 @@
                                         else
                                         {
                                             <div class="text">
-                                                <a href="@Url.Action("Index" , "Oil" , new { ID_ = GetActionName.GetActionNameforEniImagesByID(image.ImageID) })" class="theme-btn read-more" dir="ltr">
+                                                <a href="@Url.Action("Index" , "Lubricants" , new { ID_ = GetActionName.GetActionNameforEniImagesByID(image.ImageID) })" class="theme-btn read-more" dir="ltr">
                                                     Read More <span class="icon flaticon-right-arrow-1" style="margin-right: 10px;font-size: 20px;vertical-align: sub;"></span>
                                                 </a>
                                             </div>

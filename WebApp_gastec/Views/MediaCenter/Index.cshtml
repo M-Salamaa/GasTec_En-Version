@@ -105,7 +105,7 @@
                                     <!--Tabs Side-->
                                     <div>
                                         <ul class="nav nav-tabs" dir="rtl">
-                                            @foreach (var child in entity.LstChildClassification)
+                                            @foreach (var child in entity.LstChildClassification.OrderByDescending(x=>x.ClassificationName).ToList())
                                             {
                                                 <li id="active-tab">
                                                     <a data-toggle="tab" href="#@child.ClassificationID" aria-expanded="true">
@@ -310,10 +310,10 @@
                                     <!--Tabs Side-->
                                     <div>
                                         <ul class="nav nav-tabs" dir="ltr">
-                                            @foreach (var child in entity.LstChildClassification)
+                                            @foreach (var child in entity.LstChildClassification.OrderByDescending(x=>x.ClassificationName).ToList())
                                             {
                                                 <li id="active-tab">
-                                                    <a data-toggle="tab" href="#@child.ClassificationID" aria-expanded="true">
+                                                    <a data-toggle="tab" href="#@child.ClassificationID" aria-expanded="false">
                                                         @child.ClassificationName
                                                     </a>
                                                 </li>
@@ -322,7 +322,7 @@
                                         <div class="tab-content text-left" style="padding-top: 20px">
                                             @foreach (var child in entity.LstChildClassification)
                                             {
-                                                <div id="@child.ClassificationID" class="tab-pane fade in active ">
+                                                <div id="@child.ClassificationID" class="tab-pane fade in ">
                                                     @foreach (var subChild in child.LstChildClassification)
                                                     {
                                                         <div class="clearfix">
@@ -467,6 +467,7 @@
     $(document).ready(function () {
         $("#active-tab").addClass("active");
         $("#360").addClass("active");
+        $("#active-tab").attr("aria-expanded": true);
 
     });
 </script>

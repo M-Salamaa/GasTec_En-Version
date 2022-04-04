@@ -38,10 +38,8 @@ namespace WebApp_gastec.Controllers
             {
                 foreach (var image in entity.LstImages)
                 {
-                    if (Gastech_Vault.TranslationLanguageID == 0)
-                        image.ImageGUID = await cacheImages.CahceAllImageAsync("Banners-ar", image.ImageGUID, image.ImageLink);
-                    else
-                        image.ImageGUID = await cacheImages.CahceAllImageAsync("Banners-en", image.ImageGUID, image.ImageLink);
+                    image.ImageGUID = await cacheImages.CahceAllImageAsync("Banners", image.ImageGUID, image.ImageLink);
+
                 }
             }
             //Caching News Topics Section images
@@ -49,10 +47,8 @@ namespace WebApp_gastec.Controllers
             {
                 if (topic.GroupID == 1 || topic.GroupID == 2)
                 {
-                    if (Gastech_Vault.TranslationLanguageID == 0)
-                        topic.ImageGUID = await cacheImages.CahceAllImageAsync("NewsTopics-ar", topic.ImageGUID, topic.ImageLink);
-                    else
-                        topic.ImageGUID = await cacheImages.CahceAllImageAsync("NewsTopics-en", topic.ImageGUID, topic.ImageLink);
+                    topic.ImageGUID = await cacheImages.CahceAllImageAsync("NewsTopics", topic.ImageGUID, topic.ImageLink);
+
                 }
                 else
                     continue;
@@ -74,10 +70,7 @@ namespace WebApp_gastec.Controllers
             {
                 foreach (var image in listImage.LstImages)
                 {
-                    if (Gastech_Vault.TranslationLanguageID == 0)
-                        image.ImageGUID = await cacheImages.CahceAllImageAsync("MidSection-ar", image.ImageGUID, image.ImageLink);
-                    else
-                        image.ImageGUID = await cacheImages.CahceAllImageAsync("MidSection-en", image.ImageGUID, image.ImageLink);
+                    image.ImageGUID = await cacheImages.CahceAllImageAsync("MidSection", image.ImageGUID, image.ImageLink);
 
                 }
             }
@@ -86,29 +79,21 @@ namespace WebApp_gastec.Controllers
             {
                 foreach (var image in listImages.LstImages)
                 {
-                    if (Gastech_Vault.TranslationLanguageID == 0)
-                        image.ImageGUID = await cacheImages.CahceAllImageAsync("MidBanner-ar", image.ImageGUID, image.ImageLink);
-                    else
-                        image.ImageGUID = await cacheImages.CahceAllImageAsync("MidBanner-en", image.ImageGUID, image.ImageLink);
+                    image.ImageGUID = await cacheImages.CahceAllImageAsync("MidBanner", image.ImageGUID, image.ImageLink);
 
                 }
             }
             //Caching News Section images
             foreach (var image in model_.NewsSection.LstNews)
             {
-                if (Gastech_Vault.TranslationLanguageID == 0)
-                    image.ImageGUID = await cacheImages.CahceAllImageAsync("NewsSection-ar", image.ImageGUID, image.ImageLink);
-                else
-                    image.ImageGUID = await cacheImages.CahceAllImageAsync("NewsSection-en", image.ImageGUID, image.ImageLink);
+                image.ImageGUID = await cacheImages.CahceAllImageAsync("NewsSection", image.ImageGUID, image.ImageLink);
 
             }
 
             foreach (var topic in model_.EniGastech.LstNews)
             {
-                if (Gastech_Vault.TranslationLanguageID == 0)
-                    topic.ImageGUID = await cacheImages.CahceAllImageAsync("EniGastec-ar", topic.ImageGUID, topic.ImageLink);
-                else
-                    topic.ImageGUID = await cacheImages.CahceAllImageAsync("EniGastec-en", topic.ImageGUID, topic.ImageLink);
+                topic.ImageGUID = await cacheImages.CahceAllImageAsync("EniGastec", topic.ImageGUID, topic.ImageLink);
+
             }
             #endregion Caching images returned from API
         }
@@ -205,7 +190,7 @@ namespace WebApp_gastec.Controllers
                 // Consuming Main Menu from Classification Tree API 
                 MainNavigationBar = API_GetClassificationTree.GetClassificationTree(inputModel.Input_MainNavigationBar.EncryptedTreeClassificationID, inputModel.Input_MainNavigationBar.EncryptedSpecificTreeClassificationID, translationID_),
                 // Consuming News Details form News Details API 
-                News_Details = await API_GetNewsTopics.GetNewsDetails(serial_, translationID_),
+                News_Details = await API_GetNewsTopics.GetNewsDetails(serial_),
                 // Consuming All News from Get News Topic API
                 NewsTopics = await API_GetNewsTopics.GetAllNewsTopics(0),
             };
@@ -222,7 +207,7 @@ namespace WebApp_gastec.Controllers
             return View(model);
         }
         //Change WebSite Language
-        public IActionResult Translation()
+        public IActionResult Language()
         {
             if (Gastech_Vault.TranslationLanguageID == 0)
                 Gastech_Vault.TranslationLanguageID = 1;

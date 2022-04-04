@@ -92,7 +92,7 @@
                         <div class="inner-box">
                             <div id="events1">
                                 <ul class="nav nav-tabs" dir="rtl">
-                                    @foreach (var year in Model.News_Group)
+                                    @foreach (var year in Model.News_Group.OrderByDescending(x=>x.GroupName).ToList())
                                     {
                                         @if (year.GroupID == 3 || year.GroupID == 4)
                                         {
@@ -101,13 +101,13 @@
                                         else
                                         {
                                             <li id="active-tab">
-                                                <a data-toggle="tab" href="#@year.GroupID" aria-expanded="true">@year.GroupName</a>
+                                                <a data-toggle="tab" href="#@year.GroupID" aria-expanded="false">@year.GroupName</a>
                                             </li>
                                         }
                                     }
                                 </ul>
                                 <div class="tab-content text-right" style="padding-top: 20px">
-                                    @foreach (var year in Model.News_Group)
+                                    @foreach (var year in Model.News_Group.OrderByDescending(x => x.GroupName).ToList())
                                     {
                                         <div id="@year.GroupID" class="tab-pane fade in">
                                             <div class="clearfix"></div>
@@ -209,7 +209,7 @@
                         <div class="inner-box">
                             <div id="events1">
                                 <ul class="nav nav-tabs" dir="ltr">
-                                    @foreach (var year in Model.News_Group)
+                                    @foreach (var year in Model.News_Group.OrderByDescending(x=>x.GroupName).ToList())
                                     {
                                         @if (year.GroupID == 3 || year.GroupID == 4)
                                         {
@@ -218,13 +218,13 @@
                                         else
                                         {
                                             <li id="active-tab">
-                                                <a data-toggle="tab" href="#@year.GroupID" aria-expanded="true">@year.GroupName</a>
+                                                <a data-toggle="tab" href="#@year.GroupID" aria-expanded="false">@year.GroupName</a>
                                             </li>
                                         }
                                     }
                                 </ul>
                                 <div class="tab-content text-left" style="padding-top: 20px">
-                                    @foreach (var year in Model.News_Group)
+                                    @foreach (var year in Model.News_Group.OrderByDescending(x => x.GroupName).ToList())
                                     {
                                         <div id="@year.GroupID" class="tab-pane fade in">
                                             <div class="clearfix"></div>
@@ -284,6 +284,7 @@
     $(document).ready(function () {
         $("#active-tab").addClass("active");
         $("#1").addClass("active");
+        $("#active-tab").attr("aria-expanded": true);
     });
 </script>
 @foreach (var entity in Model.News_Group)

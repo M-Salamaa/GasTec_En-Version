@@ -135,7 +135,7 @@ else
                         <div class="inner-box">
                             <div id="events1">
                                 <ul class="nav nav-tabs" dir="ltr">
-                                    @foreach (var year in Model.News_Group)
+                                    @foreach (var year in Model.News_Group.OrderByDescending(x=>x.GroupName).ToList())
                                     {
                                         @if (year.GroupID == 3 || year.GroupID == 4)
                                         {
