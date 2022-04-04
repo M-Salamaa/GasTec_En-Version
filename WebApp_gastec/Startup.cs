@@ -31,7 +31,7 @@ namespace WebApp_gastec
             services.AddSession();
             services.AddControllersWithViews();
             services.AddHttpClient<ICaptchaValidator, GoogleReCaptchaValidator>();
-
+        
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

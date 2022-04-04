@@ -135,7 +135,7 @@ else
                         <div class="inner-box">
                             <div id="events1">
                                 <ul class="nav nav-tabs" dir="ltr">
-                                    @foreach (var year in Model.News_Group.OrderByDescending(x=>x.GroupName).ToList())
+                                    @foreach (var year in Model.News_Group.OrderByDescending(x => x.GroupName).ToList())
                                     {
                                         @if (year.GroupID == 3 || year.GroupID == 4)
                                         {
@@ -169,14 +169,14 @@ else
                                                 <!--News Block-->
                                                 @foreach (var topic in Model.NewsTopics.LstNews.Where(x => x.GroupID == year.GroupID).ToList())
                                                 {
-                                                    <div class="news-block col-md-3 col-sm-6 col-xs-12 wow fadeIn pull-left" style="max-height:400px; overflow:hidden; margin-top:20px">
+                                                    <div class="news-block col-md-3 col-sm-6 col-xs-12 wow fadeIn pull-left" style="max-height:450px; overflow:hidden; margin:20px">
                                                         <div class="inner-box">
                                                             <div class="image">
                                                                 <a href="@Url.Action("NewsDetails", "Home", new { serial_ = topic.Serial})">
                                                                     <img src="~/Images/MediaCenter_NewsSection/@topic.ImageGUID" style="height:150px" alt="">
                                                                 </a>
                                                             </div>
-                                                            <div class="lower-box" style="min-height:200px">
+                                                            <div class="lower-box" style="max-height:300px">
                                                                 <div class="post-info">
                                                                     @topic.TopicDate.ToShortDateString()
                                                                 </div>

@@ -43,6 +43,18 @@
 </div>
 <!--End Page Info-->
 <!--Contact Section-->
+
+<style>
+    .ohnohoney {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 0;
+        width: 0;
+        z-index: -1;
+    }
+</style>
 <section class="contact-section">
     <div class="auto-container">
 
@@ -82,6 +94,12 @@
                         <div class="contact-form">
                             <form method="post" asp-controller="Home" asp-action="Conversion_Form" id="contact-form" dir="rtl">
                                 <div class="row clearfix">
+
+                                    @*<label for="nameaksljf">الإسم بالكامل</label>
+
+                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                        <input asp-for="@Model.Car_Conversion.Name" id="nameksljf" name="nameksljf" placeholder="الإسم بالكامل" required maxlength="100">
+                                    </div>*@
                                     <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                         <input asp-for="@Model.Car_Conversion.Name" value="" placeholder="الإسم بالكامل*" required="">
                                     </div>
