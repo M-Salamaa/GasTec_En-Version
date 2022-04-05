@@ -114,31 +114,28 @@
                                                     @foreach (var image in entity.LstImages)
                                                     {
                                                         <tr>
-                                                            <td>
-                                                                <h3>
-                                                                    <span style="font-size:18px;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
-                                                                </h3>
-                                                            </td>
-                                                            <td>
-                                                                <p>
-                                                                    <span style="font-size:18px;"> @image.ImageName</span>
-                                                                </p>
-                                                                <p>
-                                                                    <span style="font-size:18px;">  @image.Image_AltText</span>
-                                                                </p>
-                                                            </td>
-                                                            <td>
-                                                                <h3>
-                                                                    <span style="font-size:18px;">
-                                                                        <img src="~/Images/HumanResources/@image.ImageGUID" style="height: 234px; width: 200px; float: left;">
+                                                            <td style="text-align:center">
+                                                                <p style="text-align: center">
+                                                                    <span style="color:#273461;">
+                                                                        <span style="font-size:18px; text-align:center">
+                                                                            @image.ImageName
+                                                                        </span>
                                                                     </span>
-                                                                </h3>
+                                                                </p>
+                                                                <p style="text-align: center;">
+                                                                    <span style="font-size: 18px; ">
+                                                                        <span style="color: #263a69; text-align: center">
+                                                                            @image.Image_AltText
+                                                                        </span>
+                                                                    </span>
+                                                                </p>
+                                                            </td>
+                                                            <td>
+                                                                <img src="~/Images/HumanResources/@image.ImageGUID" style="height: 240px; width: 200px; float: left">
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>
-                                                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                                                            </td>
+                                                            <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
                                                         </tr>
                                                     }
                                                 </tbody>
@@ -273,30 +270,26 @@
                                                     @foreach (var image in entity.LstImages)
                                                     {
                                                         <tr>
-                                                            <td>
-                                                                <h3>
-                                                                    <span style="font-size:18px;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
-                                                                </h3>
-                                                            </td>
+
                                                             <td>
                                                                 <p>
-                                                                    <span style="font-size:18px;"> @image.ImageName</span>
+                                                                    <span style="font-size:18px; text-align:left"> @image.ImageName</span>
                                                                 </p>
                                                                 <p>
-                                                                    <span style="font-size:18px;">  @image.Image_AltText</span>
+                                                                    <span style="font-size: 18px; text-align: left">  @image.Image_AltText</span>
                                                                 </p>
                                                             </td>
                                                             <td>
                                                                 <h3>
                                                                     <span style="font-size:18px;">
-                                                                        <img src="~/Images/HumanResources/@image.ImageGUID" style="height: 234px; width: 200px; float: left;">
+                                                                        <img src="~/Images/HumanResources/@image.ImageGUID" style="height: 234px; width: 200px; float: right;">
                                                                     </span>
                                                                 </h3>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                                             </td>
                                                         </tr>
                                                     }

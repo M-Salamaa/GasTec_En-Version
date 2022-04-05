@@ -2,6 +2,7 @@ D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\WebApp_g
 D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\css\site.css
 D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\favicon.ico
 D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\HtmlFiles\AboutUs\.html
+D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\HtmlFiles\AboutUs\126-120-24-02-202211-58-18AM.html
 D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\HtmlFiles\AboutUs\126-121-24-02-202211-57-42AM.html
 D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\HtmlFiles\AboutUs\126-61-29-03-20224-50-34PM.html
 D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\HtmlFiles\AboutUs\126-62-15-02-202210-24-14AM.html
@@ -136,6 +137,11 @@ D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\
 D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\HtmlFiles\Cylinder_Testing\156-164-16-03-202211-06-54AM.html
 D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\HtmlFiles\Cylinder_Testing\156-165-16-03-202211-07-29AM.html
 D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\HtmlFiles\Cylinder_Testing\156-166-16-03-202211-08-03AM.html
+D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\HtmlFiles\HumanResources\126-1-10-02-202211-25-42AM.html
+D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\HtmlFiles\HumanResources\126-15-20-02-20223-38-42PM.html
+D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\HtmlFiles\HumanResources\126-2-10-02-202211-26-53AM.html
+D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\HtmlFiles\HumanResources\126-3-10-02-202211-27-29AM.html
+D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\HtmlFiles\HumanResources\126-67-15-02-202211-38-09AM.html
 D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\HtmlFiles\HumanResources\126-70-15-02-20222-58-07PM.html
 D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\HtmlFiles\HumanResources\156-23-15-02-20222-36-09PM.html
 D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\HtmlFiles\HumanResources\156-24-15-02-20222-49-48PM.html
@@ -1431,6 +1437,7 @@ D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\
 D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\public\assets\softextwo\images\clients\7.png
 D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\public\assets\softextwo\images\clients\8.png
 D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\public\assets\softextwo\images\clients\9.png
+D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\public\assets\softextwo\images\complaint-portal.png
 D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\public\assets\softextwo\images\count1.png
 D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\public\assets\softextwo\images\count2.png
 D:\GitHub\GasTec_En-Version\WebApp_gastec\obj\Release\net5.0\PubTmp\Out\wwwroot\public\assets\softextwo\images\count3.png

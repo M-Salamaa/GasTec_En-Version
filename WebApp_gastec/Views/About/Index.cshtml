@@ -120,8 +120,8 @@
                                                                 <img src="~/Images/AboutUs/@image.ImageGUID" style="height: 676px; width: 1200px;">
                                                             </p>
                                                         </div>
-                                                            @Html.Raw(entity.Body)
-                                                        
+                                                        @Html.Raw(entity.Body)
+
                                                     }
                                                 }
                                             </div>
@@ -144,31 +144,30 @@
                                         <h2>@entity.ClassificationName</h2>
                                         <link href="" rel="stylesheet" type="text/css">
                                         <div style="font-size:14px; position:relative">
-                                            <p style="text-align: justify;">&nbsp;</p>
+                                            <p style="text-align: right;">&nbsp;</p>
                                             <table align="center" border="1" cellpadding="1" cellspacing="1" style="width:800px;">
                                                 <tbody>
                                                     @foreach (var image in entity.LstImages)
                                                     {
                                                         <tr>
-                                                            <td>
-                                                                <p style="text-align: center;">
+                                                            <td style="text-align:right">
+                                                                <p style="text-align: right">
                                                                     <span style="color:#273461;">
-                                                                        <span style="font-size:18px;">
-                                                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @image.ImageName
+                                                                        <span style="font-size:18px; text-align:right">
+                                                                            @image.ImageName
                                                                         </span>
                                                                     </span>
                                                                 </p>
-                                                                <p style="text-align: center;">
-                                                                    <span style="font-size:18px;">
-                                                                        <span style="color:#263a69;">
-                                                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @image.Image_AltText
+                                                                <p style="text-align: right;">
+                                                                    <span style="font-size: 18px; ">
+                                                                        <span style="color: #263a69; text-align: right">
+                                                                            @image.Image_AltText
                                                                         </span>
                                                                     </span>
                                                                 </p>
-                                                                <p style="text-align: center;">&nbsp;</p>
                                                             </td>
                                                             <td>
-                                                                <img src="~/Images/AboutUS/@image.ImageGUID" style="height: 240px; width: 200px; float: left;">
+                                                                <img src="~/Images/AboutUS/@image.ImageGUID" style="height: 240px; width: 200px; float: left">
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -338,7 +337,7 @@
                                                                 <img src="~/Images/AboutUs/@image.ImageGUID" style="height: 676px; width: 1200px;">
                                                             </p>
                                                         </div>
-                                                            @Html.Raw(entity.Body)
+                                                        @Html.Raw(entity.Body)
                                                     }
                                                 }
                                             </div>
@@ -367,25 +366,24 @@
                                                     @foreach (var image in entity.LstImages)
                                                     {
                                                         <tr>
-                                                            <td>
-                                                                <p style="text-align: center;">
+                                                            <td style="text-align:left">
+                                                                <p style="text-align: left">
                                                                     <span style="color:#273461;">
-                                                                        <span style="font-size:18px;">
-                                                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @image.ImageName
+                                                                        <span style="font-size:18px; text-align:left">
+                                                                            @image.ImageName
                                                                         </span>
                                                                     </span>
                                                                 </p>
-                                                                <p style="text-align: center;">
-                                                                    <span style="font-size:18px;">
-                                                                        <span style="color:#263a69;">
-                                                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @image.Image_AltText
+                                                                <p style="text-align: left;">
+                                                                    <span style="font-size: 18px; ">
+                                                                        <span style="color: #263a69; text-align: left">
+                                                                            @image.Image_AltText
                                                                         </span>
                                                                     </span>
                                                                 </p>
-                                                                <p style="text-align: center;">&nbsp;</p>
                                                             </td>
                                                             <td>
-                                                                <img src="~/Images/AboutUS/@image.ImageGUID" style="height: 240px; width: 200px; float: left;">
+                                                                <img src="~/Images/AboutUS/@image.ImageGUID" style="height: 240px; width: 200px; float: right">
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -432,7 +430,7 @@
                                                             </h3>
                                                             <h3 style="text-align: justify;">&nbsp;</h3>
                                                         </div>
-                                                            @Html.Raw(entity.Body)
+                                                        @Html.Raw(entity.Body)
                                                     }
                                                 }
                                             </div>

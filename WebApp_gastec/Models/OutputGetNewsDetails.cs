@@ -17,6 +17,8 @@ namespace WebApp_gastec.Models
         public string NewsTopic_HTMLLink { get; set; }
         public string Topic_Name { get; set; }
         public string body { get; set; }
+        public List<ListWebSectionModel> WebSections { get; set; }
+
     }
 
 }

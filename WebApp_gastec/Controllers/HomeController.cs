@@ -21,12 +21,10 @@ namespace WebApp_gastec.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         public readonly IWebHostEnvironment _hostingEnvironment;
-        public readonly IHttpContextAccessor _httpContextAccessor;
-        public HomeController(ILogger<HomeController> logger, IWebHostEnvironment hostingEnvironment, IHttpContextAccessor httpContextAccessor)
+        public HomeController(ILogger<HomeController> logger, IWebHostEnvironment hostingEnvironment)
         {
             _logger = logger;
             _hostingEnvironment = hostingEnvironment;
-            _httpContextAccessor = httpContextAccessor;
         }
         // function to Cahcing All Images Returned
         private async Task CachedAllImagesAsync(HomePageViewModel model_)
@@ -171,7 +169,7 @@ namespace WebApp_gastec.Controllers
             HomePageViewModel homePageViewModel = new()
             {
                 // Consuming Main Menu from Classification Tree API 
-                MainNavigationBar = API_GetClassificationTree.GetClassificationTree(inputModel.Input_MainNavigationBar.EncryptedTreeClassificationID, inputModel.Input_MainNavigationBar.EncryptedSpecificTreeClassificationID, translationID_),
+                //MainNavigationBar = API_GetClassificationTree.GetClassificationTree(inputModel.Input_MainNavigationBar.EncryptedTreeClassificationID, inputModel.Input_MainNavigationBar.EncryptedSpecificTreeClassificationID, translationID_),
                 // Consuming Main Cylindar Test Menu from Classification Tree API 
                 MediaCenter = API_GetClassificationTree.GetClassificationTree(inputModel.Input_MediaCenter.EncryptedTreeClassificationID, inputModel.Input_MediaCenter.EncryptedSpecificTreeClassificationID, translationID_),
                 // Consuming News Groups from Get News Topic API
@@ -187,8 +185,6 @@ namespace WebApp_gastec.Controllers
             var inputModel = GetClassificationIDByLang.GetClassificationIdByLanguageID();
             HomePageViewModel homePageViewModel = new()
             {
-                // Consuming Main Menu from Classification Tree API 
-                MainNavigationBar = API_GetClassificationTree.GetClassificationTree(inputModel.Input_MainNavigationBar.EncryptedTreeClassificationID, inputModel.Input_MainNavigationBar.EncryptedSpecificTreeClassificationID, translationID_),
                 // Consuming News Details form News Details API 
                 News_Details = await API_GetNewsTopics.GetNewsDetails(serial_),
                 // Consuming All News from Get News Topic API
@@ -240,6 +236,7 @@ namespace WebApp_gastec.Controllers
             await CachedAllImagesAsync(model);
             return View(model);
         }
+        #region Map Actions
         // Action to partial view to Display Map
         [HttpPost]
         public async Task<IActionResult> _ShowMapPartialAsync(double longtitude, double latitude)
@@ -284,6 +281,20 @@ namespace WebApp_gastec.Controllers
             }
             return PartialView("_ReturnJsonFile");
         }
+        // Function To Cache All Json Files for Map
+        private void CacheAllFiles(List<OutputGetClassificationTreeModel> model_)
+        {
+            CacheFiles cacheedFile = new CacheFiles(_hostingEnvironment);
+            foreach (var entity in model_)
+            {
+                foreach (var file in entity.LstFiles)
+                {
+                    file.FileGUID = cacheedFile.CahceAllFiles(file.FileGUID, MapFileName.GetMApFileName(file.FileID), file.FileLink);
+                }
+            }
+        }
+        #endregion
+        #region Contact us View Actions
         [HttpGet]
         public IActionResult Contacts()
         {
@@ -340,6 +351,7 @@ namespace WebApp_gastec.Controllers
             }
             return View(homePageViewModel);
         }
+        #endregion
         // Car Conversion GET Action
         [HttpGet]
         public async Task<IActionResult> Conversion_FormAsync()
@@ -407,18 +419,7 @@ namespace WebApp_gastec.Controllers
             }
             return View(homePageViewModel);
         }
-        // Function To Cache All Json Files for Map
-        private void CacheAllFiles(List<OutputGetClassificationTreeModel> model_)
-        {
-            CacheFiles cacheedFile = new CacheFiles(_hostingEnvironment);
-            foreach (var entity in model_)
-            {
-                foreach (var file in entity.LstFiles)
-                {
-                    file.FileGUID = cacheedFile.CahceAllFiles(file.FileGUID, MapFileName.GetMApFileName(file.FileID), file.FileLink);
-                }
-            }
-        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

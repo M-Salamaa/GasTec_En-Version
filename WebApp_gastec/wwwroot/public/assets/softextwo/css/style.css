@@ -107,7 +107,7 @@ textarea {
 p,
 .text {
     position: relative;
-    line-height: 1.8em!important;
+    line-height: 1.8em;
 }
 
 .strike-through {
@@ -1954,7 +1954,7 @@ img {
     font-size: 40px;
     font-weight: 100;
     direction: rtl;
-    line-height: 1.3em;
+    line-height: 1em;
     display: inline-block;
     padding-right: 5px;
     text-shadow: 0 1px 6px rgba(0, 0, 0, .3);
@@ -1966,7 +1966,7 @@ img {
     font-weight: 100;
     direction: rtl;
     color: #ffffff;
-    line-height: 1.7em;
+    line-height: 1.5em!important;
     font-family: 'Tajawal', sans-serif;
     text-shadow: 0 1px 6px rgba(0, 0, 0, .4);
 }
@@ -1977,7 +1977,7 @@ img {
     font-size: 45px;
     font-weight: 600;
     direction: rtl;
-    line-height: 1.3em;
+    line-height: 1em;
     display: inline-block;
     padding-right: 5px;
     text-shadow: 0 1px 6px rgba(0, 0, 0, 0);
@@ -1989,7 +1989,7 @@ img {
     font-weight: 600;
     direction: rtl;
     color: #222;
-    line-height: 1.7em;
+    line-height: 1.5em!important;
     font-family: 'Tajawal', sans-serif;
     text-shadow: 0 1px 6px rgba(0, 0, 0, 0);
 }
