@@ -96,26 +96,38 @@
                                                         </a>
                                                     }
                                                 </div>
-                                                <div class="lower-content">
-                                                    <div class="lower-box">
-                                                        <p style="color: #999">
-                                                            <i class="fa fa-calendar"></i> 05/01/2021
-                                                        </p>
-                                                        <h3>
-                                                            <a href="#">تقرير قناة Extra News عن المعرض الأول لتكنولوجيا تحويل وإحلال المركبات للعمل بالطاقة النظيفة</a>
-                                                        </h3>
-                                                        <p>
-                                                            تقرير قناة Extra News عن المعرض الأول لتكنولوجيا تحويل وإحلال المركبات للعمل بالطاقة النظيفة<br> <a href="https://www.youtube.com/watch?fbclid=IwAR0XzTYIBVJisX94wOEJ1XybHbSx2jNS2bikPn6zWLTP8Ol6qGXopZ28f9E&amp;v=KqTsY92fECI&amp;feature=youtu.be">
-                                                                https://www.youtube.com/watch?fbclid=IwAR0XzTYIBVJisX94wOEJ1XybHbSx2jNS2bikPn6zWLTP8Ol6qGXopZ28f9E&amp;v=KqTsY92fECI&amp;feature=youtu.be
-                                                            </a>
-                                                        </p>
-                                                        <a href="https://www.gastec-egypt.com/public/allnews/32817" class="theme-btn read-more" style="float: left;direction: rtl;font-size: 18px;">
-                                                            عرض جميع الأخبار<span class="icon flaticon-left-arrow" style="margin-right: 10px;font-size: 20px;vertical-align: sub;">
-                                                            </span>
-                                                        </a>
+                                                @foreach (var entity in Model.News_Details)
+                                                {
+                                                    <div class="lower-content">
+                                                        <div class="lower-box">
+                                                            <p style="color: #999">
+                                                                <i class="fa fa-calendar"></i>
+                                                                @entity.TopicDate.ToShortDateString()
+                                                            </p>
+                                                            <h3>
+                                                                <a href="#">
+                                                                    @entity.NewsTitle
+                                                                </a>
+                                                            </h3>
+                                                            @foreach (var webSection in entity.WebSections)
+                                                            {
+                                                                @Html.Raw(webSection.Body)
+                                                                <p dir="rtl">&nbsp;</p>
 
+                                                                @foreach (var image in webSection.LstImages)
+                                                                {
+                                                                    <img src="~/Images/News/@image.ImageGUID" style="height:400px; width:500px; padding:5px" />
+                                                                }
+                                                                <p dir="rtl">&nbsp;</p>
+                                                            }
+
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                }
+                                                <a href="@Url.Action("AllNews","Home")" class="theme-btn read-more" style="float: left;direction: rtl;font-size: 18px;">
+                                                    عرض جميع الأخبار<span class="icon flaticon-left-arrow" style="margin-right: 10px;font-size: 20px;vertical-align: sub;">
+                                                    </span>
+                                                </a>
                                             </div>
                                         </div>
 
@@ -129,17 +141,14 @@
             }
             else
             {
+
                 <!-- Slider Side-->
                 <div class="sidebar-side col-lg-3 col-md-4 col-sm-12 col-xs-12 pull-right">
                     <aside class="sidebar">
                         <div id="sideevents">
                             <!-- Popular Posts -->
                             <div class="sidebar-widget popular-posts">
-                                <div class="sidebar-title">
-                                    <h2>
-                                        Latest News
-                                    </h2>
-                                </div>
+                                <div class="sidebar-title"><h2>Latest News</h2></div>
                                 @foreach (var topic in Model.NewsTopics.LstNews.Take(10))
                                 {
                                     <!--//Start backend to retrieve variables  -->
@@ -166,7 +175,7 @@
                     <div class="services-single" dir="ltr">
                         <div class="inner-box">
                             <div id="events1">
-                                <div class="blog-classic padding-right" style="padding-right:0;">
+                                <div class="blog-classic padding-left" style="padding-right:0;">
                                     <!--Large Image Posts-->
                                     <div class="large-image-posts">
 
@@ -181,25 +190,38 @@
                                                         </a>
                                                     }
                                                 </div>
-                                                <div class="lower-content">
-                                                    <div class="lower-box">
-                                                        <p style="color: #999">
-                                                            <i class="fa fa-calendar"></i> 05/01/2021
-                                                        </p>
-                                                        <h3>
-                                                            <a href="#">تقرير قناة Extra News عن المعرض الأول لتكنولوجيا تحويل وإحلال المركبات للعمل بالطاقة النظيفة</a>
-                                                        </h3>
-                                                        <p>
-                                                            تقرير قناة Extra News عن المعرض الأول لتكنولوجيا تحويل وإحلال المركبات للعمل بالطاقة النظيفة<br> <a href="#">
-                                                            </a>
-                                                        </p>
-                                                        <a href="https://www.gastec-egypt.com/public/allnews/32817" class="theme-btn read-more" style="float: right;direction: ltr;font-size: 18px;">
-                                                            عرض جميع الأخبار<span class="icon flaticon-right-arrow-1" style="margin-right: 10px;font-size: 20px;vertical-align: sub;">
-                                                            </span>
-                                                        </a>
+                                                @foreach (var entity in Model.News_Details)
+                                                {
+                                                    <div class="lower-content">
+                                                        <div class="lower-box">
+                                                            <p style="color: #999">
+                                                                <i class="fa fa-calendar"></i>
+                                                                @entity.TopicDate.ToShortDateString()
+                                                            </p>
+                                                            <h3>
+                                                                <a href="#">
+                                                                    @entity.NewsTitle
+                                                                </a>
+                                                            </h3>
+                                                            @foreach (var webSection in entity.WebSections)
+                                                            {
+                                                                @Html.Raw(webSection.Body)
+                                                                <p dir="ltr">&nbsp;</p>
 
+                                                                @foreach (var image in webSection.LstImages)
+                                                                {
+                                                                    <img src="~/Images/News/@image.ImageGUID" style="height:400px; width:500px; padding:5px" />
+                                                                }
+                                                                <p dir="ltr">&nbsp;</p>
+                                                            }
+
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                }
+                                                <a href="@Url.Action("AllNews","Home")" class="theme-btn read-more" style="float: right;direction: ltr;font-size: 18px;">
+                                                    View All News <span class="icon flaticon-right-arrow-1" style="margin-right: 10px;font-size: 20px;vertical-align: sub;">
+                                                    </span>
+                                                </a>
                                             </div>
                                         </div>
 

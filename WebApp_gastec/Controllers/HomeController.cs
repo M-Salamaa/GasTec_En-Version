@@ -96,7 +96,7 @@ namespace WebApp_gastec.Controllers
             #endregion Caching images returned from API
         }
         // Caching All News Images
-        private async Task CacheAllNewsImages(HomePageViewModel model_, string folderName_)
+        private async Task CacheNewsImages(HomePageViewModel model_, string folderName_)
         {
             #region caching images 
             Cache cachedImages = new Cache(_hostingEnvironment);
@@ -115,21 +115,33 @@ namespace WebApp_gastec.Controllers
                     {
                         image.ImageGUID = await cachedImages.CahceAllImageAsync(folderName_, image.ImageGUID, image.ImageLink);
                     }
+                    if (entity.WebSections.Count > 0)
+                    {
+                        foreach (var webSection in entity.WebSections)
+                        {
+                            foreach (var image in webSection.LstImages)
+                            {
+                                image.ImageGUID = await cachedImages.CahceAllImageAsync(folderName_, image.ImageGUID, image.ImageLink);
+                            }
+                        }
+                    }
                 }
             }
             #endregion
         }
         // Caching HTML for News Details
-        private void CacheAllHtmlforNewsDetails(List<OutputGetNewsDetails> newsDetailsModel_, string folderName_)
+        private void CacheHtmlforNewsDetails(List<OutputGetNewsDetails> newsDetailsModel_, string folderName_)
         {
             string path = "";
             #region caching html 
             Cache cachedHtml = new Cache(_hostingEnvironment);
-            foreach (var entitiy in newsDetailsModel_)
+            foreach (var entity in newsDetailsModel_)
             {
-                entitiy.Topic_Name = entitiy.Serial.ToString() + "artice";
-                path = cachedHtml.CahceAllHtmlLinks(folderName_, entitiy.Topic_Name, entitiy.NewsTopic_HTMLLink);
-                entitiy.body = Domain.Service.ReadFileAsStringForBody(path);
+                foreach (var webSection in entity.WebSections)
+                {
+                    path = cachedHtml.CahceAllHtmlLinks(folderName_, webSection.HTML_GUID, webSection.WebSection_HTM_Link);
+                    webSection.Body = Domain.Service.ReadFileAsStringForBody(path);
+                }
             }
             #endregion
         }
@@ -180,7 +192,7 @@ namespace WebApp_gastec.Controllers
             return homePageViewModel;
         }
         // Function To Return View Model for News Details
-        private async Task<HomePageViewModel> GetNewsDetailsModel(int serial_, int translationID_)
+        private async Task<HomePageViewModel> GetNewsDetailsModel(int serial_)
         {
             var inputModel = GetClassificationIDByLang.GetClassificationIdByLanguageID();
             HomePageViewModel homePageViewModel = new()
@@ -198,7 +210,7 @@ namespace WebApp_gastec.Controllers
         {
             SessionHelper.SetObjectAsJson(HttpContext.Session, "Localization", Gastech_Vault.TranslationLanguageID);
             var model = await this.GetNewsModel(int.Parse(HttpContext.Session.GetString("Localization")));
-            await CacheAllNewsImages(model, "MediaCenter_NewsSection");
+            await CacheNewsImages(model, "MediaCenter_NewsSection");
             model.IsActive = true;
             return View(model);
         }
@@ -220,9 +232,16 @@ namespace WebApp_gastec.Controllers
         public async Task<IActionResult> NewsDetailsAsync(int serial_)
         {
             SessionHelper.SetObjectAsJson(HttpContext.Session, "Localization", Gastech_Vault.TranslationLanguageID);
-            var model = await this.GetNewsDetailsModel(serial_, int.Parse(HttpContext.Session.GetString("Localization")));
-            await CacheAllNewsImages(model, "News");
-            CacheAllHtmlforNewsDetails(model.News_Details, "News");
+            var model = await this.GetNewsDetailsModel(serial_);
+            await CacheNewsImages(model, "News");
+            if (Gastech_Vault.TranslationLanguageID == 0)
+            {
+                CacheHtmlforNewsDetails(model.News_Details, "News-ar");
+            }
+            else
+            {
+                CacheHtmlforNewsDetails(model.News_Details, "News-en");
+            }
             return View(model);
 
         }
